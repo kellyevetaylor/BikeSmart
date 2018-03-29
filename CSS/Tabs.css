@@ -1,8 +1,21 @@
+*{
+    overflow: hidden;
+    margin: 0;
+    padding: 0rem;
+
+    font-family: Arial;
+}
+
 .tabs{
 
     overflow: hidden;
     border: 1px solid grey;
     background-color: dodgerblue;
+    color: white;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+
 }
 
 
@@ -10,14 +23,20 @@
     background-color: dodgerblue;
     border: none;
     outline:none;
+    font-size: 1rem;
+    padding-bottom: 3rem;
+    display: inline-block;
+    width:33%;
+
 
 
 }
 .tabButton:hover{
-    background-color: mediumpurple;
+    background-color: grey;
+}
+
+body{
+    height :calc(100vh - 3rem);
 }
 
 
-div{
-    background-color: red;
-}
