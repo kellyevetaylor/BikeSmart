@@ -1,0 +1,22 @@
+body{
+    text-align: center;
+    padding-top: 0.5%;
+    font-family: Arial;
+    font-size: 3rem;
+    height: calc(100vh - 10vh);
+    overflow: hidden;
+    border-radius: 0.4rem;
+}
+
+p{
+    padding-top: 10vh;
+}
+
+#b1, #b2{
+    font-size : 3rem;
+    border-radius: 0.4rem;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    background-color: cornflowerblue;
+}
