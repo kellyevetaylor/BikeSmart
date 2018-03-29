@@ -7,7 +7,7 @@
 
 
 .tabButton{
-    background-color: inherit;
+    background-color: dodgerblue;
     border: none;
     outline:none;
 
@@ -15,4 +15,9 @@
 }
 .tabButton:hover{
     background-color: mediumpurple;
+}
+
+
+div{
+    background-color: red;
 }
