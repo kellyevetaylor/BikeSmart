@@ -9,7 +9,7 @@
 .tabs{
 
     overflow: hidden;
-    border: 1px solid grey;
+    /*border: 1px solid grey;*/
     background-color: dodgerblue;
     color: white;
     width: 100%;
@@ -24,10 +24,11 @@
     border: none;
     outline:none;
     font-size: 1rem;
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
     display: inline-block;
-    width:33%;
-
+    width:32%;
+    text-align: center;
 
 
 }
