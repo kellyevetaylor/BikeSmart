@@ -18,3 +18,15 @@ header{
     line-height: 2rem;
     background-color: dodgerblue;
 }
+
+
+.NewAccountEntries{
+
+    font-size: 1.5rem;
+    width: 20rem;
+
+}
+
+p{
+    display: block;
+}
