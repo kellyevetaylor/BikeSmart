@@ -24,15 +24,15 @@
         <ul>
             <li><div id="gps" class="QuickstartLabel">Start Location:</div></li>
             <li><label class="QuickstartLabel">Distance:</label></li>
-            <li><label class="QuickstartLabel">Time:</label>00:00</li>
+            <li><label class="QuickstartLabel">Time:</label><label id="timer">00:00:00</label></li>
         </ul>
 
         </p>
     </div>
 
     <div id="QuickstartButtons">
-        <button class="QuickstartStart-stop">Start</button>
-        <button class="QuickstartStart-stop">Stop</button>
+        <button id="QuickstartBtn" class="QuickstartStart-stop" onclick="startTimer()">Start</button>
+        <button id = "QuickstopBtn"class="QuickstartStart-stop" onclick="stopTimer()">Stop</button>
     </div>
     </body>
 
