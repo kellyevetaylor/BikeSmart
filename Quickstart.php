@@ -36,7 +36,7 @@ if ($action == "Finish") {
     $result= $conn->query($sql);
     if (!$result === TRUE) {
         die("Error on insert" . $conn->error);
-    }
+    } 
 
 } else {
 
