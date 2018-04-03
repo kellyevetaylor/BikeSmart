@@ -35,6 +35,8 @@ $conn = new mysqli($host, $user, $password, $database);
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            $id = $row["ID"];
+
             echo "You are already renting a bike";
             echo "<br>";
             echo "<br>";
@@ -43,9 +45,21 @@ $conn = new mysqli($host, $user, $password, $database);
             echo "Bike Hub: " . $row["Bike_Hub"];
             echo "<br>";
             ?>
-            <button type="button">Unhire Bike!</button>     <?php
+            <form method="post">
+                <input type="submit" name="unhire" value="Unhire Bike!">
+            </form><?php
+
+            if (isset($_POST["unhire"])) {
+                $sql = "UPDATE `Bikes` SET `Available` = 1 WHERE `ID` = $id ";
+                $conn->query($sql);
+                $sql = "UPDATE `Bikes` SET `RentedBy` = NULL WHERE `ID` = $id ";
+                $conn->query($sql);
+                header('location:HirebikePage.php');
+
+            }
         }
     }
+
 
     else{
     ?>
