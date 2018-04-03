@@ -8,11 +8,6 @@
     <link rel="stylesheet" type="text/css" href="CSS/LoginPage.css"/>
     <link rel="stylesheet" type="text/css" href="CSS/OverallStandard.css"/>
 </head>
-<style>
-    p {
-        padding: 2vh;
-    }
-</style>
 
 <body>
 
@@ -55,13 +50,28 @@ function insertDatabase($conn)
     $fname = isset($_POST["fname"]) ? $_POST["fname"] : "";
     $sname = isset($_POST["sname"]) ? $_POST["sname"] : "";
     $username = isset($_POST["username"]) ? $_POST["username"] : "";
-    $password = isset($_POST["password1"]) ? $_POST["password1"] : "";
+    $password1 = isset($_POST["password1"]) ? $_POST["password1"] : "";
+    $password2 = isset($_POST["password2"]) ? $_POST["password2"] : "";
 
-    if ($fname == "" || $sname == "" || $username == "" || $password == "") {
+    $sql = "SELECT `username` FROM `Accounts`";
+    $result = mysqli_query($conn, $sql);
+
+    //TODO fix this
+    while ($row = $result->fetch_assoc()) {
+        echo $row["username"];
+        if ($row["username"] == $username) {
+            echo '<script type="text/javascript">alert("This username already exists, please choose another.");</script>';
+            displayForm();
+        }
+    }
+    if ($fname == "" || $sname == "" || $username == "" || $password1 == "" || $password2 == "") {
         echo '<script type="text/javascript">alert("All fields must be filled.");</script>';
         displayForm();
+    } else if ($password1 != $password2) {
+        echo '<script type="text/javascript">alert("Your passwords dont match.");</script>';
+        displayForm();
     } else {
-        $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `username`, `password`) VALUES (NULL, '$fname', '$sname', '$username', '$password')";
+        $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `username`, `password`) VALUES (NULL, '$fname', '$sname', '$username', '$password1')";
         $conn->query($sql);
 
         header('location:NewsFeedPage.html');
