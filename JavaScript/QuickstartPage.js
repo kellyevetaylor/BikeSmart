@@ -80,7 +80,7 @@ function setStartTimer() {
 
     document.getElementById("timer").innerHTML = printHour + ":" + printMin + ":" + printSec;
     document.getElementById("lbltime").value = printHour + ":" + printMin + ":" + printSec;
-    window.alert(printHour + ":" + printMin + ":" + printSec);
+    window.alert(printHour + ":" + printMin + ":" + printSec); 
 
 }
 
