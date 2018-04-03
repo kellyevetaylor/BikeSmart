@@ -68,7 +68,6 @@ if ($action == "Finish") {
     <link rel="apple-touch-icon" href="Images/icon.png"/>
     <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"/>
 
-
 </head>
 
 
@@ -115,6 +114,7 @@ if ($action == "Finish") {
     <button class="tabButton" onclick="location.href='AccountPage.html';">Account</button>
 </div>
 <script src="JavaScript/QuickstartPage.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <?php
 }
 ?>

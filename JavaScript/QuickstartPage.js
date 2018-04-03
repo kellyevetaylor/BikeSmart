@@ -4,6 +4,7 @@ var timerRefresh;
 var date = new Date();
 var hours = 0, minutes = 0, seconds = 0;
 var hoursTemplate = "0", minutesTemplate = "0", secondsTemplate = "0";
+var startLong, startLat;
 
 function r0(x) {
     return Math.round(x);
@@ -23,6 +24,8 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             myGPSElement.innerHTML = "Start location: " +"<br>" +" Lat: " + r4(position.coords.latitude) + " Long: " + r4(position.coords.longitude) + "<br/>Accuracy: &plusmn; " + r0(position.coords.accuracy) + " m";
+            startLat = r4(position.coords.latitude);
+            startLong = r4(position.coords.longitude);
         });
     } else {
         myGPSElement.innerHTML = "Geolocation is not supported.";
@@ -36,6 +39,7 @@ function startTimer() {
     document.getElementById("QuickstartBtn").disabled = true;
     date.setHours(hours, minutes, seconds);
     timerRefresh = setInterval(setStartTimer, 1000);
+    setInterval(distanceCal, 1000);
 }
 
 function setStartTimer() {
@@ -107,4 +111,59 @@ var init = function () {
 
 
 };
+
+var distanceCal = function () {
+
+    var origin = new google.maps.LatLng(startLat, startLong);
+
+    var destination = getDestLat()+","getDestLong();
+
+    var service = new google.maps.DistanceMatrixService();
+
+    service.getDistanceMatrix(
+        {
+            origins: [origin],
+            destinations: [destination],
+            travelMode: google.maps.TravelMode.BICYCLING,
+            avoidHighways: false,
+            avoidTolls: false
+        },
+        callback
+    );
+
+    function callback(response, status) {
+        var dist = document.getElementById("distanceTraveled");
+
+        if(status=="OK") {
+            dist.value = response.rows[0].elements[0].distance.text;
+        } else {
+            alert("Error: " + status);
+        }
+    }
+};
+
+function getDestLat() {
+    var myGPSElement = document.getElementById("gps");
+    var destLat;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            return  destLat = r4(position.coords.latitude);
+        });
+    } else {
+        myGPSElement.innerHTML = "Geolocation is not supported.";
+    }
+}
+
+function getDestLong() {
+    var myGPSElement = document.getElementById("gps");
+    var destLong;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            return destLong = r4(position.coords.longitude);
+        });
+    } else {
+        myGPSElement.innerHTML = "Geolocation is not supported.";
+    }
+}
+
 window.addEventListener("load", init);
