@@ -20,7 +20,7 @@
 <main>
     <form method="post">
         <header>
-            <h1>Account
+            <h1>Hire Bike
                 <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button></h1>
         </header>
         <body>

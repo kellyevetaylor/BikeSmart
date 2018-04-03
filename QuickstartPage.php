@@ -73,7 +73,7 @@ if ($action == "Finish") {
 
 
 <header>
-    <h1>Account
+    <h1>Quickstart
         <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button></h1>
 </header>
 <body>
@@ -117,7 +117,6 @@ if ($action == "Finish") {
     <button class="tabButton" onclick="location.href='AccountPage.html';">Account</button>
 </div>
 <script src="JavaScript/QuickstartPage.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <?php
 }
 ?>
