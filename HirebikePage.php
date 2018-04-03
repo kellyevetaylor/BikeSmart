@@ -64,6 +64,24 @@ $conn = new mysqli($host, $user, $password, $database);
     else{
     ?>
 
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var uluru = {lat: 55.8628285, lng: -4.242853};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOW0HFTpMp08qL1utmLoNs5_i3wgAMyag&callback=initMap">
+    </script>
+
     <table>
         <tr>
             <td>Bike ID</td>
