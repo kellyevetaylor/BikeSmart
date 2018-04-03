@@ -7,7 +7,7 @@
  */
 
 function connectOrDie(){
-    $username="mad3_a";$password="Haihoo3shiop"; $database="mad3_a"; $servername="devweb3000.cis.strath.ac.uk";
+    $username="mad3_a";$password="Haihoo3shiop"; $database="mad3_a"; $servername="devweb2017.cis.strath.ac.uk";
 
     $mysqli = new mysqli($servername,$username,$password,$database);
     if($mysqli->connect_errno) {
