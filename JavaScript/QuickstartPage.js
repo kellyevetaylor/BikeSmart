@@ -39,6 +39,7 @@ function startTimer() {
 }
 
 function setStartTimer() {
+    var printSec, printMin, printHour;
 
     if (seconds < 59) {
         seconds += 1;
@@ -52,12 +53,33 @@ function setStartTimer() {
         hours += 1;
         minutes = 0;
     }
+
     if (hours > 23) {
         hours = 0;
     }
 
+    if(seconds <10){
+        printSec= secondsTemplate + seconds;
+    }
+    else{
+        printSec = seconds;
+    }
 
-    document.getElementById("timer").innerHTML = hours + ":" + minutes + ":" + seconds;
+    if(minutes < 10){
+        printMin = minutesTemplate + minutes;
+    }else{
+        printMin = minutes;
+    }
+
+    if(hours < 10){
+        printHour = hoursTemplate + hours;
+    }else{
+        printHour = hours;
+    }
+
+
+
+    document.getElementById("timer").innerHTML = printHour + ":" + printMin + ":" + printSec;
 
 
 }
