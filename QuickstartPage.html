@@ -4,6 +4,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>BikeSmart</title>
 
 
@@ -11,21 +13,27 @@
     <link rel="stylesheet" type="text/css" href="CSS/QuickstartPage.css">
     <link rel="stylesheet" type="text/css" href="CSS/Tabs.css">
 
+
+    <link rel="icon" sizes="192x192" href="Images/icon.png"/>
+    <link rel="apple-touch-icon" href="Images/icon.png"/>
+    <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"/>
+
+
+
 </head>
+
 
 <main>
 
     <header><h1>Quickstart</h1></header>
     <body>
 
-    <div>
+    <div id="QuickstartInfoDiv">
         <p id=QuickstartInfo>
 
-        <ul>
-            <li><div id="gps" class="QuickstartLabel">Start Location:</div></li>
-            <li><label class="QuickstartLabel">Distance:</label></li>
-            <li><label class="QuickstartLabel">Time:</label><label id="timer">00:00:00</label></li>
-        </ul>
+            <div class="column"><h4 id="gps" class="QuickstartLabel">Start Location:</h4></div>
+            <div class="column"><h4 class="QuickstartLabel">Distance:</h4><label id="distanceTraveled">0 km</label></div>
+            <div class="column"><h4 class="QuickstartLabel">Time:</h4><label id="timer">00:00:00</label></div>
 
         </p>
     </div>
@@ -33,6 +41,11 @@
     <div id="QuickstartButtons">
         <button id="QuickstartBtn" class="QuickstartStart-stop" onclick="startTimer()">Start</button>
         <button id = "QuickstopBtn"class="QuickstartStart-stop" onclick="stopTimer()">Stop</button>
+    </div>
+
+    <div id="logActivity">
+        <button id="logActivitybtn">Log Activity</button>
+
     </div>
     </body>
 

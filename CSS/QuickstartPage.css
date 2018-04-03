@@ -1,15 +1,21 @@
-ul{
+ul {
     display: table;
     margin: 0 auto;
 }
 
-#QuickstartButtons{
-    width: 90%;
+#QuickstartButtons {
     text-align: center;
-    padding: 10% 10% 10% 10%;
-  float: none;
+    margin-top: 20%;
+    padding-right: 10%;
+    padding-left: 10%;
+    position: relative;
 }
-.QuickstartStart-stop{
+
+#QuickstartInfo {
+    margin-top: 20%;
+}
+
+.QuickstartStart-stop {
     display: inline-block;
     text-align: center;
     border-radius: 50%;
@@ -21,6 +27,39 @@ ul{
     text-decoration: none;
     padding: 10%;
     margin: 10% 5%;
-  position: inherit;
+    position: inherit;
 }
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+#timer, #distanceTraveled {
+    font-size: 2rem;
+
+}
+
+#logActivitybtn {
+
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+    border: solid 0.1rem black;
+    padding: 5%;
+    height: 100%;
+    width: 50%;
+    text-decoration: none;
+}
+
+#logActivity {
+    position: relative;
+    padding-left: 40%;
+}
+
+#QuickstartInfoDiv {
+    position: relative;
+}
+
+
 
