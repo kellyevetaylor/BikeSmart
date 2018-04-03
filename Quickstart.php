@@ -31,7 +31,7 @@ $endLocation = isset($_POST["endLocation"]) ? $_POST["endLocation"] : "";
 
 
 if ($action == "Finish") {
-    $sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`) VALUES (Null, '$distance', '$time', '$startLocation', '$endLocation')";
+    $sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`) VALUES (Null, '0', '$time', '0', '0')";
 
     $result= $conn->query($sql);
     if (!$result === TRUE) {
@@ -67,7 +67,6 @@ if ($action == "Finish") {
 
     </head>
 
-    <form  method="POST">
 
 
         <header><h1>Quickstart</h1></header>
@@ -82,19 +81,21 @@ if ($action == "Finish") {
             <div class="column">
                 <h4 class="QuickstartLabel">Time:</h4>
                 <label id="timer">00:00:00</label>
-                <input type="hidden" id="lbltime" name="time" value="00:00:00">
             </div>
 
             </p>
         </div>
 
         <div id="QuickstartButtons">
-            <button id="QuickstartBtn" class="QuickstartStart-stop" onclick="startTimer()">Start</button>
+            <button id="QuickstartBtn" class="QuickstartStart-stop" name=startBtn onclick="startTimer()">Start</button>
             <button id="QuickstopBtn" class="QuickstartStart-stop" onclick="stopTimer()">Pause</button>
         </div>
+        <form  method="POST">
 
         <div id="logActivity">
             <input type="submit" id="logActivitybtn" value="Finish" name="Finish">
+            <input type="hidden" id="lbltime" name="time" value="00:00:00">
+
             <input type="hidden" name="action" value="Finish"><br>
         </div>
         </body>
