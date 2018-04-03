@@ -34,7 +34,17 @@ $conn = new mysqli($host, $user, $password, $database);
     $sql = "SELECT * FROM `Bikes` WHERE `RentedBy` = \"kellytaylor\"";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        echo "You are already renting a bike";
+        while ($row = $result->fetch_assoc()) {
+            echo "You are already renting a bike";
+            echo "<br>";
+            echo "<br>";
+            echo "Bike ID: " . $row["ID"];
+            echo "<br>";
+            echo "Bike Hub: " . $row["Bike_Hub"];
+            echo "<br>";
+            ?>
+            <button type="button">Unhire Bike!</button>     <?php
+        }
     }
 
     else{
