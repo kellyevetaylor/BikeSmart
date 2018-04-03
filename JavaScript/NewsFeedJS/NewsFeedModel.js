@@ -3,7 +3,7 @@ function ChatModel() {
     var newPostCallback = null, lastSeenID = -1,
         postQueue = new Array(), //an empty associative array as a queue of messages to be sent
 
-        getUUID = function() {
+        getID = function() {
             // returns a unique id per message based on the format <userid><msgid>
             // A cheap way of doing this using a random userid, server code would be better
 
@@ -51,7 +51,7 @@ function ChatModel() {
             console.log("Posting message "+message);
             var http = new XMLHttpRequest(),
                 params = "msg="+encodeURIComponent(message)+"&id="+id ;
-            http.open("POST", "postChat.php", true);
+            http.open("POST", "showChats.php", true);
             http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             http.onreadystatechange = function() {
                 if (http.readyState==4 && http.status==200) {
