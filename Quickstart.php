@@ -15,7 +15,7 @@ $host = "devweb2017.cis.strath.ac.uk";
 $user = "mad3_a";
 $password = "Haihoo3shiop";
 $database = "mad3_a";
-$conn = new mysqli($host, $user, $password, $database); 
+$conn = new mysqli($host, $user, $password, $database);
 if ($conn->connect_error) {
     die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
 }
@@ -36,7 +36,11 @@ if ($action == "Finish") {
     $result= $conn->query($sql);
     if (!$result === TRUE) {
         die("Error on insert" . $conn->error);
-    } 
+    }
+
+    $action="";
+    header('location:Quickstart.php');
+
 
 } else {
 
@@ -93,10 +97,11 @@ if ($action == "Finish") {
         <form  method="POST">
 
         <div id="logActivity">
-            <input type="submit" id="logActivitybtn" value="Finish" name="Finish">
             <input type="hidden" id="lbltime" name="time" value="00:00:00">
-
             <input type="hidden" name="action" value="Finish"><br>
+            <input type="submit" id="logActivitybtn" value="Finish" name="Finish" >
+
+
         </div>
         </body>
     </form>
@@ -104,8 +109,6 @@ if ($action == "Finish") {
 
 
     <div class="tabs">
-
-
         <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
         <button class="tabButton" onclick="location.href='AccountPage.html';">Account</button>
         <button class="tabButton" onclick="location.href='HirebikePage.html';">Hire Bike</button>
