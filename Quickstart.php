@@ -31,91 +31,95 @@ $endLocation = isset($_POST["endLocation"]) ? $_POST["endLocation"] : "";
 
 
 if ($action == "Finish") {
-    $sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`) VALUES (Null, '$distance', '$time', '$startLocation', '$endLocation')";
+    $sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`) VALUES (Null, '0', '$time', '0', '0')";
 
     $result= $conn->query($sql);
     if (!$result === TRUE) {
         die("Error on insert" . $conn->error);
     }
 
+    $action="";
+    header('location:Quickstart.php');
+
+
 } else {
 
 
-    ?>
+?>
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-
-
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <title>BikeSmart</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
 
-        <link rel="stylesheet" type="text/css" href="CSS/OverallStandard.css">
-        <link rel="stylesheet" type="text/css" href="CSS/QuickstartPage.css">
-        <link rel="stylesheet" type="text/css" href="CSS/Tabs.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>BikeSmart</title>
 
 
-        <link rel="icon" sizes="192x192" href="Images/icon.png"/>
-        <link rel="apple-touch-icon" href="Images/icon.png"/>
-        <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="CSS/OverallStandard.css">
+    <link rel="stylesheet" type="text/css" href="CSS/QuickstartPage.css">
+    <link rel="stylesheet" type="text/css" href="CSS/Tabs.css">
 
 
-    </head>
-
-    <form  method="POST">
-
-
-        <header><h1>Quickstart</h1></header>
-        <body>
-
-        <div id="QuickstartInfoDiv">
-            <p id=QuickstartInfo>
-
-            <div class="column"><h4 id="gps" class="QuickstartLabel">Start Location:</h4></div>
-            <div class="column"><h4 class="QuickstartLabel">Distance:</h4><label id="distanceTraveled">0 km</label>
-            </div>
-            <div class="column">
-                <h4 class="QuickstartLabel">Time:</h4>
-                <label id="timer">00:00:00</label>
-                <input type="hidden" id="lbltime" name="time" value="00:00:00">
-            </div>
-
-            </p>
-        </div>
-
-        <div id="QuickstartButtons">
-            <button id="QuickstartBtn" class="QuickstartStart-stop" onclick="startTimer()">Start</button>
-            <button id="QuickstopBtn" class="QuickstartStart-stop" onclick="stopTimer()">Pause</button>
-        </div>
-
-        <div id="logActivity">
-            <input type="submit" id="logActivitybtn" value="Finish" name="Finish">
-            <input type="hidden" name="action" value="Finish"><br>
-        </div>
-        </body>
-    </form>
-    </main>
+    <link rel="icon" sizes="192x192" href="Images/icon.png"/>
+    <link rel="apple-touch-icon" href="Images/icon.png"/>
+    <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"/>
 
 
-    <div class="tabs">
+</head>
 
 
-        <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
-        <button class="tabButton" onclick="location.href='AccountPage.html';">Account</button>
-        <button class="tabButton" onclick="location.href='HirebikePage.html';">Hire Bike</button>
+
+<header><h1>Quickstart</h1></header>
+<body>
+
+<div id="QuickstartInfoDiv">
+    <p id=QuickstartInfo>
+
+    <div class="column"><h4 id="gps" class="QuickstartLabel">Start Location:</h4></div>
+    <div class="column"><h4 class="QuickstartLabel">Distance:</h4><label id="distanceTraveled">0 km</label>
+    </div>
+    <div class="column">
+        <h4 class="QuickstartLabel">Time:</h4>
+        <label id="timer">00:00:00</label>
+    </div>
+
+    </p>
+</div>
+
+<div id="QuickstartButtons">
+    <button id="QuickstartBtn" class="QuickstartStart-stop" name=startBtn onclick="startTimer()">Start</button>
+    <button id="QuickstopBtn" class="QuickstartStart-stop" onclick="stopTimer()">Pause</button>
+</div>
+<form  method="POST">
+
+    <div id="logActivity">
+        <input type="hidden" id="lbltime" name="time" value="00:00:00">
+        <input type="hidden" name="action" value="Finish"><br>
+        <input type="submit" id="logActivitybtn" value="Finish" name="Finish" >
 
 
     </div>
-    <script src="JavaScript/QuickstartPage.js"></script>
-    <?php
-    }
-    ?>
-    </html>
+</body>
+</form>
+</main>
+
+
+<div class="tabs">
+    <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
+    <button class="tabButton" onclick="location.href='AccountPage.html';">Account</button>
+    <button class="tabButton" onclick="location.href='HirebikePage.html';">Hire Bike</button>
+
+
+</div>
+<script src="JavaScript/QuickstartPage.js"></script>
+<?php
+}
+?>
+</html>
 
 
 
