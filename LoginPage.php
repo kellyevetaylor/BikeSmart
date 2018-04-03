@@ -47,10 +47,9 @@ function checkDatabase($conn)
     while ($row = $result->fetch_assoc()) {
         if ($row["username"] == $username && $row["password"] == $password) {
             return true;
-        }else{
-            return false;
         }
     }
+    return false;
 }
 
 function displayForm()
