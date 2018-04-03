@@ -15,7 +15,7 @@ $host = "devweb2017.cis.strath.ac.uk";
 $user = "mad3_a";
 $password = "Haihoo3shiop";
 $database = "mad3_a";
-$conn = new mysqli($host, $user, $password, $database);
+$conn = new mysqli($host, $user, $password, $database); 
 if ($conn->connect_error) {
     die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
 }
