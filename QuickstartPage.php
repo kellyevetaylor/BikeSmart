@@ -73,7 +73,10 @@ if ($action == "Finish") {
 
 
 
-<header><h1>Quickstart</h1></header>
+<header>
+    <h1>Quickstart</h1>
+    <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+</header>
 <body>
 
 <div id="QuickstartInfoDiv">
