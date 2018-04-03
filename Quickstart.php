@@ -78,7 +78,7 @@ if ($action == "Finish") {
             <div class="column"><h4 id="gps" class="QuickstartLabel">Start Location:</h4></div>
             <div class="column"><h4 class="QuickstartLabel">Distance:</h4><label id="distanceTraveled">0 km</label>
             </div>
-            <div class="column">
+            <div class="column"> 
                 <h4 class="QuickstartLabel">Time:</h4>
                 <label id="timer">00:00:00</label>
             </div>
