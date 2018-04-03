@@ -6,6 +6,6 @@ function isLoginValid() {
     if (username === "" || password === "") {
         window.alert("Please enter a username and password");
     } else {
-         location.href = "NewsFeedPage.html";
+        //location.href = "NewsFeedPage.html";
     }
 }

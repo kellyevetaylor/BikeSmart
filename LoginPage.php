@@ -24,16 +24,49 @@ $conn = new mysqli($host, $user, $password, $database);
 if ($conn->connect_error) {
     die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
 }
+
+if (isset($_POST["login"])) {
+    if(checkDatabase($conn)){
+        header('location:NewsFeedPage.html');
+    }else{
+        echo '<script type="text/javascript">alert("Your username and/or password is incorrect.");</script>';
+        displayForm();
+    }
+} else {
+    displayForm();
+}
+
+function checkDatabase($conn)
+{
+    $username = isset($_POST["username"]) ? $_POST["username"] : "";
+    $password = isset($_POST["password"]) ? $_POST["password"] : "";
+
+    $sql = "SELECT `first name`, `second name`, `username`, `password` FROM `Accounts`";
+    $result = mysqli_query($conn, $sql);
+
+    while ($row = $result->fetch_assoc()) {
+        if ($row["username"] == $username && $row["password"] == $password) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+function displayForm()
+{
+    ?>
+    <form name="loginForm" method="POST">
+        <p id="p1">Username <input type="text" name="username" style="font-size: 1.5rem; width: 20rem;"><br></p>
+        <p id="p2">Password <input type="text" name="password" style="font-size: 1.5rem; width: 20rem;"><br></p>
+        <p id="submit"><input type="submit" name="login" id="b1" value="Log in"></p>
+        <p id="changeAccount"><input type="button" id="b2" value="Create new account"
+                                     onclick="location.href='NewAccount.php'"></p>
+    </form>
+    <?php
+}
+
 ?>
-
-<form name="loginForm" method="POST">
-    <p id="p1">Username <input type="text" name="username" style="font-size: 1.5rem; width: 20rem;"><br></p>
-    <p id="p2">Password <input type="password" name="password" style="font-size: 1.5rem; width: 20rem;"><br></p>
-    <p id="submit"><input type="button" id="b1" value="Log in" onclick="isLoginValid()"></p>
-    <p id="changeAccount"><input type="button" id="b2" value="Create new account"
-                                 onclick="location.href='NewAccount.php'"></p>
-</form>
-
 </body>
 
 <script src="JavaScript/LoginPage.js"></script>

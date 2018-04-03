@@ -73,3 +73,5 @@ function insertDatabase($conn)
 </body>
 <script src="JavaScript/LoginPage.js"></script>
 </html>
+
+
