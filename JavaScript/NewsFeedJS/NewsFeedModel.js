@@ -46,11 +46,11 @@ function ChatModel() {
                 http.send();
             }
         },
-        doSendPost = function(message, uuid){
+        doSendPost = function(message, id){
             //Sends message to server using AJAX
             console.log("Posting message "+message);
             var http = new XMLHttpRequest(),
-                params = "msg="+encodeURIComponent(message)+"&uid="+uuid ;
+                params = "msg="+encodeURIComponent(message)+"&id="+id ;
             http.open("POST", "postChat.php", true);
             http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             http.onreadystatechange = function() {
@@ -86,7 +86,7 @@ function ChatModel() {
 
     this.post = function(message){
         //add the message to the queue
-        postQueue[""+getUUID()] = message;
+        postQueue[""+getID()] = message;
         setTimeout(checkAndSend, 100);
     };
 

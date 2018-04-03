@@ -16,20 +16,17 @@
     <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"/>
 
 </head>
-
-
-
 <main>
 
     <header><h1>News Page</h1></header>
 <body>
-
-
-
-
-
-
-
+<div id="chatHistoryDiv"></div>
+<div id="chatFormDiv">
+    <form id="chatForm">
+        <input type="text" id="messageText"/>
+        <input type="submit" id="postButton" value="Post" />
+    </form>
+</div>
 </body>
 </main>
 
@@ -42,5 +39,9 @@
 
 
 </div>
+
+<script src="JavaScript/NewsFeedJS/NewsFeedModel.js"></script>
+<script src="JavaScript/NewsFeedJS/NewsFeedView.js"></script>
+<script src="JavaScript/NewsFeedJS/NewsFeedController.js"></script>
 
 </html>
