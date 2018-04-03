@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
     <title>New Account</title>
-    <link rel="stylesheet" type="text/css" href="CSS/LoginPage.css"/>
     <link rel="stylesheet" type="text/css" href="CSS/OverallStandard.css"/>
+    <link rel="stylesheet" type="text/css" href="CSS/NewAccount.css"/>
+
 </head>
 
 <body>
@@ -34,11 +35,11 @@ function displayForm()
 {
     ?>
     <form name="newAccountForm" method="POST">
-        <p id="p1"> First name: <input type="text" name="fname" class="NewAccountEntries"><br></p>
-        <p id="p2"> Second name: <input type="text" name="sname" class="NewAccountEntries"><br></p>
-        <p id="p2"> Username: <input type="text" name="username" class="NewAccountEntries"><br></p>
-        <p id="p2"> Password <input type="password" name="password1" class="NewAccountEntries"><br></p>
-        <p id="p2"> Retype password: <input type="password" name="password2" class="NewAccountEntries"><br>
+        <p id="p1"> First name:</p><input type="text" name="fname" class="NewAccountEntries"><br>
+        <p id="p2"> Second name: </p><input type="text" name="sname" class="NewAccountEntries"><br>
+        <p id="p2"> Username:</p> <input type="text" name="username" class="NewAccountEntries"><br>
+        <p id="p2"> Password: </p><input type="password" name="password1" class="NewAccountEntries"><br>
+        <p id="p2"> Retype password: </p><input type="password" name="password2" class="NewAccountEntries"><br>
         <p id="submit"><input type="submit" id="b1" value="Create account"></p>
         <input type="hidden" name="action" value="doInsert"><br>
     </form>

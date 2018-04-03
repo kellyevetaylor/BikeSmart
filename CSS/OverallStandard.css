@@ -5,9 +5,10 @@
 }
 
 h1 {
-    text-decoration: underline;
     color: white;
     padding-bottom: 1rem;
+    padding-left: 1rem ;
+    padding-top: 0.5rem;
 }
 
 body {

@@ -17,19 +17,26 @@
 <main>
     <header>
         <h1>Account
-        <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button></h1>
+            <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+        </h1>
     </header>
 
-    <body>
+
+    <p><img src="Images/avatar.jpg" width="175"></p>
+    <p>Username</p>
+    <p><button class = "changePassword">Change password</button></p>
+    <p><button class = "changePassword">Change paypal info</button></p>
+    <p><button class = "changePassword">View previous trips</button></p>
 
 
-    </body>
+
+
 
     <div class="tabs">
         <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
         <button class="tabButton" onclick="location.href='QuickstartPage.php';">Quickstart</button>
         <button class="tabButton" onclick="location.href='HirebikePage.php';">Hire Bike</button>
-        <button class="tabButton" onclick="location.href='AccountPage.html';">Account</button>
+        <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
     </div>
 </main>
 </html>

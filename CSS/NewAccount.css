@@ -8,7 +8,7 @@ body{
 }
 
 p{
-    padding-top: 10vh;
+    padding-top: 7vh;
 }
 
 #b1, #b2{
@@ -18,26 +18,7 @@ p{
     text-decoration: none;
     border: none;
     background-color: cornflowerblue;
-}
-body{
-    text-align: center;
-    padding-top: 0.5%;
-    font-family: Arial;
-    font-size: 1.5rem;
-    overflow: hidden;
-    border-radius: 0.4rem;
+    padding: 0.8rem;
 }
 
-p{
-    padding-top: 2vh;
-}
-
-#b1, #b2{
-    font-size : 1.5rem;
-    border-radius: 0.4rem;
-    display: inline-block;
-    text-decoration: none;
-    border: none;
-    background-color: cornflowerblue;
-}
 

@@ -114,7 +114,7 @@ if ($action == "Finish") {
     <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
     <button class="tabButton" onclick="location.href='QuickstartPage.php';">Quickstart</button>
     <button class="tabButton" onclick="location.href='HirebikePage.php';">Hire Bike</button>
-    <button class="tabButton" onclick="location.href='AccountPage.html';">Account</button>
+    <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
 </div>
 <script src="JavaScript/QuickstartPage.js"></script>
 <?php
