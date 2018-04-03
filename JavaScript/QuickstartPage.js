@@ -78,7 +78,6 @@ function setStartTimer() {
     }
 
 
-
     document.getElementById("timer").innerHTML = printHour + ":" + printMin + ":" + printSec;
 
 
