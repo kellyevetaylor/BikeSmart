@@ -42,7 +42,7 @@ function checkDatabase($conn)
     $password = isset($_POST["password"]) ? $_POST["password"] : "";
 
     $sql = "SELECT `first name`, `second name`, `username`, `password` FROM `Accounts`";
-    $result = mysqli_query($conn, $sql);
+    $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
         if ($row["username"] == $username && $row["password"] == $password) {

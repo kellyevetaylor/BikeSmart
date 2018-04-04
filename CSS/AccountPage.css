@@ -1,0 +1,46 @@
+.changePassword {
+    background-color: cornflowerblue;
+    border-radius: 0.4rem;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    font-size: 1rem;
+    padding: 1rem;
+    color: white;
+}
+
+.changePassword:hover, .changePassword:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: center;
+}
+
+.show {display:block;}
+
+.submit{
+    font-size : 1rem;
+    border-radius: 0.4rem;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    background-color: cornflowerblue;
+    padding: 0.2rem;
+}
+
+table{
+    padding:1rem;
+    font-size: 1rem ;
+}

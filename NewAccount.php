@@ -55,7 +55,7 @@ function insertDatabase($conn)
     $password2 = isset($_POST["password2"]) ? $_POST["password2"] : "";
 
     $sql = "SELECT `username` FROM `Accounts`";
-    $result = mysqli_query($conn, $sql);
+    $result = $conn->query($sql);
 
     //TODO fix this
     while ($row = $result->fetch_assoc()) {
@@ -69,7 +69,7 @@ function insertDatabase($conn)
         echo '<script type="text/javascript">alert("All fields must be filled.");</script>';
         displayForm();
     } else if ($password1 != $password2) {
-        echo '<script type="text/javascript">alert("Your passwords dont match.");</script>';
+        echo '<script type="text/javascript">alert("Your passwords do not match.");</script>';
         displayForm();
     } else {
         $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `username`, `password`) VALUES (NULL, '$fname', '$sname', '$username', '$password1')";
