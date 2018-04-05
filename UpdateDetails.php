@@ -18,14 +18,15 @@
     <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"/>
 
 </head>
+
+
+<header>
+    <h1 class="header">Update details
+        <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+    </h1>
+</header>
+
 <main>
-
-    <header>
-        <h1>Update details
-            <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
-        </h1>
-    </header>
-
     <?php
     $host = "devweb2017.cis.strath.ac.uk";
     $user = "mad3_a";
@@ -35,6 +36,41 @@
 
 
     if (isset($_POST["submit"])) {
+        changePassword($conn);
+    } else if (isset($_POST["update"])) {
+        updateDetails($conn);
+        header("location:AccountPage.php");
+    }
+
+    function updateDetails($conn)
+    {
+        $fname = isset($_POST["fname"]) ? $_POST["fname"] : "";
+        $sname = isset($_POST["sname"]) ? $_POST["sname"] : "";
+        $email = isset($_POST["email"]) ? $_POST["email"] : "";
+        $username = isset($_POST["username"]) ? $_POST["username"] : "";
+
+        //this works if you hard code a name but not when you use the variable
+        if ($fname != "") {
+            $sql = "UPDATE `Accounts` SET `first name` = '$fname' WHERE `Accounts`.`id` = 1;";
+            $conn->query($sql);
+        }
+        if ($sname != "") {
+            $sql = "UPDATE `Accounts` SET `second name` = '$sname' WHERE `Accounts`.`id` = 1";
+            $conn->query($sql);
+        }
+        if ($email != "") {
+            $sql = "UPDATE `Accounts` SET `email` = '$email' WHERE `Accounts`.`id` = 1";
+            $conn->query($sql);
+        }
+        if ($username != "") {
+            $sql = "UPDATE `Accounts` SET `username` = '$username' WHERE `Accounts`.`id` = 1";
+            $conn->query($sql);
+        }
+        echo '<script type="text/javascript">alert("Update successful.");</script>';
+    }
+
+    function changePassword($conn)
+    {
         $oldPassword = isset($_POST["oldPassword"]) ? $_POST["oldPassword"] : "";
         $newPassword1 = isset($_POST["newPassword1"]) ? $_POST["newPassword1"] : "";
         $newPassword2 = isset($_POST["newPassword2"]) ? $_POST["newPassword2"] : "";
@@ -62,31 +98,8 @@
                 }
             }
         }
-    }else if(isset($_POST["update"])){
-        $fname = isset($_POST["fname"]) ? $_POST["fname"] : "";
-        $sname = isset($_POST["sname"]) ? $_POST["sname"] : "";
-        $email = isset($_POST["email"]) ? $_POST["email"] : "";
-        $username = isset($_POST["username"]) ? $_POST["username"] : "";
-
-        //this works if you hard code a name but not when you use the variable
-        if($fname != ""){
-            $sql = "UPDATE `Accounts` SET `first name` = '$fname' WHERE `Accounts`.`id` = 1;";
-            $conn->query($sql);
-        }
-        if($sname != ""){
-            $sql = "UPDATE `Accounts` SET `second name` = '$sname' WHERE `Accounts`.`id` = 1";
-            $conn->query($sql);
-        }
-        if($email != ""){
-            $sql = "UPDATE `Accounts` SET `email` = '$email' WHERE `Accounts`.`id` = 1";
-            $conn->query($sql);
-        }
-        if($username != ""){
-            $sql = "UPDATE `Accounts` SET `username` = '$username' WHERE `Accounts`.`id` = 1";
-            $conn->query($sql);
-        }
-        header("location:AccountPage.php");
     }
+
     ?>
 
     <form method="POST" action="UpdateDetails.php">
@@ -108,12 +121,12 @@
                 <td><input type="text" class="inputBox" name="username"></td>
             </tr>
         </table>
+        <span style="display: inline;">
         <input type="submit" class="update" name="update" value="Update">
+        </span>
     </form>
 
-    <p>
-        <button onclick="location.href = 'AccountPage.php'">Cancel</button>
-    </p>
+    <p><button onclick="location.href = 'AccountPage.php'">Cancel</button></p>
     <p>
         <button onclick="myFunction()" class="changePassword">Change password</button>
     </p>
@@ -137,14 +150,14 @@
             <input type="submit" class="submit" name="submit">
         </form>
     </div>
-
-    <div class="tabs">
-        <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
-        <button class="tabButton" onclick="location.href='QuickstartPage.php';">Quickstart</button>
-        <button class="tabButton" onclick="location.href='HirebikePage.php';">Hire Bike</button>
-        <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
-    </div>
-
 </main>
+<div class="tabs">
+    <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
+    <button class="tabButton" onclick="location.href='QuickstartPage.php';">Quickstart</button>
+    <button class="tabButton" onclick="location.href='HirebikePage.php';">Hire Bike</button>
+    <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
+</div>
+
+
 <script src="JavaScript/AccountPage.js"></script>
 </html>

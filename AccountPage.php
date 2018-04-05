@@ -18,14 +18,14 @@
     <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"/>
 
 </head>
+
+
+<header>
+    <h1>Account
+        <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+    </h1>
+</header>
 <main>
-
-    <header>
-        <h1>Account
-            <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
-        </h1>
-    </header>
-
     <?php
     $host = "devweb2017.cis.strath.ac.uk";
     $user = "mad3_a";
@@ -44,22 +44,19 @@
 
     while ($row = $result->fetch_assoc()) {
         ?>
-        <table style="width: 30%">
+        <table style="width: 100%">
             <tr>
                 <?php
-                echo "<td> Name: </td>";
                 echo "<td>" . $row["first name"] . " " . $row["second name"] . "</td>";
                 ?>
             </tr>
             <tr>
                 <?php
-                echo "<td> Email: </td>";
                 echo "<td>" . $row["email"] . "</td>";
                 ?>
             </tr>
             <tr>
                 <?php
-                echo "<td> Username: </td>";
                 echo "<td>" . $row["username"] . "</td>";
                 ?>
             </tr>
@@ -77,14 +74,14 @@
     <p>
         <button class="updateDetails">View ride history</button>
     </p>
-
-    <div class="tabs">
-        <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
-        <button class="tabButton" onclick="location.href='QuickstartPage.php';">Quickstart</button>
-        <button class="tabButton" onclick="location.href='HirebikePage.php';">Hire Bike</button>
-        <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
-    </div>
-
 </main>
+<div class="tabs">
+    <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
+    <button class="tabButton" onclick="location.href='QuickstartPage.php';">Quickstart</button>
+    <button class="tabButton" onclick="location.href='HirebikePage.php';">Hire Bike</button>
+    <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
+</div>
+
+
 <script src="JavaScript/AccountPage.js"></script>
 </html>

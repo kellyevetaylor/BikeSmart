@@ -1,3 +1,7 @@
+main {
+    text-align: center;
+}
+
 button, .update {
     background-color: cornflowerblue;
     border-radius: 0.4rem;
@@ -7,6 +11,7 @@ button, .update {
     font-size: 1rem;
     padding: 1rem;
     color: white;
+    text-align: center;
 }
 
 .changePassword:hover, .changePassword:focus {
@@ -23,15 +28,17 @@ button, .update {
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     text-align: center;
 }
 
-.show {display:block;}
+.show {
+    display: block;
+}
 
-.submit{
-    font-size : 1rem;
+.submit {
+    font-size: 1rem;
     border-radius: 0.4rem;
     display: inline-block;
     text-decoration: none;
@@ -40,20 +47,28 @@ button, .update {
     padding: 0.2rem;
 }
 
-table{
-    padding:0.8rem;
-    font-size: 1rem ;
-    width:100%;
+form {
+    display: inline-block;
+    text-align: center;
 }
 
-td{
-    padding:0.2rem;
+table {
+    padding: 0.8rem;
+    font-size: 1rem;
 }
 
-.inputBox{
+td {
+    padding: 0.2rem;
+}
+
+.inputBox {
     border-radius: 0.2rem;
     display: inline-block;
     text-decoration: none;
-    height:1.5rem;
+    height: 1.5rem;
     font-size: 1rem;
+}
+
+p{
+    padding-bottom: 0.5rem;
 }
