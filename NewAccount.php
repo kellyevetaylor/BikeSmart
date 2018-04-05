@@ -19,9 +19,6 @@ $user = "mad3_a";
 $password = "Haihoo3shiop";
 $database = "mad3_a";
 $conn = new mysqli($host, $user, $password, $database);
-if ($conn->connect_error) {
-    die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
-}
 
 $action = isset($_POST["action"]);
 
@@ -35,11 +32,12 @@ function displayForm()
 {
     ?>
     <form name="newAccountForm" method="POST">
-        <p id="p1"> First name:</p><input type="text" name="fname" class="NewAccountEntries"><br>
-        <p id="p2"> Second name: </p><input type="text" name="sname" class="NewAccountEntries"><br>
-        <p id="p2"> Username:</p> <input type="text" name="username" class="NewAccountEntries"><br>
-        <p id="p2"> Password: </p><input type="password" name="password1" class="NewAccountEntries"><br>
-        <p id="p2"> Retype password: </p><input type="password" name="password2" class="NewAccountEntries"><br>
+        <p> First name:</p><input type="text" name="fname" class="NewAccountEntries"><br>
+        <p> Second name: </p><input type="text" name="sname" class="NewAccountEntries"><br>
+        <p> Email: </p><input type="email" name="email" class="NewAccountEntries"><br>
+        <p> Username:</p> <input type="text" name="username" class="NewAccountEntries"><br>
+        <p> Password: </p><input type="password" name="password1" class="NewAccountEntries"><br>
+        <p> Retype password: </p><input type="password" name="password2" class="NewAccountEntries"><br>
         <p id="submit"><input type="submit" id="b1" value="Create account"></p>
         <input type="hidden" name="action" value="doInsert"><br>
     </form>
@@ -50,29 +48,30 @@ function insertDatabase($conn)
 {
     $fname = isset($_POST["fname"]) ? $_POST["fname"] : "";
     $sname = isset($_POST["sname"]) ? $_POST["sname"] : "";
+    $email = isset($_POST["email"]) ? $_POST["email"] : "";
     $username = isset($_POST["username"]) ? $_POST["username"] : "";
     $password1 = isset($_POST["password1"]) ? $_POST["password1"] : "";
     $password2 = isset($_POST["password2"]) ? $_POST["password2"] : "";
 
     $sql = "SELECT `username` FROM `Accounts`";
-    $result = $conn->query($sql);
+    $conn->query($sql);
 
-    //TODO fix this
-    while ($row = $result->fetch_assoc()) {
-        echo $row["username"];
-        if ($row["username"] == $username) {
-            echo '<script type="text/javascript">alert("This username already exists, please choose another.");</script>';
-            displayForm();
-        }
-    }
-    if ($fname == "" || $sname == "" || $username == "" || $password1 == "" || $password2 == "") {
+    if ($fname == "" || $sname == "" || $email == "" || $username == "" || $password1 == "" || $password2 == "") {
         echo '<script type="text/javascript">alert("All fields must be filled.");</script>';
         displayForm();
     } else if ($password1 != $password2) {
         echo '<script type="text/javascript">alert("Your passwords do not match.");</script>';
         displayForm();
     } else {
-        $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `username`, `password`) VALUES (NULL, '$fname', '$sname', '$username', '$password1')";
+        //doesn't work
+        /*while ($row = $result->fetch_assoc()) {
+            if ($row["username"] == $username) {
+                echo '<script type="text/javascript">alert("This username already exists, please choose another.");</script>';
+                displayForm();
+            }
+        }*/
+        //need to check email doesn't already exist too
+        $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `email`,`username`, `password`) VALUES (NULL, '$fname', '$sname', '$email', '$username', '$password1')";
         $conn->query($sql);
 
         header('location:NewsFeedPage.html');

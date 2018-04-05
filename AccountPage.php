@@ -26,28 +26,57 @@
         </h1>
     </header>
 
+    <?php
+    $host = "devweb2017.cis.strath.ac.uk";
+    $user = "mad3_a";
+    $password = "Haihoo3shiop";
+    $database = "mad3_a";
+    $conn = new mysqli($host, $user, $password, $database);
+
+    ?>
+
     <p><img src="Images/avatar.jpg" height="150" width="150"></p>
-    <p>Name placeholder</p>
 
-    <button onclick="myFunction()" class="changePassword">Change password</button>
+    <?php
 
-    <div id="dropdownP" class="dropdownContent">
-    <table>
-        <tr>
-            <td>Old password:</td>
-            <td><input type="text" name="oldPassword"></td>
-        </tr>
-        <tr>
-            <td>New password:</td>
-            <td><input type="text" name="newPassword1"></td>
-        </tr>
-        <tr>
-            <td>Retype password:</td>
-            <td><input type="text" name="newPassword2"></td>
-        </tr>
-    </table>
-    <input type="submit" class="submit">
-    </div>
+    $sql = "SELECT `first name`, `second name`, `email` , `username` FROM `Accounts` WHERE `id` = 1";
+    $result = $conn->query($sql);
+
+    while ($row = $result->fetch_assoc()) {
+        ?>
+        <table style="width: 30%">
+            <tr>
+                <?php
+                echo "<td> Name: </td>";
+                echo "<td>" . $row["first name"] . " " . $row["second name"] . "</td>";
+                ?>
+            </tr>
+            <tr>
+                <?php
+                echo "<td> Email: </td>";
+                echo "<td>" . $row["email"] . "</td>";
+                ?>
+            </tr>
+            <tr>
+                <?php
+                echo "<td> Username: </td>";
+                echo "<td>" . $row["username"] . "</td>";
+                ?>
+            </tr>
+        </table>
+        <?php
+    }
+    ?>
+
+    <p>
+        <button class="updateDetails" onclick="location.href = 'UpdateDetails.php'">Update details</button>
+    </p>
+    <p>
+        <button class="updateDetails">View bike hire history</button>
+    </p>
+    <p>
+        <button class="updateDetails">View ride history</button>
+    </p>
 
     <div class="tabs">
         <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
@@ -55,6 +84,7 @@
         <button class="tabButton" onclick="location.href='HirebikePage.php';">Hire Bike</button>
         <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
     </div>
+
 </main>
 <script src="JavaScript/AccountPage.js"></script>
 </html>
