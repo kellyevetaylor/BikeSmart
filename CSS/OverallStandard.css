@@ -1,3 +1,9 @@
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
 * {
     overflow: hidden;
     margin: 0;

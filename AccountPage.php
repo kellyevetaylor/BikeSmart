@@ -69,10 +69,10 @@
         <button class="updateDetails" onclick="location.href = 'UpdateDetails.php'">Update details</button>
     </p>
     <p>
-        <button class="updateDetails">View bike hire history</button>
+        <button class="updateDetails" onclick="location.href = 'HireHistory.php'">View bike hire history</button>
     </p>
     <p>
-        <button class="updateDetails">View ride history</button>
+        <button class="updateDetails" onclick="location.href = 'RideHistory.php'">View ride history</button>
     </p>
 </main>
 <div class="tabs">

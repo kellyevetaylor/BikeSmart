@@ -21,3 +21,10 @@ p{
     padding: 0.8rem;
 
 }
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+

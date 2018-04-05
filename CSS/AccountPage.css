@@ -2,6 +2,13 @@ main {
     text-align: center;
 }
 
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
 button, .update {
     background-color: cornflowerblue;
     border-radius: 0.4rem;
