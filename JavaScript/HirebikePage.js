@@ -128,8 +128,6 @@ function googleMap(long, lat) {
     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
     var marker1 = new google.maps.Marker({
         position: centerLocation,
-        icon: "Images/BikeMarker.png",
-
     });
 
     var marker2 = new google.maps.Marker({
