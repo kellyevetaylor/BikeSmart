@@ -117,6 +117,8 @@
                 }
                 ?>
             </table>
+
+        <div id="distanceT">HERE: </div>
     </form>
 </main>
 
