@@ -1,5 +1,7 @@
 "use strict"
 
+
+
 var timerRefresh;
 var date = new Date();
 var hours = 0, minutes = 0, seconds = 0;
@@ -26,6 +28,7 @@ function getLocation() {
             myGPSElement.innerHTML = "Start location: " +"<br>" +" Lat: " + r4(position.coords.latitude) + " Long: " + r4(position.coords.longitude) + "<br/>Accuracy: &plusmn; " + r0(position.coords.accuracy) + " m";
             startLat = r4(position.coords.latitude);
             startLong = r4(position.coords.longitude);
+            googleMap(55.7333304, -5.0333332);
         });
     } else {
         myGPSElement.innerHTML = "Geolocation is not supported.";
@@ -109,9 +112,8 @@ var init = function () {
     }
     ;
 
-
 };
-
+/*
 var distanceCal = function () {
 
     var origin = new google.maps.LatLng(startLat, startLong);
@@ -165,5 +167,19 @@ function getDestLong() {
         myGPSElement.innerHTML = "Geolocation is not supported.";
     }
 }
+*/
+
+
+function googleMap(long,lat) {
+
+
+    var mapProp = {
+        center:new google.maps.LatLng(long,lat),
+        zoom: 5,
+    };
+
+
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+};
 
 window.addEventListener("load", init);

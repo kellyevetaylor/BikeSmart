@@ -54,7 +54,7 @@ function insertDatabase($conn)
     $password2 = isset($_POST["password2"]) ? $_POST["password2"] : "";
 
     $sql = "SELECT `username` FROM `Accounts`";
-    $conn->query($sql);
+   $result= $conn->query($sql);
 
     if ($fname == "" || $sname == "" || $email == "" || $username == "" || $password1 == "" || $password2 == "") {
         echo '<script type="text/javascript">alert("All fields must be filled.");</script>';
@@ -64,12 +64,12 @@ function insertDatabase($conn)
         displayForm();
     } else {
         //doesn't work
-        /*while ($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
             if ($row["username"] == $username) {
                 echo '<script type="text/javascript">alert("This username already exists, please choose another.");</script>';
                 displayForm();
             }
-        }*/
+        }
         //need to check email doesn't already exist too
         $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `email`,`username`, `password`) VALUES (NULL, '$fname', '$sname', '$email', '$username', '$password1')";
         $conn->query($sql);

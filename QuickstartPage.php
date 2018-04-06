@@ -33,12 +33,12 @@ $endLocation = isset($_POST["endLocation"]) ? $_POST["endLocation"] : "";
 if ($action == "Finish") {
     $sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`) VALUES (Null, '0', '$time', '0', '0')";
 
-    $result= $conn->query($sql);
+    $result = $conn->query($sql);
     if (!$result === TRUE) {
         die("Error on insert" . $conn->error);
     }
 
-    $action="";
+    $action = "";
     header('location:QuickstartPage.php');
 
 
@@ -71,14 +71,20 @@ if ($action == "Finish") {
 </head>
 
 
-
 <header>
     <h1>Quickstart
-        <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button></h1>
+        <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+    </h1>
 </header>
 <body>
 
 <div id="QuickstartInfoDiv">
+
+    <div id="googleMap" style="width:100%;height:400px;">
+
+
+    </div>
+
     <p id=QuickstartInfo>
 
     <div class="column"><h4 id="gps" class="QuickstartLabel">Start Location:</h4></div>
@@ -96,12 +102,12 @@ if ($action == "Finish") {
     <button id="QuickstartBtn" class="QuickstartStart-stop" name=startBtn onclick="startTimer()">Start</button>
     <button id="QuickstopBtn" class="QuickstartStart-stop" onclick="stopTimer()">Pause</button>
 </div>
-<form  method="POST">
+<form method="POST">
 
     <div id="logActivity">
         <input type="hidden" id="lbltime" name="time" value="00:00:00">
         <input type="hidden" name="action" value="Finish"><br>
-        <input type="submit" id="logActivitybtn" value="Finish" name="Finish" >
+        <input type="submit" id="logActivitybtn" value="Finish" name="Finish">
 
 
     </div>
@@ -117,6 +123,14 @@ if ($action == "Finish") {
     <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
 </div>
 <script src="JavaScript/QuickstartPage.js"></script>
+
+
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-ld-Jrm4iRR45vbE3NVNYSqZ1C8QbroM&callback=googleMap">
+</script>
+
 <?php
 }
 ?>
