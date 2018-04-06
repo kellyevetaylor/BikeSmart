@@ -110,16 +110,12 @@ var init = function () {
         });
     }
     ;
-
 };
 
-
 function googleMap(long, lat) {
-
-
     var mapProp = {
         center: new google.maps.LatLng(long, lat),
-        zoom: 14,
+        zoom: 14
     };
     var centerLocation = new google.maps.LatLng(startLat, startLong);
     var GeorgeSquareHub = new google.maps.LatLng(55.86152450673392, -4.249251283111562);
@@ -139,20 +135,16 @@ function googleMap(long, lat) {
     var marker2 = new google.maps.Marker({
         position: GeorgeSquareHub,
         label: labels[labelIndex++ % labels.length],
-
-
     });
 
     var marker3 = new google.maps.Marker({
         position: LivyTowerHub,
         label: labels[labelIndex++ % labels.length],
-
     });
 
     var marker4 = new google.maps.Marker({
             position: GlasgowCollegeHub,
             label: labels[labelIndex++ % labels.length],
-
         })
     ;
     var marker5 = new google.maps.Marker({

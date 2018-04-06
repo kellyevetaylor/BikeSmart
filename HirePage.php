@@ -35,13 +35,15 @@
     $database = "mad3_a";
     $conn = new mysqli($host, $user, $password, $database);
 
+
     ?>
 </main>
 
-    <div class="tabs">
-        <button class="tabButton" onclick="location.href='NewsFeedPage.html';"><img src="Images/NewsFeed.png" ></button>
-        <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png" ></button>
-        <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png" ></button>
-        <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png" ></button>
-    </div>
+<div class="tabs">
+    <button class="tabButton" onclick="location.href='NewsFeedPage.html';"><img src="Images/NewsFeed.png"></button>
+    <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
+    </button>
+    <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
+    <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png"></button>
+</div>
 </html>

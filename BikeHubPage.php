@@ -37,6 +37,12 @@
         $database = "mad3_a";
         $conn = new mysqli($host, $user, $password, $database);
 
+
+        if (isset($_POST["hireBike"])) {
+            echo "Hello";
+        }else{
+
+
         /* $sql = "SELECT * FROM `Bikes` WHERE `RentedBy` = \"kellytaylor\"";
          $result = $conn->query($sql);
          if ($result->num_rows > 0) {
@@ -58,7 +64,6 @@
                      $sql = "UPDATE `Bikes` SET `RentedBy` = NULL WHERE `ID` = $id ";
                      $conn->query($sql);
                      header('location:BikeHubPage.php');
-
                  }
              }
          }
@@ -79,11 +84,26 @@
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $i = $row["id"];
-                    $j=$row["available"];
+                    $j = $row["available"];
 
                     echo "<tr>";
                     echo "<td>";
-                    echo $row["id"];
+
+                    switch ($row["id"]) {
+                        case 1:
+                            echo "A";
+                            break;
+                        case 2:
+                            echo "B";
+                            break;
+                        case 3:
+                            echo "C";
+                            break;
+                        case 4:
+                            echo "D";
+                            break;
+                    }
+
                     echo "</td>";
                     echo "<td>";
                     echo $row["available"];
@@ -95,19 +115,23 @@
                     <input type='submit' name="<?php echo "Hire" . $i; ?>" class="submitButton"
                            value='Hire Bike'
                            formaction='BikeHubPage.php'>
+                    <input type="hidden" name="action" value="hireBike"><br>
 
                     <?php
                     echo "</td>";
                     echo "</tr>";
+
+
                     if (isset($_POST["Hire$i"])) {
 
 
                         $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = '$i'";
                         $conn->multi_query($sql);
 
-                              $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` =$j";
+                        $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` = '$j'";
                         $conn->multi_query($sql);
 
+                        //bike number $j at hub $i
 
                         unset($_POST["Hire$i"]);
                         header('location:BikeHubPage.php');
@@ -117,13 +141,17 @@
             ?>
         </table>
     </form>
+    <?php
+    }
+    ?>
 </main>
 
 <div class="tabs">
-    <button class="tabButton" onclick="location.href='NewsFeedPage.html';"><img src="Images/NewsFeed.png" ></button>
-    <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png" ></button>
-    <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png" ></button>
-    <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png" ></button>
+    <button class="tabButton" onclick="location.href='NewsFeedPage.html';"><img src="Images/NewsFeed.png"></button>
+    <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
+    </button>
+    <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
+    <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png"></button>
 </div>
 <script src="JavaScript/HirebikePage.js"></script>
 
