@@ -126,8 +126,6 @@ if ($action == "Finish") {
     <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
 </div>
 <script src="JavaScript/QuickstartPage.js"></script>
-
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-ld-Jrm4iRR45vbE3NVNYSqZ1C8QbroM&callback=googleMap">
 </script>
 

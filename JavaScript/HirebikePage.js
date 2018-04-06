@@ -179,10 +179,12 @@ function googleMap(long,lat) {
     };
     var centerLocation = new google.maps.LatLng(startLat,startLong);
 
-    var marker = new google.maps.Marker({position:centerLocation})
 
 
     var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var marker = new google.maps.Marker({position:centerLocation,
+        icon: "Images/BikeMarker.png",
+    })
 
     marker.setMap(map);
 };

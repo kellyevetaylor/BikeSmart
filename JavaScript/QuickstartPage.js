@@ -179,7 +179,9 @@ function googleMap(long,lat) {
     };
     var centerLocation = new google.maps.LatLng(startLat,startLong);
 
-    var marker = new google.maps.Marker({position:centerLocation})
+    var marker = new google.maps.Marker({position:centerLocation,
+    icon: "Images/BikeMarker.png",
+    })
 
 
     var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
