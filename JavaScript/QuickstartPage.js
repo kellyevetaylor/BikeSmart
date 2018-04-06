@@ -113,61 +113,6 @@ var init = function () {
     ;
 
 };
-/*
-var distanceCal = function () {
-
-    var origin = new google.maps.LatLng(startLat, startLong);
-
-    var destination = getDestLat()+","getDestLong();
-
-    var service = new google.maps.DistanceMatrixService();
-
-    service.getDistanceMatrix(
-        {
-            origins: [origin],
-            destinations: [destination],
-            travelMode: google.maps.TravelMode.BICYCLING,
-            avoidHighways: false,
-            avoidTolls: false
-        },
-        callback
-    );
-
-    function callback(response, status) {
-        var dist = document.getElementById("distanceTraveled");
-
-        if(status=="OK") {
-            dist.value = response.rows[0].elements[0].distance.text;
-        } else {
-            alert("Error: " + status);
-        }
-    }
-};
-
-function getDestLat() {
-    var myGPSElement = document.getElementById("gps");
-    var destLat;
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            return  destLat = r4(position.coords.latitude);
-        });
-    } else {
-        myGPSElement.innerHTML = "Geolocation is not supported.";
-    }
-}
-
-function getDestLong() {
-    var myGPSElement = document.getElementById("gps");
-    var destLong;
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            return destLong = r4(position.coords.longitude);
-        });
-    } else {
-        myGPSElement.innerHTML = "Geolocation is not supported.";
-    }
-}
-*/
 
 
 function googleMap(long,lat) {
