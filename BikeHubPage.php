@@ -104,7 +104,7 @@
 
                         do{
                             $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` = '$j'";
-                            $conn->query($sql);
+                              $conn->query($sql);
                             $j++;
                         }while($j<3);
 
