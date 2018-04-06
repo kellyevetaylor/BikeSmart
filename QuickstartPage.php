@@ -80,34 +80,38 @@ if ($action == "Finish") {
 
 <div id="QuickstartInfoDiv">
 
-    <div id="googleMap" style="width:100%;height:400px;">
+    <div id="googleMap"
+    ">
 
 
-    </div>
+</div>
 
-    <p id=QuickstartInfo>
 
-    <div class="column"><h4 id="gps" class="QuickstartLabel">Start Location:</h4></div>
-    <div class="column"><h4 class="QuickstartLabel">Distance:</h4><label id="distanceTraveled">0 km</label>
-    </div>
-    <div class="column">
-        <h4 class="QuickstartLabel">Time:</h4>
-        <label id="timer">00:00:00</label>
-    </div>
+<div class="column">
+    <h4 class="QuickstartLabel">Distance:</h4><label id="distanceTraveled">0 km</label>
+</div>
+<div class="column">
+    <h4 class="QuickstartLabel">Time:</h4>
+    <label id="timer">00:00:00</label>
+</div>
 
-    </p>
 </div>
 
 <div id="QuickstartButtons">
-    <button id="QuickstartBtn" class="QuickstartStart-stop" name=startBtn onclick="startTimer()">Start</button>
-    <button id="QuickstopBtn" class="QuickstartStart-stop" onclick="stopTimer()">Pause</button>
+    <div class="column">
+        <button id="QuickstartBtn" name=startBtn onclick="startTimer()">Start</button>
+    </div>
+    <div class="column">
+        <button id="QuickstopBtn" onclick="stopTimer()">Pause</button>
+    </div>
+
 </div>
 <form method="POST">
 
     <div id="logActivity">
         <input type="hidden" id="lbltime" name="time" value="00:00:00">
         <input type="hidden" name="action" value="Finish"><br>
-        <input type="submit" id="logActivitybtn" value="Finish" name="Finish">
+        <input type="submit" id="button" class="submitButton" value="Finish" name="Finish">
 
 
     </div>
@@ -123,9 +127,6 @@ if ($action == "Finish") {
     <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
 </div>
 <script src="JavaScript/QuickstartPage.js"></script>
-
-
-
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-ld-Jrm4iRR45vbE3NVNYSqZ1C8QbroM&callback=googleMap">

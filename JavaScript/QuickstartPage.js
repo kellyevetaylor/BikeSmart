@@ -25,7 +25,7 @@ function getLocation() {
     var myGPSElement = document.getElementById("gps");
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            myGPSElement.innerHTML = "Start location: " +"<br>" +" Lat: " + r4(position.coords.latitude) + " Long: " + r4(position.coords.longitude) + "<br/>Accuracy: &plusmn; " + r0(position.coords.accuracy) + " m";
+
             startLat = r4(position.coords.latitude);
             startLong = r4(position.coords.longitude);
             googleMap(startLat,startLong) ;
@@ -175,7 +175,7 @@ function googleMap(long,lat) {
 
     var mapProp = {
         center:new google.maps.LatLng(long,lat),
-        zoom: 5,
+        zoom: 17,
     };
     var centerLocation = new google.maps.LatLng(startLat,startLong);
 

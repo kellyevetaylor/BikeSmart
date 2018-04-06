@@ -1,65 +1,40 @@
-ul {
-    display: table;
-    margin: 0 auto;
-}
 
-#QuickstartButtons {
+
+*{
+
     text-align: center;
-    margin-top: 20%;
-    padding-right: 10%;
-    padding-left: 10%;
-    position: relative;
 }
 
-#QuickstartInfo {
-    margin-top: 20%;
+#googleMap{
+  width:100%;
+    height:15rem;
 }
 
-.QuickstartStart-stop {
-    display: inline-block;
-    text-align: center;
-    border-radius: 50%;
-    border-color: black;
-    background-color: cornflowerblue;
-    color: white;
-    text-align: center;
-    height: 100%;
-    text-decoration: none;
-    padding: 10%;
-    margin: 10% 5%;
-    position: inherit;
-}
 
-.column {
-    float: left;
-    width: 33.33%;
-}
 
 #timer, #distanceTraveled {
     font-size: 2rem;
 
 }
 
-#logActivitybtn {
-
-    background-color: cornflowerblue;
-    color: white;
-    text-align: center;
-    border: solid 0.1rem black;
-    padding: 5%;
-    height: 100%;
+#QuickstartButtons{
+    padding-top: 5%;
+}
+.column{
+    padding-top: 5%;
+    float: left;
     width: 50%;
-    text-decoration: none;
 }
 
-#logActivity {
-    position: relative;
-    padding-left: 40%;
+#logActivity{
+    padding-top: 40%;
 }
 
-#QuickstartInfoDiv {
-    position: relative;
+button,.submitButton{
+
+    font-size: 1.8rem;
 }
+
 
 
 
