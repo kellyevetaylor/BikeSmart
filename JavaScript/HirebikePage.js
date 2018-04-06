@@ -1,7 +1,6 @@
 "use strict"
 
 
-
 var timerRefresh;
 var date = new Date();
 var hours = 0, minutes = 0, seconds = 0;
@@ -28,7 +27,7 @@ function getLocation() {
 
             startLat = r4(position.coords.latitude);
             startLong = r4(position.coords.longitude);
-            googleMap(startLat,startLong) ;
+            googleMap(startLat, startLong);
         });
     } else {
         myGPSElement.innerHTML = "Geolocation is not supported.";
@@ -36,7 +35,6 @@ function getLocation() {
 }
 
 function startTimer() {
-
 
 
     document.getElementById("QuickstartBtn").disabled = true;
@@ -65,22 +63,22 @@ function setStartTimer() {
         hours = 0;
     }
 
-    if(seconds <10){
-        printSec= secondsTemplate + seconds;
+    if (seconds < 10) {
+        printSec = secondsTemplate + seconds;
     }
-    else{
+    else {
         printSec = seconds;
     }
 
-    if(minutes < 10){
+    if (minutes < 10) {
         printMin = minutesTemplate + minutes;
-    }else{
+    } else {
         printMin = minutes;
     }
 
-    if(hours < 10){
+    if (hours < 10) {
         printHour = hoursTemplate + hours;
-    }else{
+    } else {
         printHour = hours;
     }
 
@@ -89,7 +87,6 @@ function setStartTimer() {
     document.getElementById("lbltime").value = printHour + ":" + printMin + ":" + printSec;
 
 }
-
 
 
 function stopTimer() {
@@ -113,6 +110,7 @@ var init = function () {
     ;
 
 };
+
 /*
 var distanceCal = function () {
 
@@ -170,23 +168,51 @@ function getDestLong() {
 */
 
 
-function googleMap(long,lat) {
+function googleMap(long, lat) {
 
 
     var mapProp = {
-        center:new google.maps.LatLng(long,lat),
-        zoom: 17,
+        center: new google.maps.LatLng(long, lat),
+        zoom: 14,
     };
-    var centerLocation = new google.maps.LatLng(startLat,startLong);
+    var centerLocation = new google.maps.LatLng(startLat, startLong);
+    var GeorgeSquareHub = new google.maps.LatLng(55.86152450673392, -4.249251283111562);
+    var LivyTowerHub = new google.maps.LatLng(55.860729730774366, -4.243202901782979);
+    var GlasgowCollegeHub = new google.maps.LatLng(55.86296951227654, -4.2446405658149615);
+
+    var GlasgowGreenHub = new google.maps.LatLng(55.849678806528196, -4.233928578959649);
 
 
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    var marker1 = new google.maps.Marker({
+        position: centerLocation,
+    });
 
-    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    var marker = new google.maps.Marker({position:centerLocation,
+    var marker2 = new google.maps.Marker({
+        position: GeorgeSquareHub,
         icon: "Images/BikeMarker.png",
-    })
+    });
 
-    marker.setMap(map);
+    var marker3 = new google.maps.Marker({
+        position: LivyTowerHub,
+        icon: "Images/BikeMarker.png",
+    });
+
+    var marker4 = new google.maps.Marker({
+            position: GlasgowCollegeHub,
+            icon: "Images/BikeMarker.png",
+        })
+    ;
+    var marker5 = new google.maps.Marker({
+        position: GlasgowGreenHub,
+        icon: "Images/BikeMarker.png",
+    });
+
+    marker1.setMap(map);
+    marker2.setMap(map);
+    marker3.setMap(map);
+    marker4.setMap(map);
+    marker5.setMap(map);
 };
 
 window.addEventListener("load", init);
