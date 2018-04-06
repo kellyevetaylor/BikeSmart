@@ -28,7 +28,7 @@ function getLocation() {
             myGPSElement.innerHTML = "Start location: " +"<br>" +" Lat: " + r4(position.coords.latitude) + " Long: " + r4(position.coords.longitude) + "<br/>Accuracy: &plusmn; " + r0(position.coords.accuracy) + " m";
             startLat = r4(position.coords.latitude);
             startLong = r4(position.coords.longitude);
-            googleMap(55.7333304, -5.0333332);
+            googleMap(startLat,startLong) ;
         });
     } else {
         myGPSElement.innerHTML = "Geolocation is not supported.";
@@ -177,9 +177,14 @@ function googleMap(long,lat) {
         center:new google.maps.LatLng(long,lat),
         zoom: 5,
     };
+    var centerLocation = new google.maps.LatLng(startLat,startLong);
+
+    var marker = new google.maps.Marker({position:centerLocation})
 
 
     var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+    marker.setMap(map);
 };
 
 window.addEventListener("load", init);
