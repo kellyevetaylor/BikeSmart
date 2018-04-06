@@ -25,98 +25,96 @@
             </h1>
         </header>
 
-            <div id="googleMap">
+        <div id="googleMap">
 
-            </div>
+        </div>
 
+        <?php
+
+        $host = "devweb2017.cis.strath.ac.uk";
+        $user = "mad3_a";
+        $password = "Haihoo3shiop";
+        $database = "mad3_a";
+        $conn = new mysqli($host, $user, $password, $database);
+
+        /* $sql = "SELECT * FROM `Bikes` WHERE `RentedBy` = \"kellytaylor\"";
+         $result = $conn->query($sql);
+         if ($result->num_rows > 0) {
+             while ($row = $result->fetch_assoc()) {
+                 $id = $row["ID"];
+
+                 echo "You are already renting a bike";
+
+                 echo "Bike ID: " . $row["ID"];
+                 echo "Bike Hub: " . $row["Bike_Hub"];
+                 ?>
+                 <form method="post">
+                     <input type="submit" name="unhire" value="Unhire Bike!">
+                 </form><?php
+
+                 if (isset($_POST["unhire"])) {
+                     $sql = "UPDATE `Bikes` SET `Available` = 1 WHERE `ID` = $id ";
+                     $conn->query($sql);
+                     $sql = "UPDATE `Bikes` SET `RentedBy` = NULL WHERE `ID` = $id ";
+                     $conn->query($sql);
+                     header('location:BikeHubPage.php');
+
+                 }
+             }
+         }
+
+         else{*/
+        ?>
+
+        <table>
+            <tr>
+                <th>Bike Hub</th>
+                <th>Bikes Available</th>
+                <th>Distance</th>
+            </tr>
             <?php
-
-            $host = "devweb2017.cis.strath.ac.uk";
-            $user = "mad3_a";
-            $password = "Haihoo3shiop";
-            $database = "mad3_a";
-            $conn = new mysqli($host, $user, $password, $database);
-
-            $sql = "SELECT * FROM `Bikes` WHERE `RentedBy` = \"kellytaylor\"";
+            $sql = "SELECT * FROM `BikeHubs`";
             $result = $conn->query($sql);
+
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $id = $row["ID"];
+                    $i = $row["id"];
 
-                    echo "You are already renting a bike";
-
-                    echo "Bike ID: " . $row["ID"];
-                    echo "Bike Hub: " . $row["Bike_Hub"];
+                    echo "<tr>";
+                    echo "<td>";
+                    echo $row["id"];
+                    echo "</td>";
+                    echo "<td>";
+                    echo $row["available"];
+                    echo "<td>";
+                    echo $row["distance"];
+                    echo "</td>";
+                    echo "<td>";
                     ?>
-                    <form method="post">
-                        <input type="submit" name="unhire" value="Unhire Bike!">
-                    </form><?php
+                    <input type='submit' name="<?php echo "Hire" . $i; ?>" class="submitButton"
+                           value='Hire Bike'
+                           formaction='BikeHubPage.php'>
 
-                    if (isset($_POST["unhire"])) {
-                        $sql = "UPDATE `Bikes` SET `Available` = 1 WHERE `ID` = $id ";
-                        $conn->query($sql);
-                        $sql = "UPDATE `Bikes` SET `RentedBy` = NULL WHERE `ID` = $id ";
-                        $conn->query($sql);
+                    <?php
+                    echo "</td>";
+                    echo "</tr>";
+                    if (isset($_POST["Hire$i"])) {
+
+                        $j=1;
+
+                        do{
+                            $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` = '$j'";
+                            $conn->query($sql);
+                            $j++;
+                        }while($j<3);
+
+                        unset($_POST["Hire$i"]);
                         header('location:BikeHubPage.php');
-
                     }
                 }
             }
-
-            else{
             ?>
-
-            <table>
-                <tr>
-                    <th>Bike Hub</th>
-                    <th>Bikes Available</th>
-                    <th>Distance</th>
-                </tr>
-                <?php
-                $sql = "SELECT * FROM `Bikes`";
-                $result = $conn->query($sql);
-                if (!$result === TRUE) {
-                    die("Error on insert" . $conn->error);
-                }
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $i = $row["ID"];
-
-                        if ($row["Available"] == 1) {
-                            echo "<tr>";
-                            echo "<td>" ;
-                            echo $row["Bike_Hub"];
-                            echo "</td>";
-                            echo "<td>";
-                            echo $row["Available"];
-                            echo "<td>";
-                            echo $row["ID"];
-                            echo "</td>";
-                            echo "<td>";
-                            ?>
-                            <input type='submit' name="<?php echo "Hire" . $i; ?>" class="submitButton"
-                                   value='Hire Bike'
-                                   formaction='HirePage.php'>
-
-                            <?php
-                            echo "</td>";
-                            echo "</tr>";
-                            if (isset($_POST["Hire$i"])) {
-                                $sql = "UPDATE `Bikes` SET `RentedBy` = \"kellytaylor\" WHERE `ID`=$i";
-                                $conn->query($sql);
-
-                                $sql = "UPDATE `Bikes` SET `Available` = 0 WHERE `ID`=$i";
-                                $conn->query($sql);
-
-                                unset($_POST["Hire$i"]);
-                                header('location:BikeHubPage.php');
-                            }
-                        }
-                    }
-                }
-                }
-                ?>
-            </table>
+        </table>
     </form>
 </main>
 

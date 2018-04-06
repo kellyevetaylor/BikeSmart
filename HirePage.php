@@ -27,6 +27,16 @@
 </header>
 
 <main>
+    <?php
+
+    $host = "devweb2017.cis.strath.ac.uk";
+    $user = "mad3_a";
+    $password = "Haihoo3shiop";
+    $database = "mad3_a";
+    $conn = new mysqli($host, $user, $password, $database);
+
+    ?>
+</main>
 
     <div class="tabs">
         <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
