@@ -4,6 +4,13 @@
     font-family: Arial;
 }
 
+
+#googleMap{
+    width:100%;
+    height:15rem;
+}
+
+
 input {
     -webkit-appearance: none;
     -moz-appearance: none;

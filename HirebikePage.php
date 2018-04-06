@@ -25,6 +25,14 @@
         </header>
         <body>
 
+
+        <div id="QuickstartInfoDiv">
+
+            <div id="googleMap">
+
+
+            </div>
+
         <?php
 
         $host = "devweb2017.cis.strath.ac.uk";
@@ -65,24 +73,6 @@
 
         else{
         ?>
-
-        <div id="map"></div>
-        <script>
-            function initMap() {
-                var uluru = {lat: 55.8628285, lng: -4.242853};
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 4,
-                    center: uluru
-                });
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: map
-                });
-            }
-        </script>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOW0HFTpMp08qL1utmLoNs5_i3wgAMyag&callback=initMap">
-        </script>
 
         <table>
             <tr>
@@ -149,5 +139,11 @@
     <button class="tabButton" onclick="location.href='HirebikePage.php';">Hire Bike</button>
     <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
 </div>
+
+<script src="JavaScript/HirebikePage.js"></script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-ld-Jrm4iRR45vbE3NVNYSqZ1C8QbroM&callback=googleMap">
+</script>
 
 </html>

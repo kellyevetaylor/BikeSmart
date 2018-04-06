@@ -80,8 +80,7 @@ if ($action == "Finish") {
 
 <div id="QuickstartInfoDiv">
 
-    <div id="googleMap"
-    ">
+    <div id="googleMap">
 
 
 </div>
