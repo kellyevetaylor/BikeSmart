@@ -120,10 +120,10 @@ if ($action == "Finish") {
 
 
 <div class="tabs">
-    <button class="tabButton" onclick="location.href='NewsFeedPage.html';">News Feed</button>
-    <button class="tabButton" onclick="location.href='QuickstartPage.php';">Quickstart</button>
-    <button class="tabButton" onclick="location.href='BikeHubPage.php';">Hire Bike</button>
-    <button class="tabButton" onclick="location.href='AccountPage.php';">Account</button>
+    <button class="tabButton" onclick="location.href='NewsFeedPage.html';"><img src="Images/NewsFeed.png" ></button>
+    <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png" ></button>
+    <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png" ></button>
+    <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png" ></button>
 </div>
 <script src="JavaScript/QuickstartPage.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-ld-Jrm4iRR45vbE3NVNYSqZ1C8QbroM&callback=googleMap">
