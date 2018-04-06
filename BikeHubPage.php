@@ -79,6 +79,7 @@
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $i = $row["id"];
+                    $j=$row["available"];
 
                     echo "<tr>";
                     echo "<td>";
@@ -100,13 +101,13 @@
                     echo "</tr>";
                     if (isset($_POST["Hire$i"])) {
 
-                        $j=1;
 
-                        do{
-                            $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` = '$j'";
-                              $conn->query($sql);
-                            $j++;
-                        }while($j<3);
+                        $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = '$i'";
+                        $conn->multi_query($sql);
+
+                              $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` =$j";
+                        $conn->multi_query($sql);
+
 
                         unset($_POST["Hire$i"]);
                         header('location:BikeHubPage.php');
