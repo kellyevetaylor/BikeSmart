@@ -1,32 +1,33 @@
 
 
-*{
-
-    text-align: center;
-}
-
-
-
 
 #timer, #distanceTraveled {
     font-size: 2rem;
+    text-align: center;
 
 }
 
 #QuickstartButtons{
     padding-top: 5%;
+    text-align: center;
+
 }
 .column{
     padding-top: 5%;
     float: left;
     width: 50%;
+    text-align: center;
+
 }
 
 #logActivity{
     padding-top: 40%;
+    text-align: center;
+
 }
 
 button,.submitButton{
+    text-align: center;
 
     font-size: 1.8rem;
 }
