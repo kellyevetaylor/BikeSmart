@@ -17,18 +17,11 @@
     <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"/>
 
 </head>
+
+
 <main>
+
     <form method="post">
-        <header>
-            <h1>Hire Bike
-                <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
-            </h1>
-        </header>
-
-        <div id="googleMap">
-
-        </div>
-
         <?php
 
         $host = "devweb2017.cis.strath.ac.uk";
@@ -41,8 +34,18 @@
         if (isset($_POST["hireBike"])) {
             echo "Hello";
         }else{
+?>
+        <header>
+            <h1>Hire Bike
+                <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+            </h1>
+        </header>
 
+        <div id="googleMap">
 
+        </div>
+
+<?php
         /* $sql = "SELECT * FROM `Bikes` WHERE `RentedBy` = \"kellytaylor\"";
          $result = $conn->query($sql);
          if ($result->num_rows > 0) {
@@ -115,7 +118,7 @@
                     <input type='submit' name="<?php echo "Hire" . $i; ?>" class="submitButton"
                            value='Hire Bike'
                            formaction='BikeHubPage.php'>
-                    <input type="hidden" name="action" value="hireBike"><br>
+                    <input type="hidden" name="hireBike" value="hireBike"><br>
 
                     <?php
                     echo "</td>";
