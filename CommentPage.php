@@ -1,5 +1,7 @@
+<form id="commentForm" method="POST">
 <input type="text" name="commentText" id="commentText"/>
 <button class="postButton" onclick="">Post Comment</button>
+</form>
 <?php
 
 $date = date('U = Y-m-d H:i:s');
