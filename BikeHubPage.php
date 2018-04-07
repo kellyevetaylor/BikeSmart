@@ -32,9 +32,30 @@
 
 
         if (isset($_POST["hireBike"])) {
+
+            $sql = "SELECT * FROM `Accounts` WHERE `id` =1";
+
+            $result = $conn->query($sql);
+            if ($conn->connect_error) {
+                die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
+            }
+
+
+            if ($result)
+                $row = $result->fetch_assoc();
+            $bikeNumber = $row["bikeHired"];
+            $hubNumber = $row["bikesHub"];
+            $name = $row["first name"];
+
             echo "Hello";
-        }else{
-?>
+            echo "$bikeNumber";
+            echo "$hubNumber";
+            echo "$name";
+
+
+        }
+        else{
+        ?>
         <header>
             <h1>Hire Bike
                 <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
@@ -45,7 +66,7 @@
 
         </div>
 
-<?php
+        <?php
         /* $sql = "SELECT * FROM `Bikes` WHERE `RentedBy` = \"kellytaylor\"";
          $result = $conn->query($sql);
          if ($result->num_rows > 0) {
@@ -118,7 +139,7 @@
                     <input type='submit' name="<?php echo "Hire" . $i; ?>" class="submitButton"
                            value='Hire Bike'
                            formaction='BikeHubPage.php'>
-                    <input type="hidden" name="hireBike" value="hireBike"><br>
+
 
                     <?php
                     echo "</td>";
@@ -134,11 +155,23 @@
                         $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` = '$j'";
                         $conn->multi_query($sql);
 
+                        $sql = "UPDATE `Accounts` SET `bikeHired` = '$i' WHERE `Accounts`.`id` = 1;";
+                        $conn->multi_query($sql);
+
+
+                        $sql = "UPDATE `Accounts` SET `bikesHub` = '$j' WHERE `Accounts`.`id` = 1;";
+                        $conn->multi_query($sql);
+
+
                         //bike number $j at hub $i
 
+                        ?>
+                        <input type="hidden" name="hireBike" value="hireBike"><br>
+<?php
                         unset($_POST["Hire$i"]);
                         header('location:BikeHubPage.php');
                     }
+
                 }
             }
             ?>
