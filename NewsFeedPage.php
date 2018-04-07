@@ -24,6 +24,7 @@
 
 <?php
 
+$date = date('U = Y-m-d H:i:s');
 $host = "devweb2017.cis.strath.ac.uk";
 $user = "mad3_a";
 $password = "Haihoo3shiop";
@@ -36,7 +37,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["messageText"])) {
         $message = $_POST["messageText"];
-        $sql = "INSERT INTO `Newsfeed` (`message`, `userID`) VALUES ('$message', '1')";
+        $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '1', '$date')";
         $conn->query($sql);
 
         header('location:NewsFeedPage.php');
@@ -71,11 +72,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 while($row = $result->fetch_assoc()) {
                     echo"<tr>";
                         echo"<td>";
+                            echo $row["time"];
+                        echo"<td>";
+                        echo"<td>";
                             echo$row["id"];
                         echo"<td>";
                         echo"<td>";
                             echo $row["message"];
                         echo"<td>";
+                        echo"<td>";
+                            ?> //Counter comments <button class="postButton" onclick="location.href='CommentPage.php';">Add Comment</button>
+                        <?php echo"<td>";
                     echo"<tr>";
                 }
             }
@@ -85,12 +92,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </table>
         <form id="chatForm" method="POST">
             <input type="text" name="messageText" id="messageText"/>
-            <input type="submit" id="postButton" value="Post"/>
+            <input class="postButton" type="submit" id="postButton" value="Post"/>
+            <br>
         </form>
     </div>
     </body>
     <script type="text/javascript">
-        setInterval('window.location.reload()', 5000);
+        setInterval('window.location.reload()', 15000);
     </script>
 </main>
 
