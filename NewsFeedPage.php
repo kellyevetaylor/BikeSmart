@@ -24,7 +24,7 @@
 
 <?php
 
-$date = date('U = Y-m-d H:i:s');
+$date = date('Y-m-d H:i:s');
 $host = "devweb2017.cis.strath.ac.uk";
 $user = "mad3_a";
 $password = "Haihoo3shiop";
@@ -37,7 +37,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["messageText"])) {
         $message = $_POST["messageText"];
-        $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`, `comment`) VALUES ('$message', '1', '$date', 'Comments.comment')";
+        $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '1', '$date')";
         $conn->query($sql);
 
         header('location:NewsFeedPage.php');

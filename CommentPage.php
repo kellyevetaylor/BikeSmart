@@ -29,7 +29,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["commentText"])) {
         $comment = $_POST["commentText"];
-        $sql = "INSERT INTO `Comments` (`post_id`, `comment`) VALUES (NULL, '$comment')";
+        $sql = "INSERT INTO `Comments` (`post_id`, `comment`) VALUES ('$post_id', '$comment')";
 
         $conn->query($sql);
 
