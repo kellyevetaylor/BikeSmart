@@ -169,7 +169,7 @@
                         <input type="hidden" name="hireBike" value="hireBike"><br>
 <?php
                         unset($_POST["Hire$i"]);
-                        header('location:BikeHubPage.php');
+                        header('location:ConfirmBikeHire.php');
                     }
 
                 }

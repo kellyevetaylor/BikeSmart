@@ -17,7 +17,7 @@ input {
     appearance: none;
 }
 
-button, .submitButton,.update {
+button, .submitButton,.update{
     background-color: cornflowerblue;
     border-radius: 0.4rem;
     display: inline-block;
@@ -66,4 +66,6 @@ p {
     padding-right: 1rem;
     text-align: center;
 }
+
+
 
