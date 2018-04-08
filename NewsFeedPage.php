@@ -14,7 +14,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>BikeSmart</title>
     <link rel="stylesheet" type="text/css" href="CSS/OverallStandard.css">
-
     <link rel="stylesheet" type="text/css" href="CSS/Tabs.css">
 
 
