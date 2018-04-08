@@ -37,7 +37,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["messageText"])) {
         $message = $_POST["messageText"];
-        $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '1', '$date')";
+        $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`, `comment`) VALUES ('$message', '1', '$date', 'Comments.comment')";
         $conn->query($sql);
 
         header('location:NewsFeedPage.php');
