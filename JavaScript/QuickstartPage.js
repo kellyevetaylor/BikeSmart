@@ -7,7 +7,9 @@ var date = new Date();
 var hours = 0, minutes = 0, seconds = 0;
 var hoursTemplate = "0", minutesTemplate = "0", secondsTemplate = "0";
 var startLong, startLat;
-var sound = document.getElementById("audio");
+var soundStart = document.getElementById("audioStart");
+var soundPause = document.getElementById("audioPause");
+var soundFinish = document.getElementById("audioFinish");
 
 
 
@@ -37,16 +39,23 @@ function getLocation() {
         myGPSElement.innerHTML = "Geolocation is not supported.";
     }
 }
+function finishQuickstart() {
+    soundFinish.play();
+    setTimeout(5000);
+    soundPause.pause();
+    soundStart.pause();
+}
+
+
 
 function startTimer() {
 
-
-
-    sound.play();
+    soundStart.play();
+    soundPause.pause();
     document.getElementById("QuickstartBtn").disabled = true;
     date.setHours(hours, minutes, seconds);
     timerRefresh = setInterval(setStartTimer, 1000);
-    setInterval(distanceCal, 1000);
+    //setInterval(distanceCal, 1000);
 }
 
 function setStartTimer() {
@@ -97,8 +106,10 @@ function setStartTimer() {
 
 
 function stopTimer() {
+
     document.getElementById("QuickstartBtn").disabled = false;
-    sound.pause();
+    soundPause.play();
+    soundStart.pause();
 
     window.clearInterval(timerRefresh);
 }
@@ -140,3 +151,4 @@ function googleMap(long,lat) {
 };
 
 window.addEventListener("load", init);
+window.addEventListener("submit",finishQuickstart);

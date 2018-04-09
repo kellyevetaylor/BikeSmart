@@ -99,21 +99,28 @@ if ($action == "Finish") {
 <div id="QuickstartButtons">
     <div class="column">
         <button id="QuickstartBtn" name=startBtn onclick="startTimer()">Start</button>
-        <audio id ="audio">
+        <audio id ="audioStart">
             <source src="Sounds/Start.mp3" type="audio/mp3">
         </audio>
     </div>
     <div class="column">
         <button id="QuickstopBtn" onclick="stopTimer()">Pause</button>
+
+        <audio id ="audioPause">
+            <source src="Sounds/Pause.mp3" type="audio/mp3">
+        </audio>
     </div>
 
 </div>
-<form method="POST">
+<form id="submitForm" method="POST">
 
     <div id="logActivity">
         <input type="hidden" id="lbltime" name="time" value="00:00:00">
         <input type="hidden" name="action" value="Finish"><br>
-        <input type="submit" id="button" class="submitButton" value="Finish" name="Finish">
+        <input type="submit" id="button" class="submitButton" value="Finish" name="Finish" >
+        <audio id ="audioFinish">
+            <source src="Sounds/Finish.mp3" type="audio/mp3">
+        </audio>
 
 
     </div>

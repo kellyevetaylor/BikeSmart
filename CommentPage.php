@@ -30,11 +30,11 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["commentText"])) {
         $comment = $_POST["commentText"];
-        $sql = "INSERT INTO `Comments` (`post_id`, `comment`) VALUES ('20', '$comment')";
+        $sql = "INSERT INTO `Comments` (`post_id`, `comment`) VALUES ('23', 'hello')";
 
         $conn->query($sql);
 
-        header('location:CommentPage.php');
+        header('location:NewsFeedPage.php');
     }
 }
 
