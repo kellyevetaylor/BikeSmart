@@ -1,4 +1,6 @@
 <?php
+session_start();
+?><?php
 /**
  * Created by IntelliJ IDEA.
  * User: Ryan
@@ -12,6 +14,7 @@ $user = "mad3_a";
 $password = "Haihoo3shiop";
 $database = "mad3_a";
 $conn = new mysqli($host, $user, $password, $database);
+
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +40,7 @@ $conn = new mysqli($host, $user, $password, $database);
 
     <header>
         <h1>Confirm Hire
-            <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+            <button class="logoutButton" onclick="location.href='Logout.php';">Logout</button>
         </h1>
     </header>
     <body>
@@ -50,29 +53,21 @@ $conn = new mysqli($host, $user, $password, $database);
         $row = $result->fetch_assoc();
     $bikeHired = $row["bikeHired"];
     $hiring = $row["hiring"];
+    $userID = $_SESSION["id"];
 
-    $sql = "SELECT * FROM `Accounts` WHERE `id` =1";
-
-    $result = $conn->query($sql);
-
-    if ($result)
-        $row = $result->fetch_assoc();
-    $bike = $row["bikeHired"];
 
     if (isset($_POST["stop"])) {
-        $sql = "UPDATE `BikeHubs` SET `available` = `available`+1 WHERE `id` = 1";
+        echo "Hiya";
+        $sql = "UPDATE `BikeHubs` SET `available` = `available`+1 WHERE `id` = $userID";
         $conn->multi_query($sql);
 
-        $sql = "UPDATE `Bikes` SET `user` = 0 WHERE `bike` = '$bike'";
+        $sql = "UPDATE `Accounts` SET `hiring` = 0 WHERE `id` = $userID";
         $conn->multi_query($sql);
 
-        $sql = "UPDATE `Accounts` SET `hiring` = 0 WHERE `id` = 1";
+        $sql = "UPDATE `Accounts` SET `bikeHired` = 0 WHERE `id` = $userID";
         $conn->multi_query($sql);
 
-        $sql = "UPDATE `Accounts` SET `bikeHired` = 0 WHERE `id` = 1";
-        $conn->multi_query($sql);
-
-        $sql = "UPDATE `Accounts` SET `bikesHub` = 0 WHERE `id` = 1";
+        $sql = "UPDATE `Accounts` SET `bikesHub` = 0 WHERE `id` = $userID";
         $conn->multi_query($sql);
 
         header('location:BikeHubPage.php');
@@ -88,10 +83,10 @@ $conn = new mysqli($host, $user, $password, $database);
 
             if (isset($_POST["confirm"]) || $hiring == 1) {
                 displayBikeInfo($conn);
-                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = 1";
+                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = $userID";
                 $conn->multi_query($sql);
 
-                $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = 1";
+                $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = $userID";
                 $conn->multi_query($sql);
 
                 $code1 = rand(10, 50);
@@ -105,7 +100,7 @@ $conn = new mysqli($host, $user, $password, $database);
                     Unlock code: <?php echo $code1 . $code2 ?></div>
                 <div id="code">Lock code: <?php echo $code2 . $code3 ?></div>
 
-                <div id="stopButton">
+                <div id="confirmPayment">
                     <form method="POST" action="ConfirmBikeHire.php">
                         <input type="submit" value="Stop Hiring Bike" name="stop" class="submitButton">
                     </form>
@@ -147,8 +142,9 @@ $conn = new mysqli($host, $user, $password, $database);
         <div id="confirmation">
 
             <?php
+            $userID = $_SESSION['id'];
 
-            $sql = "SELECT * FROM `Accounts` WHERE `id` =1";
+            $sql = "SELECT * FROM `Accounts` WHERE `id` ='$userID'";
 
             $result = $conn->query($sql);
 
@@ -213,7 +209,7 @@ $conn = new mysqli($host, $user, $password, $database);
     <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
     <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png"></button>
 </div>
-<script src="JavaScript/ConfirmBikeHire.js"></script>
+<script src="JavaScript/confirmBikeHire.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-ld-Jrm4iRR45vbE3NVNYSqZ1C8QbroM&callback=googleMap">
 </script>
 </html>
