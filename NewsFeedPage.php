@@ -72,16 +72,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo"<tr>";
                         echo"<td>";
                             echo $row["time"];
+                            echo"<br>";
                         echo"<td>";
                         echo"<td>";
                             echo$row["id"];
+                            echo"<br>";
                         echo"<td>";
                         echo"<td>";
                             echo $row["message"];
+                            echo"<br>";
                         echo"<td>";
                         echo"<td>";
-                            ?> //Counter comments <button class="postButton" onclick="location.href='CommentPage.php';">Add Comment</button>
-                        <?php echo"<td>";
+                            // //Counter comments <button class="postButton" onclick="location.href='CommentPage.php';">Add Comment</button>
+                        echo"<td>";
                     echo"<tr>";
                 }
             }
