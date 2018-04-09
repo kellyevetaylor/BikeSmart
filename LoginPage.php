@@ -1,6 +1,10 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="mobile-web-app-capable" content="yes">
@@ -41,11 +45,17 @@ function checkDatabase($conn)
     $username = isset($_POST["username"]) ? $_POST["username"] : "";
     $password = isset($_POST["password"]) ? $_POST["password"] : "";
 
-    $sql = "SELECT `first name`, `second name`, `username`, `password` FROM `Accounts`";
+    $sql = "SELECT * FROM `Accounts`";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
         if ($row["username"] == $username && $row["password"] == $password) {
+            $_SESSION["id"] = $row["id"];
+            $_SESSION["user"] = $row["username"];
+            $_SESSION["name"] = $row["first name"];
+            $_SESSION["sname"] = $row["second name"];
+            $_SESSION["email"] = $row["email"];
+            $_SESSION["details"] = $result;
             return true;
         }
     }
