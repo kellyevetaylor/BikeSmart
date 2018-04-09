@@ -34,6 +34,16 @@
         $database = "mad3_a";
         $conn = new mysqli($host, $user, $password, $database);
 
+        $sql = "SELECT * FROM `Accounts` WHERE `id` = 1";
+        $result = $conn->query($sql);
+
+        if ($result)
+            $row = $result->fetch_assoc();
+        $bikeHired = $row["bikeHired"];
+
+        if ($bikeHired != 0){
+            header('location:ConfirmBikeHire.php');
+        }else{
 
         ?>
 
@@ -41,35 +51,6 @@
         <div id="googleMap">
 
         </div>
-
-        <?php
-        /* $sql = "SELECT * FROM `Bikes` WHERE `RentedBy` = \"kellytaylor\"";
-         $result = $conn->query($sql);
-         if ($result->num_rows > 0) {
-             while ($row = $result->fetch_assoc()) {
-                 $id = $row["ID"];
-
-                 echo "You are already renting a bike";
-
-                 echo "Bike ID: " . $row["ID"];
-                 echo "Bike Hub: " . $row["Bike_Hub"];
-                 ?>
-                 <form method="post">
-                     <input type="submit" name="unhire" value="Unhire Bike!">
-                 </form><?php
-
-                 if (isset($_POST["unhire"])) {
-                     $sql = "UPDATE `Bikes` SET `Available` = 1 WHERE `ID` = $id ";
-                     $conn->query($sql);
-                     $sql = "UPDATE `Bikes` SET `RentedBy` = NULL WHERE `ID` = $id ";
-                     $conn->query($sql);
-                     header('location:BikeHubPage.php');
-                 }
-             }
-         }
-
-         else{*/
-        ?>
 
         <table>
             <tr>
@@ -124,18 +105,13 @@
 
                     if (isset($_POST["Hire$i"])) {
 
-
-                        $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = '$i'";
-                        $conn->multi_query($sql);
-
                         $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` = '$j'";
                         $conn->multi_query($sql);
 
-                        $sql = "UPDATE `Accounts` SET `bikeHired` = '$i' WHERE `Accounts`.`id` = 1;";
+                        $sql = "UPDATE `Accounts` SET `bikeHired` = '$j' WHERE `Accounts`.`id` = 1;";
                         $conn->multi_query($sql);
 
-
-                        $sql = "UPDATE `Accounts` SET `bikesHub` = '$j' WHERE `Accounts`.`id` = 1;";
+                        $sql = "UPDATE `Accounts` SET `bikesHub` = '$i' WHERE `Accounts`.`id` = 1;";
                         $conn->multi_query($sql);
 
 
@@ -143,7 +119,7 @@
 
                         ?>
                         <input type="hidden" name="hireBike" value="hireBike"><br>
-<?php
+                        <?php
                         unset($_POST["Hire$i"]);
                         header('location:ConfirmBikeHire.php');
                     }
@@ -153,11 +129,13 @@
             ?>
         </table>
     </form>
-
+    <?php
+    }
+    ?>
 </main>
 
 <div class="tabs">
-    <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png" ></button>
+    <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png"></button>
     <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
     </button>
     <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>

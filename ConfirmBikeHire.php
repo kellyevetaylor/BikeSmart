@@ -43,107 +43,159 @@ $conn = new mysqli($host, $user, $password, $database);
     </header>
     <body>
 
-
-    <div id="googleMap">
-
-
-    </div>
-
-    <div id="confirmation">
-
-        <?php
-
-        $sql = "SELECT * FROM `Accounts` WHERE `id` =1";
-
-        $result = $conn->query($sql);
-
-        if ($result)
-            $row = $result->fetch_assoc();
-        $bikeNumber = $row["bikeHired"];
-        $hubNumber = $row["bikesHub"];
-
-        $sql2 = "SELECT * FROM `BikeHubs` WHERE `id` = '$hubNumber'";
-
-        $result2 = $conn->query($sql2);
-
-        if ($result2)
-            $row2 = $result2->fetch_assoc();
-        $address = $row2["address"];
-
-        ?>
-        <table id="confirmationTable">
-            <tr>
-                <td><div id="title">Hub</div><?php
-                    switch ($hubNumber) {
-                        case 1:
-                            ?>
-                            <div id="hub">A</div><?php
-                            break;
-                        case 2:
-                            ?>
-                            <div id="hub">B</div><?php
-                            break;
-                        case 3:
-                            ?>
-                            <div id="hub">C</div><?php
-                            break;
-                        case 4:
-                            ?>
-                            <div id="hub">D</div><?php
-                            break;
-                    } ?>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <?php echo "Bike #$bikeNumber"; ?>
-                </td>
-            </tr>
-            <tr>
-                <td> <?php echo "$address"; ?></td>
-            </tr>
-        </table>
-    </div>
-
     <?php
-    if (isset($_POST["confirm"])) {
-        $code1 = rand(10, 50);
-        $code2 = rand(10, 50);
-        $code3 = rand(10, 50);
-        $code4 = rand(10, 50);
+    $sql = "SELECT * FROM `Accounts` WHERE `id` = 1";
+    $result = $conn->query($sql);
 
-        ?>
-        <div id="message">Your bike is waiting for you!</div>
-        <div id="code">
-            Unlock code: <?php echo $code1 . $code2 ?></div>
-        <div id="code">Lock code: <?php echo $code2 . $code3 ?></div>
+    if ($result)
+        $row = $result->fetch_assoc();
+    $bikeHired = $row["bikeHired"];
+    $hiring = $row["hiring"];
 
-        <?php
+
+    if (isset($_POST["stop"])) {
+        echo "Hiya";
+        $sql = "UPDATE `BikeHubs` SET `available` = `available`+1 WHERE `id` = 1";
+        $conn->multi_query($sql);
+
+        $sql = "UPDATE `Accounts` SET `hiring` = 0 WHERE `id` = 1";
+        $conn->multi_query($sql);
+
+        $sql = "UPDATE `Accounts` SET `bikeHired` = 0 WHERE `id` = 1";
+        $conn->multi_query($sql);
+
+        $sql = "UPDATE `Accounts` SET `bikesHub` = 0 WHERE `id` = 1";
+        $conn->multi_query($sql);
+
+        header('location:BikeHubPage.php');
     } else {
+
+        if ($bikeHired == 0) {
+            header('location:BikeHubPage.php');
+        } else {
+            ?>
+            <div id="googleMap"></div>
+            <?php
+
+
+            if (isset($_POST["confirm"]) || $hiring == 1) {
+                displayBikeInfo($conn);
+                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = 1";
+                $conn->multi_query($sql);
+
+                $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = 1";
+                $conn->multi_query($sql);
+
+                $code1 = rand(10, 50);
+                $code2 = rand(10, 50);
+                $code3 = rand(10, 50);
+                $code4 = rand(10, 50);
+
+                ?>
+                <div id="message">Your bike is waiting for you!</div>
+                <div id="code">
+                    Unlock code: <?php echo $code1 . $code2 ?></div>
+                <div id="code">Lock code: <?php echo $code2 . $code3 ?></div>
+
+                <div id="confirmPayment">
+                    <form method="POST" action="ConfirmBikeHire.php">
+                        <input type="submit" value="Stop Hiring Bike" name="stop" class="submitButton">
+                    </form>
+                </div>
+
+                <?php
+            } else {
+                displayBikeInfo($conn);
+                ?>
+
+                <div class="selectOptions">
+
+                    <select id="confirmationTime" onchange="getTotal()">
+                        <option>Time</option>
+                        <option value="30">30 Minutes</option>
+                        <option value="2">2 Hours</option>
+                        <option value="4">4 Hours</option>
+                        <option value="24">24 Hours</option>
+                    </select>
+                </div>
+
+                <div id="total">
+                    Total -
+                </div>
+
+                <div id="confirmPayment">
+                    <form method="POST" action="ConfirmBikeHire.php">
+                        <input type="submit" value="Confirm Payment (PayPal?)" name="confirm" class="submitButton">
+                    </form>
+                </div>
+                <?php
+            }
+        }
+    }
+
+    function displayBikeInfo($conn)
+    {
         ?>
+        <div id="confirmation">
 
-        <div class="selectOptions">
+            <?php
 
-            <select id="confirmationTime" onchange="getTotal()">
-                <option>Time</option>
-                <option value="30">30 Minutes</option>
-                <option value="2">2 Hours</option>
-                <option value="4">4 Hours</option>
-                <option value="24">24 Hours</option>
-            </select>
-        </div>
+            $sql = "SELECT * FROM `Accounts` WHERE `id` =1";
 
-        <div id="total">
-            Total -
-        </div>
+            $result = $conn->query($sql);
 
-        <div id="confirmPayment">
-            <form method="POST" action="ConfirmBikeHire.php">
-                <input type="submit" value="Confirm Payment (PayPal?)" name="confirm" class="submitButton">
-            </form>
+            if ($result)
+                $row = $result->fetch_assoc();
+            $bikeNumber = $row["bikeHired"];
+            $hubNumber = $row["bikesHub"];
+
+            $sql2 = "SELECT * FROM `BikeHubs` WHERE `id` = '$hubNumber'";
+
+            $result2 = $conn->query($sql2);
+
+            if ($result2)
+                $row2 = $result2->fetch_assoc();
+            $address = $row2["address"];
+
+            ?>
+            <table id="confirmationTable">
+                <tr>
+                    <td>
+                        <div id="title">Hub</div><?php
+                        switch ($hubNumber) {
+                            case 1:
+                                ?>
+                                <div id="hub">A</div><?php
+                                break;
+                            case 2:
+                                ?>
+                                <div id="hub">B</div><?php
+                                break;
+                            case 3:
+                                ?>
+                                <div id="hub">C</div><?php
+                                break;
+                            case 4:
+                                ?>
+                                <div id="hub">D</div><?php
+                                break;
+                        } ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <?php echo "Bike #$bikeNumber"; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <?php echo "$address"; ?></td>
+                </tr>
+            </table>
         </div>
         <?php
-    } ?>
+    }
+
+    ?>
 </main>
 
 <div class="tabs">
