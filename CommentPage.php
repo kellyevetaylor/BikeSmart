@@ -17,7 +17,7 @@
 
 <?php
 
-$date = date('U = Y-m-d H:i:s');
+$date = date('Y-m-d H:i:s');
 $host = "devweb2017.cis.strath.ac.uk";
 $user = "mad3_a";
 $password = "Haihoo3shiop";
@@ -30,11 +30,11 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["commentText"])) {
         $comment = $_POST["commentText"];
-        $sql = "INSERT INTO `Comments` (`post_id`, `comment`) VALUES ('23', 'hello')";
+        $sql = "INSERT INTO `Comments` (`post_id`, `comment`) VALUES ('24', '$comment')";
 
         $conn->query($sql);
 
-        header('location:NewsFeedPage.php');
+        header('location:CommentPage.php');
     }
 }
 
@@ -49,7 +49,7 @@ $conn->close();
 
 <form id="commentForm" method="POST">
     <input type="text" name="commentText" id="commentText"/>
-    <input class="postButton" type="submit" value="Post" name="Post">
+    <input class="postButton" type="submit" id="postButton" value="Post"/>
 </form>
 
 <script type="text/javascript">

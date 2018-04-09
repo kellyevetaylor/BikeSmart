@@ -15,6 +15,7 @@
     <title>BikeSmart</title>
     <link rel="stylesheet" type="text/css" href="CSS/OverallStandard.css">
     <link rel="stylesheet" type="text/css" href="CSS/Tabs.css">
+    <link rel="stylesheet" type="text/css" href="CSS/NewsFeedPage.css">
 
 
     <link rel="icon" sizes="192x192" href="Images/icon.png"/>
@@ -52,55 +53,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button></h1>
     </header>
     <body>
+    <form id="chatForm" method="POST">
+        <input type="text" name="messageText" id="messageText"/>
+        <input class="postButton" type="submit" id="postButton" value="Post"/>
+        <br>
+    </form>
     <div id="chatHistoryDiv"></div>
     <div id="chatFormDiv">
         <table>
-            <tr>
-                <th>
-                    User ID
-                </th>
-                <th>
-                    Message
-                </th>
-            </tr>
             <?php
             $sql = "SELECT * FROM `Newsfeed`";
             $result = mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
-                    echo"<tr>";
-                        echo"<td>";
-                            echo $row["time"];
-                            echo"<br>";
-                        echo"<td>";
-                        echo"<td>";
-                            echo$row["id"];
-                            echo"<br>";
-                        echo"<td>";
-                        echo"<td>";
-                            echo $row["message"];
-                            echo"<br>";
-                        echo"<td>";
-                        echo"<td>";
+                    //echo"<tr>";
+                        //echo"<td>";
+                    echo "<div id=username >";
+                         echo $row["id"];
+                           echo "<br>";
+                           echo "</div>";
+                            //echo"<td>";
+                        //echo"<td>";
+                    echo "<div id=message >";
+                    echo$row["message"];
+                             echo "<br>";
+                    echo "</div>";
+                    //echo"<br>";
+                        //echo"<td>";
+                        //echo"<td>";
+                    echo "<div id=time >";
+                    echo $row["time"];
+                    echo "<br>";
+                    echo "</div>";
+                    echo "<br>";
+                    //echo"<br>";
+                        //echo"<td>";
+                        //echo"<td>";
                             // //Counter comments <button class="postButton" onclick="location.href='CommentPage.php';">Add Comment</button>
-                        echo"<td>";
-                    echo"<tr>";
+                        //echo"<td>";
+                    //echo"<tr>";
                 }
             }
             $conn->close();
             ?>
 
         </table>
-        <form id="chatForm" method="POST">
-            <input type="text" name="messageText" id="messageText"/>
-            <input class="postButton" type="submit" id="postButton" value="Post"/>
-            <br>
-        </form>
+
     </div>
     </body>
     <script type="text/javascript">
-        setInterval('window.location.reload()', 15000);
+        setInterval('window.location.reload()', 150000);
     </script>
 </main>
 
