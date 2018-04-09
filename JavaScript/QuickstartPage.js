@@ -7,6 +7,9 @@ var date = new Date();
 var hours = 0, minutes = 0, seconds = 0;
 var hoursTemplate = "0", minutesTemplate = "0", secondsTemplate = "0";
 var startLong, startLat;
+var sound = document.getElementById("audio");
+
+
 
 function r0(x) {
     return Math.round(x);
@@ -39,6 +42,7 @@ function startTimer() {
 
 
 
+    sound.play();
     document.getElementById("QuickstartBtn").disabled = true;
     date.setHours(hours, minutes, seconds);
     timerRefresh = setInterval(setStartTimer, 1000);
@@ -94,6 +98,7 @@ function setStartTimer() {
 
 function stopTimer() {
     document.getElementById("QuickstartBtn").disabled = false;
+    sound.pause();
 
     window.clearInterval(timerRefresh);
 }

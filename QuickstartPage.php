@@ -99,6 +99,9 @@ if ($action == "Finish") {
 <div id="QuickstartButtons">
     <div class="column">
         <button id="QuickstartBtn" name=startBtn onclick="startTimer()">Start</button>
+        <audio id ="audio">
+            <source src="Sounds/Start.mp3" type="audio/mp3">
+        </audio>
     </div>
     <div class="column">
         <button id="QuickstopBtn" onclick="stopTimer()">Pause</button>
