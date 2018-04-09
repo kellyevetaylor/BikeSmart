@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,6 +37,7 @@
     $conn = new mysqli($host, $user, $password, $database);
 
 
+
     if (isset($_POST["submit"])) {
         changePassword($conn);
     } else if (isset($_POST["update"])) {
@@ -44,6 +47,7 @@
 
     function updateDetails($conn)
     {
+        $userID = $_SESSION["id"];
         $fname = isset($_POST["fname"]) ? $_POST["fname"] : "";
         $sname = isset($_POST["sname"]) ? $_POST["sname"] : "";
         $email = isset($_POST["email"]) ? $_POST["email"] : "";
@@ -51,19 +55,19 @@
 
         //this works if you hard code a name but not when you use the variable
         if ($fname != "") {
-            $sql = "UPDATE `Accounts` SET `first name` = '$fname' WHERE `Accounts`.`id` = 1;";
+            $sql = "UPDATE `Accounts` SET `first name` = '$fname' WHERE `Accounts`.`id` = $userID";
             $conn->query($sql);
         }
         if ($sname != "") {
-            $sql = "UPDATE `Accounts` SET `second name` = '$sname' WHERE `Accounts`.`id` = 1";
+            $sql = "UPDATE `Accounts` SET `second name` = '$sname' WHERE `Accounts`.`id` = $userID";
             $conn->query($sql);
         }
         if ($email != "") {
-            $sql = "UPDATE `Accounts` SET `email` = '$email' WHERE `Accounts`.`id` = 1";
+            $sql = "UPDATE `Accounts` SET `email` = '$email' WHERE `Accounts`.`id` = $userID";
             $conn->query($sql);
         }
         if ($username != "") {
-            $sql = "UPDATE `Accounts` SET `username` = '$username' WHERE `Accounts`.`id` = 1";
+            $sql = "UPDATE `Accounts` SET `username` = '$username' WHERE `Accounts`.`id` = $userID";
             $conn->query($sql);
         }
         echo '<script type="text/javascript">alert("Update successful.");</script>';
@@ -87,7 +91,7 @@
                 if ($row["password"] == $oldPassword /*&& $row[id] == session id*/) {
                     if ($newPassword1 == $newPassword2) {
                         //id will be changed when sessions are in place
-                        $sql = "UPDATE `Accounts` SET `password` = $newPassword1 WHERE `Accounts`.`id` = 1";
+                        $sql = "UPDATE `Accounts` SET `password` = $newPassword1 WHERE `Accounts`.`id` = $userID";
                         $conn->query($sql);
                         echo '<script type="text/javascript">alert("Update successful.");</script>';
                     } else {
