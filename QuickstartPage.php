@@ -1,4 +1,6 @@
 <?php
+session_start();
+?><?php
 /**
  * Created by IntelliJ IDEA.
  * User: Ryan
@@ -30,6 +32,8 @@ $distance = isset($_POST["distance"]) ? $_POST["distance"] : "";
 $time = isset($_POST["time"]) ? $_POST["time"] : "";
 $startLocation = isset($_POST["startLocation"]) ? $_POST["startLocation"] : "";
 $endLocation = isset($_POST["endLocation"]) ? $_POST["endLocation"] : "";
+$userID = $_SESSION["id"];
+
 
 
 if ($action == "Finish") {
@@ -38,7 +42,7 @@ if ($action == "Finish") {
     $message = "Distance: " . $distance . " Time: " . $time;
 
 
-    $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '1', '$date2')";
+    $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$userID', '$date2')";
     $conn->query($sql);
 
 
