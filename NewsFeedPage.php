@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <header>
         <h1>News Feed
-            <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button></h1>
+            <button class="logoutButton" onclick="location.href='Logout.php';">Logout</button></h1>
     </header>
     <br>
     <form id="chatForm" method="POST">
