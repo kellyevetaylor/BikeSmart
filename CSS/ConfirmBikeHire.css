@@ -1,6 +1,5 @@
 
 #confirmation {
-    padding-top: 30%;
     font-size: 1.3rem;
 }
 
@@ -8,7 +7,7 @@ table {
     padding-left: 10%;
     padding-bottom: 10%;
     width: 100%;
-
+    text-align: center;
 }
 
 #confirmPayment {

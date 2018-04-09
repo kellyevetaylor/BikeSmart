@@ -61,53 +61,93 @@ $conn = new mysqli($host, $user, $password, $database);
             $row = $result->fetch_assoc();
         $bikeNumber = $row["bikeHired"];
         $hubNumber = $row["bikesHub"];
-        $name = $row["first name"];
 
+        $sql2 = "SELECT * FROM `BikeHubs` WHERE `id` = '$hubNumber'";
+
+        $result2 = $conn->query($sql2);
+
+        if ($result2)
+            $row2 = $result2->fetch_assoc();
+        $address = $row2["address"];
 
         ?>
         <table id="confirmationTable">
             <tr>
-                <td>
-                    <label class="labels">Name: </label>
+                <td>Hub<?php
+                    switch ($hubNumber) {
+                        case 1:
+                            ?>
+                            <div id="hub">A</div><?php
+                            break;
+                        case 2:
+                            ?>
+                            <div id="hub">B</div><?php
+                            break;
+                        case 3:
+                            ?>
+                            <div id="hub">C</div><?php
+                            break;
+                        case 4:
+                            ?>
+                            <div id="hub">D</div><?php
+                            break;
+                    } ?>
                 </td>
-                <td><?php echo "$name"; ?></td>
             </tr>
-
             <tr>
                 <td>
-                    <label class="labels">Hub Number: </label>
+                    <?php echo "Bike #$bikeNumber"; ?>
                 </td>
-                <td><?php echo "$hubNumber"; ?></td>
             </tr>
             <tr>
-                <td>
-                    <label class="labels">Bike Number: </label>
-                </td>
-                <td> <?php echo "$bikeNumber"; ?></td>
+                <td> <?php echo "$address"; ?></td>
             </tr>
         </table>
     </div>
 
-    <div class="selectOptions">
+    <?php
+    if (isset($_POST["confirm"])) {
+        $code1 = rand(10, 50);
+        $code2 = rand(10, 50);
+        $code3 = rand(10, 50);
+        $code4 = rand(10, 50);
 
-        <select id="confirmationTime" onchange="getTotal()">
-            <option>Time</option>
-            <option value="30">30 Minutes</option>
-            <option value="2">2 Hours</option>
-            <option value="4">4 Hours</option>
-            <option value="24">24 Hours</option>
-        </select>
-    </div>
-    
+        ?>
+        <div id="message">Your bike is waiting for you!</div>
+        <div id="code">
+            Unlock code: <?php echo $code1.$code2 ?></div>
+        <div id="code">Lock code: <?php echo $code2.$code3 ?></div>
 
-    <div id="confirmPayment">
-        <button>Confirm Payment (PayPal?)</button>
-    </div>
-    </body>
+        <?php
+    } else {
+        ?>
+
+        <div class="selectOptions">
+
+            <select id="confirmationTime" onchange="getTotal()">
+                <option>Time</option>
+                <option value="30">30 Minutes</option>
+                <option value="2">2 Hours</option>
+                <option value="4">4 Hours</option>
+                <option value="24">24 Hours</option>
+            </select>
+        </div>
+
+        <div id="total">
+            Total -
+        </div>
+
+        <div id="confirmPayment">
+            <form method="POST" action="ConfirmBikeHire.php">
+                <input type="submit" value="Confirm Payment (PayPal?)" name="confirm" class="submitButton">
+            </form>
+        </div>
+        <?php
+    } ?>
 </main>
 
 <div class="tabs">
-    <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png" ></button>
+    <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png"></button>
     <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
     </button>
     <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
