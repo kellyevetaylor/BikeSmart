@@ -27,12 +27,55 @@
 </header>
 
 <main>
+    <?php
+    $host = "devweb2017.cis.strath.ac.uk";
+    $user = "mad3_a";
+    $password = "Haihoo3shiop";
+    $database = "mad3_a";
+    $conn = new mysqli($host, $user, $password, $database);
 
+    $sql = "SELECT * FROM `BikeHires` WHERE `user` = 1";
+    $result = $conn->query($sql);
+
+    while ($row = $result->fetch_assoc()) {
+        ?>
+        <table>
+            <tr>
+                <th>
+                    Date
+                </th>
+                <td>
+                    <?php echo $row["time"];?>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Hub
+                </th>
+                <td>
+                    <?php echo $row["hub"];?>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Bike
+                </th>
+                <td>
+                    <?php echo $row["bike"];?>
+                </td>
+            </tr>
+        </table>
+        <?php
+    }
+
+    ?>
     <div class="tabs">
-        <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png" ></button>
-        <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png" ></button>
-        <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png" ></button>
-        <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png" ></button>
+        <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png"></button>
+        <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
+        </button>
+        <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
+        <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png">
+        </button>
     </div>
 
 </html>

@@ -6,7 +6,7 @@
  * Time: 21:03
  */
 
-
+$date = date('Y-m-d H:i:s');
 $host = "devweb2017.cis.strath.ac.uk";
 $user = "mad3_a";
 $password = "Haihoo3shiop";
@@ -58,6 +58,7 @@ $conn = new mysqli($host, $user, $password, $database);
     if ($result)
         $row = $result->fetch_assoc();
     $bike = $row["bikeHired"];
+    $hub = $row["bikesHub"];
 
     if (isset($_POST["stop"])) {
         $sql = "UPDATE `BikeHubs` SET `available` = `available`+1 WHERE `id` = 1";
@@ -86,7 +87,36 @@ $conn = new mysqli($host, $user, $password, $database);
             <?php
 
 
-            if (isset($_POST["confirm"]) || $hiring == 1) {
+            if (isset($_POST["confirm"])) {
+                displayBikeInfo($conn);
+                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = 1";
+                $conn->multi_query($sql);
+
+                $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = 1";
+                $conn->multi_query($sql);
+
+                $sql = "INSERT INTO `BikeHires` (`id`, `time`, `hub`, `bike`,`user`) VALUES (NULL, '$date', '$hub', '$bike', 1)";
+                $conn->multi_query($sql);
+
+                $code1 = rand(10, 50);
+                $code2 = rand(10, 50);
+                $code3 = rand(10, 50);
+                $code4 = rand(10, 50);
+
+                ?>
+                <div id="message">Your bike is waiting for you!</div>
+                <div id="code">
+                    Unlock code: <?php echo $code1 . $code2 ?></div>
+                <div id="code">Lock code: <?php echo $code2 . $code3 ?></div>
+
+                <div id="stopButton">
+                    <form method="POST" action="ConfirmBikeHire.php">
+                        <input type="submit" value="Stop Hiring Bike" name="stop" class="submitButton">
+                    </form>
+                </div>
+
+                <?php
+            }else if($hiring == 1){
                 displayBikeInfo($conn);
                 $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = 1";
                 $conn->multi_query($sql);
