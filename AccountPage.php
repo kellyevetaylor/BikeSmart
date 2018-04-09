@@ -24,7 +24,7 @@ session_start();
 
 <header>
     <h1>Account
-        <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+        <button class="logoutButton" onclick="location.href='Logout.php';">Logout</button>
     </h1>
 </header>
 <main>
