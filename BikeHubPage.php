@@ -20,7 +20,11 @@
 
 
 <main>
-
+    <header>
+        <h1>Hire Bike
+            <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+        </h1>
+    </header>
     <form method="post">
         <?php
 
@@ -31,36 +35,8 @@
         $conn = new mysqli($host, $user, $password, $database);
 
 
-        if (isset($_POST["hireBike"])) {
-
-            $sql = "SELECT * FROM `Accounts` WHERE `id` =1";
-
-            $result = $conn->query($sql);
-            if ($conn->connect_error) {
-                die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
-            }
-
-
-            if ($result)
-                $row = $result->fetch_assoc();
-            $bikeNumber = $row["bikeHired"];
-            $hubNumber = $row["bikesHub"];
-            $name = $row["first name"];
-
-            echo "Hello";
-            echo "$bikeNumber";
-            echo "$hubNumber";
-            echo "$name";
-
-
-        }
-        else{
         ?>
-        <header>
-            <h1>Hire Bike
-                <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
-            </h1>
-        </header>
+
 
         <div id="googleMap">
 
@@ -177,9 +153,7 @@
             ?>
         </table>
     </form>
-    <?php
-    }
-    ?>
+
 </main>
 
 <div class="tabs">

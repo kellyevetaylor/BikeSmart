@@ -35,7 +35,7 @@
 
     ?>
 
-    <p><img src="Images/avatar.jpg" height="150" width="150"></p>
+    <p><img src="Images/ProfilePic.png" height="150" width="150"></p>
 
     <?php
 
