@@ -42,6 +42,13 @@ $conn = new mysqli($host, $user, $password, $database);
         </h1>
     </header>
     <body>
+
+
+    <div id="googleMap">
+
+
+    </div>
+
     <div id="confirmation">
 
         <?php
@@ -111,7 +118,9 @@ $conn = new mysqli($host, $user, $password, $database);
     <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
     <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png"></button>
 </div>
-
+<script src="JavaScript/confirmBikeHire.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-ld-Jrm4iRR45vbE3NVNYSqZ1C8QbroM&callback=googleMap">
+</script>
 </html>
 
 

@@ -47,12 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </head>
 <main>
+    <body>
 
     <header>
         <h1>News Feed
             <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button></h1>
     </header>
-    <body>
     <br>
     <form id="chatForm" method="POST">
         <input type="text" name="messageText" id="messageText"/>
@@ -102,16 +102,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </table>
 
     </div>
-    </body>
+
+
+    <div class="tabs">
+    <div>
     <script type="text/javascript">
         setInterval('window.location.reload()', 150000);
     </script>
-</main>
 
+    </body>
 <div class="tabs">
     <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png" ></button>
     <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png" ></button>
     <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png" ></button>
     <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png" ></button>
 </div>
+</main>
 </html>
