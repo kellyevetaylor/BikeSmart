@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +24,7 @@
 
 <header>
     <h1 class="header">Hire Bike
-        <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+        <button class="logoutButton" onclick="location.href='Logout.php';">Logout</button>
     </h1>
 </header>
 
