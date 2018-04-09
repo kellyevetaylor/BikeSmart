@@ -53,10 +53,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button></h1>
     </header>
     <body>
+    <br>
     <form id="chatForm" method="POST">
         <input type="text" name="messageText" id="messageText"/>
         <input class="postButton" type="submit" id="postButton" value="Post"/>
-        <br>
+        <br><br>
     </form>
     <div id="chatHistoryDiv"></div>
     <div id="chatFormDiv">

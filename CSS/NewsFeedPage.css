@@ -6,3 +6,14 @@
 #time{
     color: darkgray;
 }
+
+.postButton {
+    background-color: cornflowerblue;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    color: white;
+    text-align: center;
+}
