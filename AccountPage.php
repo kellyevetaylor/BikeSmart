@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +41,9 @@
 
     <?php
 
-    $sql = "SELECT `first name`, `second name`, `email` , `username` FROM `Accounts` WHERE `id` = 1";
+    $userID = $_SESSION["id"];
+
+    $sql = "SELECT `first name`, `second name`, `email` , `username` FROM `Accounts` WHERE `id` = $userID";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
@@ -62,6 +66,7 @@
             </tr>
         </table>
         <?php
+
     }
     ?>
 
