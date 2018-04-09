@@ -8,7 +8,6 @@ input {
     appearance: none;
 }
 
-
 button, .update {
     background-color: cornflowerblue;
     border-radius: 0.4rem;
@@ -19,6 +18,10 @@ button, .update {
     padding: 1rem;
     color: white;
     text-align: center;
+}
+
+#update{
+    padding-bottom:0.8rem;
 }
 
 .changePassword:hover, .changePassword:focus {

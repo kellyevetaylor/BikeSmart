@@ -126,7 +126,7 @@ session_start();
             </tr>
         </table>
         <span style="display: inline;">
-        <input type="submit" class="update" name="update" value="Update">
+        <p id="update"><input type="submit" class="update" name="update" value="Update"></p>
         </span>
     </form>
 

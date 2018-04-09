@@ -25,14 +25,11 @@ $user = "mad3_a";
 $password = "Haihoo3shiop";
 $database = "mad3_a";
 $conn = new mysqli($host, $user, $password, $database);
-if ($conn->connect_error) {
-    die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
-}
 
 if (isset($_POST["login"])) {
-    if(checkDatabase($conn)){
+    if (checkDatabase($conn)) {
         header('location:NewsFeedPage.html');
-    }else{
+    } else {
         echo '<script type="text/javascript">alert("Your username and/or password is incorrect.");</script>';
         displayForm();
     }
@@ -66,7 +63,7 @@ function displayForm()
 {
     ?>
     <form name="loginForm" method="POST">
-        <p >Username <input type="text" name="username" style="font-size: 1.5rem; width: 20rem;"><br></p>
+        <p>Username <input type="text" name="username" style="font-size: 1.5rem; width: 20rem;"><br></p>
         <p>Password <input type="text" name="password" style="font-size: 1.5rem; width: 20rem;"><br></p>
         <p id="submit"><input type="submit" name="login" id="b1" value="Log in"></p>
         <p id="changeAccount"><input type="button" id="b2" value="Create new account"

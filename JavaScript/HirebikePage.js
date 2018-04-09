@@ -36,68 +36,6 @@ function getLocation() {
     }
 }
 
-function startTimer() {
-
-
-    document.getElementById("QuickstartBtn").disabled = true;
-    date.setHours(hours, minutes, seconds);
-    timerRefresh = setInterval(setStartTimer, 1000);
-    setInterval(distanceCal, 1000);
-}
-
-function setStartTimer() {
-    var printSec, printMin, printHour;
-
-    if (seconds < 59) {
-        seconds += 1;
-
-    } else if (seconds === 59) {
-        minutes += 1;
-        seconds = 0;
-    }
-
-    if (minutes === 59) {
-        hours += 1;
-        minutes = 0;
-    }
-
-    if (hours > 23) {
-        hours = 0;
-    }
-
-    if (seconds < 10) {
-        printSec = secondsTemplate + seconds;
-    }
-    else {
-        printSec = seconds;
-    }
-
-    if (minutes < 10) {
-        printMin = minutesTemplate + minutes;
-    } else {
-        printMin = minutes;
-    }
-
-    if (hours < 10) {
-        printHour = hoursTemplate + hours;
-    } else {
-        printHour = hours;
-    }
-
-
-    document.getElementById("timer").innerHTML = printHour + ":" + printMin + ":" + printSec;
-    document.getElementById("lbltime").value = printHour + ":" + printMin + ":" + printSec;
-
-}
-
-
-function stopTimer() {
-    document.getElementById("QuickstartBtn").disabled = false;
-
-    window.clearInterval(timerRefresh);
-}
-
-
 var init = function () {
     if (navigator.geolocation) {
         getLocation();

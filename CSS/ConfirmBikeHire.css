@@ -1,18 +1,17 @@
 
 #confirmation {
     font-size: 1.15rem;
-
 }
 
 table {
-    padding-bottom: 10%;
+    padding-bottom: 7%;
     text-align: center;
     width:100%;
-    padding-top: 10%;
+    padding-top: 7%;
 }
 
 #confirmPayment {
-    padding-top: 10%;
+    padding-top: 7%;
     text-align: center;
 }
 
@@ -61,5 +60,10 @@ option{
 #hub{
     float: right;
     padding-right: 42.5%;
+}
+
+#stopButton{
+    padding:4%;
+    text-align: center;
 }
 

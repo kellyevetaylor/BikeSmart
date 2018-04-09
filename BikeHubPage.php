@@ -1,6 +1,7 @@
 <?php
 session_start();
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +30,7 @@ session_start();
     </header>
     <form method="post">
         <?php
-        $userID = $_SESSION["id"];
+        //$userID = $_SESSION["id"];
 
         $host = "devweb2017.cis.strath.ac.uk";
         $user = "mad3_a";
@@ -37,7 +38,7 @@ session_start();
         $database = "mad3_a";
         $conn = new mysqli($host, $user, $password, $database);
 
-        $sql = "SELECT * FROM `Accounts` WHERE `id` = $userID";
+        $sql = "SELECT * FROM `Accounts` WHERE `id` = 1";
         $result = $conn->query($sql);
 
         if ($result)
@@ -111,10 +112,10 @@ session_start();
                         $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` = '$j'";
                         $conn->multi_query($sql);
 
-                        $sql = "UPDATE `Accounts` SET `bikeHired` = '$j' WHERE `Accounts`.`id` = $userID;";
+                        $sql = "UPDATE `Accounts` SET `bikeHired` = '$j' WHERE `Accounts`.`id` = 1;";
                         $conn->multi_query($sql);
 
-                        $sql = "UPDATE `Accounts` SET `bikesHub` = '$i' WHERE `Accounts`.`id` = $userID;";
+                        $sql = "UPDATE `Accounts` SET `bikesHub` = '$i' WHERE `Accounts`.`id` = 1;";
                         $conn->multi_query($sql);
 
 

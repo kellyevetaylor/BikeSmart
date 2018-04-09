@@ -100,6 +100,14 @@ function googleMap(long, lat) {
     }
 };
 
+function validation(){
+    var time = document.getElementById("confirmationTime");
+    var test = time.options[time.selectedIndex].value;
+
+    if(test = "Time"){
+        alert("True");
+    }
+}
 
 function getTotal() {
 
