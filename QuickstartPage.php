@@ -43,7 +43,7 @@ if ($action == "Finish") {
 
 
     $action = "";
-    header('location:QuickstartPage.php');
+    header('location:NewsFeedPage.php');
 
 
 } else {
