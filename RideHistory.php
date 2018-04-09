@@ -22,7 +22,7 @@
 
 <header>
     <h1 class="header">Ride History
-        <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+        <button class="logoutButton" onclick="location.href='Logout.php';">Logout</button>
     </h1>
 </header>
 
