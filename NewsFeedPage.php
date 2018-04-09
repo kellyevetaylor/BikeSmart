@@ -1,4 +1,6 @@
 <?php
+session_start();
+?><?php
 /**
  * Created by IntelliJ IDEA.
  * User: pavindersingh
@@ -33,11 +35,13 @@ $conn = new mysqli($host, $user, $password, $database);
 if ($conn->connect_error) {
     die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
 }
+$userID = $_SESSION["id"];
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["messageText"])) {
         $message = $_POST["messageText"];
-        $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '1', '$date')";
+        $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$userID', '$date')";
         $conn->query($sql);
 
         header('location:NewsFeedPage.php');
