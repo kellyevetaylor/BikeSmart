@@ -90,20 +90,15 @@ $conn = new mysqli($host, $user, $password, $database);
 
     <div class="selectOptions">
 
-        <select id="confirmationTime">
+        <select id="confirmationTime" onchange="getTotal()">
             <option>Time</option>
-            <option></option>
-            <option>30 Minutes</option>
-            <option>1 Hour</option>
-            <option>24 Hours</option>
+            <option value="30">30 Minutes</option>
+            <option value="2">2 Hours</option>
+            <option value="4">4 Hours</option>
+            <option value="24">24 Hours</option>
         </select>
     </div>
-    <div class="selectOptions">
-        <select  disabled id="confirmationPrice">
-            <option>Price (£)</option>
-
-        </select>
-    </div>
+    
 
     <div id="confirmPayment">
         <button>Confirm Payment (PayPal?)</button>

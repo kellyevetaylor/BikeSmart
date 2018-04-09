@@ -66,7 +66,9 @@ function googleMap(long,lat) {
 
 function getTotal() {
 
-  var time=  document.getElementById("")
+  var time=  document.getElementById("confirmationTime")
+    var test =time.options[time.selectedIndex].value;
+  alert(test);
 
 }
 window.addEventListener("load", init);
