@@ -34,32 +34,30 @@
     $database = "mad3_a";
     $conn = new mysqli($host, $user, $password, $database);
 
-    $sql = "SELECT * FROM `BikeHires` WHERE `user` = 1";
+    $sql = "SELECT * FROM `BikeHires` WHERE `user` = 1 ORDER BY `time` DESC";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
         ?>
-        <table>
+        <table id ="history">
             <tr>
-                <th>
+                <th id = "headings">
                     Date
                 </th>
+                <th id ="headings">
+                    Hub
+                </th>
+                <th id="headings">
+                    Bike
+                </th>
+            </tr>
+            <tr>
                 <td>
                     <?php echo $row["time"];?>
                 </td>
-            </tr>
-            <tr>
-                <th>
-                    Hub
-                </th>
                 <td>
                     <?php echo $row["hub"];?>
                 </td>
-            </tr>
-            <tr>
-                <th>
-                    Bike
-                </th>
                 <td>
                     <?php echo $row["bike"];?>
                 </td>

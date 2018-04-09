@@ -116,7 +116,7 @@ $conn = new mysqli($host, $user, $password, $database);
                 </div>
 
                 <?php
-            }else if($hiring == 1){
+            } else if ($hiring == 1) {
                 displayBikeInfo($conn);
                 $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = 1";
                 $conn->multi_query($sql);
