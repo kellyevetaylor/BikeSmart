@@ -23,13 +23,14 @@ $user = "mad3_a";
 $password = "Haihoo3shiop";
 $database = "mad3_a";
 $conn = new mysqli($host, $user, $password, $database);
+
 if ($conn->connect_error) {
     die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["commentText"])) {
         $comment = $_POST["commentText"];
-        $sql = "INSERT INTO `Comments` (`post_id`, `comment`) VALUES ('$post_id', '$comment')";
+        $sql = "INSERT INTO `Comments` (`post_id`, `comment`) VALUES ('20', '$comment')";
 
         $conn->query($sql);
 
@@ -48,7 +49,7 @@ $conn->close();
 
 <form id="commentForm" method="POST">
     <input type="text" name="commentText" id="commentText"/>
-    <button class="postButton" onclick="">Post Comment</button>
+    <input class="postButton" type="submit" value="Post" name="Post">
 </form>
 
 <script type="text/javascript">
