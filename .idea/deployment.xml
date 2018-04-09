@@ -5,7 +5,7 @@
       <paths name="cafe">
         <serverdata>
           <mappings>
-            <mapping deploy="bike" local="$PROJECT_DIR$" web="/bike" />
+            <mapping deploy="SmartCommute" local="$PROJECT_DIR$" web="/SmartCommute" />
           </mappings>
         </serverdata>
       </paths>

@@ -73,7 +73,7 @@ $conn = new mysqli($host, $user, $password, $database);
         ?>
         <table id="confirmationTable">
             <tr>
-                <td>Hub<?php
+                <td><div id="title">Hub</div><?php
                     switch ($hubNumber) {
                         case 1:
                             ?>
@@ -115,8 +115,8 @@ $conn = new mysqli($host, $user, $password, $database);
         ?>
         <div id="message">Your bike is waiting for you!</div>
         <div id="code">
-            Unlock code: <?php echo $code1.$code2 ?></div>
-        <div id="code">Lock code: <?php echo $code2.$code3 ?></div>
+            Unlock code: <?php echo $code1 . $code2 ?></div>
+        <div id="code">Lock code: <?php echo $code2 . $code3 ?></div>
 
         <?php
     } else {
