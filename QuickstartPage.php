@@ -10,6 +10,8 @@
 
 
 <?php
+$date = date('Y-m-d');
+$date2 = date('Y-m-d H:i:s');
 
 $host = "devweb2017.cis.strath.ac.uk";
 $user = "mad3_a";
@@ -31,12 +33,14 @@ $endLocation = isset($_POST["endLocation"]) ? $_POST["endLocation"] : "";
 
 
 if ($action == "Finish") {
-    $sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`) VALUES (Null, '0', '$time', '0', '0')";
+    $sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`,`date`) VALUES (Null, '0', '$time', '0', '0','$date')";
 
-    $result = $conn->query($sql);
-    if (!$result === TRUE) {
-        die("Error on insert" . $conn->error);
-    }
+    $message = "Distance: " . $distance . " Time: " . $time;
+
+
+    $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '1', '$date2')";
+    $conn->query($sql);
+
 
     $action = "";
     header('location:QuickstartPage.php');
@@ -83,30 +87,30 @@ if ($action == "Finish") {
     <div id="googleMap">
 
 
-</div>
+    </div>
 
 
-<div class="column">
-    <h4 class="QuickstartLabel">Distance:</h4><label id="distanceTraveled">0 km</label>
-</div>
-<div class="column">
-    <h4 class="QuickstartLabel">Time:</h4>
-    <label id="timer">00:00:00</label>
-</div>
+    <div class="column">
+        <h4 class="QuickstartLabel">Distance:</h4><label id="distanceTraveled">0 km</label>
+    </div>
+    <div class="column">
+        <h4 class="QuickstartLabel">Time:</h4>
+        <label id="timer">00:00:00</label>
+    </div>
 
 </div>
 
 <div id="QuickstartButtons">
     <div class="column">
         <button id="QuickstartBtn" name=startBtn onclick="startTimer()">Start</button>
-        <audio id ="audioStart">
+        <audio id="audioStart">
             <source src="Sounds/Start.mp3" type="audio/mp3">
         </audio>
     </div>
     <div class="column">
         <button id="QuickstopBtn" onclick="stopTimer()">Pause</button>
 
-        <audio id ="audioPause">
+        <audio id="audioPause">
             <source src="Sounds/Pause.mp3" type="audio/mp3">
         </audio>
     </div>
@@ -117,8 +121,8 @@ if ($action == "Finish") {
     <div id="logActivity">
         <input type="hidden" id="lbltime" name="time" value="00:00:00">
         <input type="hidden" name="action" value="Finish"><br>
-        <input type="submit" id="button" class="submitButton" value="Finish" name="Finish" >
-        <audio id ="audioFinish">
+        <input type="submit" id="button" class="submitButton" value="Finish" name="Finish">
+        <audio id="audioFinish">
             <source src="Sounds/Finish.mp3" type="audio/mp3">
         </audio>
 
@@ -130,10 +134,11 @@ if ($action == "Finish") {
 
 
 <div class="tabs">
-    <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png" ></button>
-    <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png" ></button>
-    <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png" ></button>
-    <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png" ></button>
+    <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png"></button>
+    <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
+    </button>
+    <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
+    <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png"></button>
 </div>
 <script src="JavaScript/QuickstartPage.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-ld-Jrm4iRR45vbE3NVNYSqZ1C8QbroM&callback=googleMap">
