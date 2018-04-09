@@ -91,13 +91,54 @@ function googleMap(long, lat) {
 
     if(hub === "A"){
         marker2.setMap(map);
+
+        var line = new google.maps.Polyline({
+            path: [
+                centerLocation,GeorgeSquareHub
+            ],
+            strokeColor: "#FF0000",
+            strokeOpacity: 1.0,
+            strokeWeight: 2,
+            map: map
+        });
     }else if(hub === "B"){
         marker3.setMap(map);
+
+        var line = new google.maps.Polyline({
+            path: [
+                centerLocation,LivyTowerHub
+            ],
+            strokeColor: "#FF0000",
+            strokeOpacity: 1.0,
+            strokeWeight: 2,
+            map: map
+        });
     }else if(hub === "C"){
         marker4.setMap(map);
+
+        var line = new google.maps.Polyline({
+            path: [
+                centerLocation,GlasgowCollegeHub
+            ],
+            strokeColor: "#FF0000",
+            strokeOpacity: 1.0,
+            strokeWeight: 2,
+            map: map
+        });
     }else if(hub === "D"){
         marker5.setMap(map);
+
+        var line = new google.maps.Polyline({
+            path: [
+                centerLocation,GlasgowGreenHub
+            ],
+            strokeColor: "#FF0000",
+            strokeOpacity: 1.0,
+            strokeWeight: 2,
+            map: map
+        });
     }
+
 };
 
 function validation(){
