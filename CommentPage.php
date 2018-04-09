@@ -43,7 +43,7 @@ $conn->close();
 </head>
 <main>
     <header>
-        <h1>News Feed
+        <h1>Commen
             <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button></h1>
     </header>
 
