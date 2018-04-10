@@ -71,7 +71,7 @@ function displayForm()
     ?>
     <form name="loginForm" method="POST">
         <p>Username <input type="text" name="username" style="font-size: 1.5rem; width: 20rem;"><br></p>
-        <p>Password <input type="text" name="password" style="font-size: 1.5rem; width: 20rem;"><br></p>
+        <p>Password <input type="password" name="password" style="font-size: 1.5rem; width: 20rem;"><br></p>
         <p id="submit"><input type="submit" name="login" id="b1" value="Log in"></p>
         <p id="changeAccount"><input type="button" id="b2" value="Create new account"
                                      onclick="location.href='NewAccount.php'"></p>
