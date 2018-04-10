@@ -1,14 +1,14 @@
 body{
     text-align: center;
-    padding-top: 0.5%;
+    padding-top: 0%;
     font-family: Arial;
     font-size: 1.5rem;
     overflow: hidden;
-    border-radius: 0.4rem;
+    border-radius: 0.3rem;
 }
 
 p{
-    padding-top: 10vh;
+    padding-top: 2vh;
 }
 
 #b1, #b2{

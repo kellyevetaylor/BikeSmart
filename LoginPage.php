@@ -10,6 +10,7 @@ if (!empty($_SESSION['userId'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <p><img src = "Images/Logo.png" height= "200" width="400"></p>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
