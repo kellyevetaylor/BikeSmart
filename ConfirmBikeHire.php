@@ -1,4 +1,8 @@
 <?php
+
+session_start();
+$userID = $_SESSION["id"];
+
 /**
  * Created by IntelliJ IDEA.
  * User: Ryan
@@ -12,6 +16,11 @@ $user = "mad3_a";
 $password = "Haihoo3shiop";
 $database = "mad3_a";
 $conn = new mysqli($host, $user, $password, $database);
+
+$action = isset($_POST["action"]);
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -43,7 +52,8 @@ $conn = new mysqli($host, $user, $password, $database);
     <body>
 
     <?php
-    $sql = "SELECT * FROM `Accounts` WHERE `id` = 1";
+
+    $sql = "SELECT * FROM `Accounts` WHERE `id` = '$userID'";
     $result = $conn->query($sql);
 
     if ($result)
@@ -51,7 +61,7 @@ $conn = new mysqli($host, $user, $password, $database);
     $bikeHired = $row["bikeHired"];
     $hiring = $row["hiring"];
 
-    $sql = "SELECT * FROM `Accounts` WHERE `id` =1";
+    $sql = "SELECT * FROM `Accounts` WHERE `id` = '$userID'";
 
     $result = $conn->query($sql);
 
@@ -61,19 +71,19 @@ $conn = new mysqli($host, $user, $password, $database);
     $hub = $row["bikesHub"];
 
     if (isset($_POST["stop"])) {
-        $sql = "UPDATE `BikeHubs` SET `available` = `available`+1 WHERE `id` = 1";
+        $sql = "UPDATE `BikeHubs` SET `available` = `available`+1 WHERE `id` = '$userID'";
         $conn->multi_query($sql);
 
         $sql = "UPDATE `Bikes` SET `user` = 0 WHERE `bike` = '$bike'";
         $conn->multi_query($sql);
 
-        $sql = "UPDATE `Accounts` SET `hiring` = 0 WHERE `id` = 1";
+        $sql = "UPDATE `Accounts` SET `hiring` = 0 WHERE `id` = '$userID'";
         $conn->multi_query($sql);
 
-        $sql = "UPDATE `Accounts` SET `bikeHired` = 0 WHERE `id` = 1";
+        $sql = "UPDATE `Accounts` SET `bikeHired` = 0 WHERE `id` = '$userID'";
         $conn->multi_query($sql);
 
-        $sql = "UPDATE `Accounts` SET `bikesHub` = 0 WHERE `id` = 1";
+        $sql = "UPDATE `Accounts` SET `bikesHub` = 0 WHERE `id` = '$userID'";
         $conn->multi_query($sql);
 
         header('location:BikeHubPage.php');
@@ -89,13 +99,13 @@ $conn = new mysqli($host, $user, $password, $database);
 
             if (isset($_POST["confirm"])) {
                 displayBikeInfo($conn);
-                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = 1";
+                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = '$userID'";
                 $conn->multi_query($sql);
 
-                $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = 1";
+                $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = '$userID'";
                 $conn->multi_query($sql);
 
-                $sql = "INSERT INTO `BikeHires` (`id`, `time`, `hub`, `bike`,`user`) VALUES (NULL, '$date', '$hub', '$bike', 1)";
+                $sql = "INSERT INTO `BikeHires` (`id`, `time`, `hub`, `bike`,`user`) VALUES (NULL, '$date', '$hub', '$bike', '$userID')";
                 $conn->multi_query($sql);
 
                 $code1 = rand(10, 50);
@@ -118,10 +128,10 @@ $conn = new mysqli($host, $user, $password, $database);
                 <?php
             } else if ($hiring == 1) {
                 displayBikeInfo($conn);
-                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = 1";
+                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = '$userID'";
                 $conn->multi_query($sql);
 
-                $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = 1";
+                $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = '$userID'";
                 $conn->multi_query($sql);
 
                 $code1 = rand(10, 50);
@@ -177,8 +187,9 @@ $conn = new mysqli($host, $user, $password, $database);
         <div id="confirmation">
 
             <?php
+            $userID = $_SESSION["id"];
 
-            $sql = "SELECT * FROM `Accounts` WHERE `id` =1";
+            $sql = "SELECT * FROM `Accounts` WHERE `id` ='$userID'";
 
             $result = $conn->query($sql);
 

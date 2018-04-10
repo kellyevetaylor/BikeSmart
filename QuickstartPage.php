@@ -1,5 +1,7 @@
 <?php
 session_start();
+$userID = $_SESSION["id"];
+
 ?><?php
 /**
  * Created by IntelliJ IDEA.
@@ -9,52 +11,6 @@ session_start();
  */
 
 ?>
-
-
-<?php
-$date = date('Y-m-d');
-$date2 = date('Y-m-d H:i:s');
-
-$host = "devweb2017.cis.strath.ac.uk";
-$user = "mad3_a";
-$password = "Haihoo3shiop";
-$database = "mad3_a";
-$conn = new mysqli($host, $user, $password, $database);
-if ($conn->connect_error) {
-    die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
-}
-
-$action = isset($_POST["action"]);
-
-
-$id = isset($_POST["id"]) ? $_POST["id"] : "";
-$distance = isset($_POST["distance"]) ? $_POST["distance"] : "";
-$time = isset($_POST["time"]) ? $_POST["time"] : "";
-$startLocation = isset($_POST["startLocation"]) ? $_POST["startLocation"] : "";
-$endLocation = isset($_POST["endLocation"]) ? $_POST["endLocation"] : "";
-$userID = $_SESSION["id"];
-
-
-
-if ($action == "Finish") {
-    $sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`,`date`) VALUES (Null, '0', '$time', '0', '0','$date')";
-
-    $message = "Distance: " . $distance . " Time: " . $time;
-
-
-    $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$userID', '$date2')";
-    $conn->query($sql);
-
-
-    $action = "";
-    header('location:NewsFeedPage.php');
-
-
-} else {
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,9 +35,55 @@ if ($action == "Finish") {
 </head>
 
 
+<?php
+$date = date('Y-m-d');
+$date2 = date('Y-m-d H:i:s');
+
+$host = "devweb2017.cis.strath.ac.uk";
+$user = "mad3_a";
+$password = "Haihoo3shiop";
+$database = "mad3_a";
+$conn = new mysqli($host, $user, $password, $database);
+if ($conn->connect_error) {
+die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
+}
+
+$action = isset($_POST["action"]);
+
+
+
+
+$id = isset($_POST["id"]) ? $_POST["id"] : "";
+$distance = isset($_POST["distance"]) ? $_POST["distance"] : "";
+$time = isset($_POST["time"]) ? $_POST["time"] : "";
+$startLocation = isset($_POST["startLocation"]) ? $_POST["startLocation"] : "";
+$endLocation = isset($_POST["endLocation"]) ? $_POST["endLocation"] : "";
+
+
+if ($action == "Finish") {
+$sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`,`date`) VALUES (Null, '0', '$time', '0', '0','$date')";
+
+$message = "Distance: " . $distance . " Time: " . $time;
+
+
+$sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$userID', '$date2')";
+$conn->query($sql);
+
+
+$action = "";
+header('location:NewsFeedPage.php');
+
+
+} else {
+
+
+?>
+
+
+
 <header>
     <h1>Quickstart
-        <button class="logoutButton" onclick="location.href='Logout.php';">Logout</button>
+        <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
     </h1>
 </header>
 <body>
@@ -130,8 +132,6 @@ if ($action == "Finish") {
             <source src="Sounds/Finish.mp3" type="audio/mp3">
         </audio>
 
-
-    </div>
 </body>
 </form>
 </main>

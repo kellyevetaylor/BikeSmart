@@ -1,5 +1,7 @@
 <?php
 session_start();
+$userID = $_SESSION["id"];
+
 ?><?php
 /**
  * Created by IntelliJ IDEA.
@@ -32,10 +34,11 @@ $user = "mad3_a";
 $password = "Haihoo3shiop";
 $database = "mad3_a";
 $conn = new mysqli($host, $user, $password, $database);
+
+
 if ($conn->connect_error) {
     die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
 }
-$userID = $_SESSION["id"];
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -55,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <header>
         <h1>News Feed
-            <button class="logoutButton" onclick="location.href='Logout.php';">Logout</button></h1>
+            <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
     </header>
     <br>
     <form id="chatForm" method="POST">

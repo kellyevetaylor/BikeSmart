@@ -1,5 +1,11 @@
 <?php
 session_start();
+if (!empty($_SESSION['userId'])) {
+    session_destroy();
+    header("Location: LoginPage.php"); /* Redirect browser */
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +34,7 @@ $conn = new mysqli($host, $user, $password, $database);
 
 if (isset($_POST["login"])) {
     if (checkDatabase($conn)) {
-        header('location:NewsFeedPage.html');
+        header('location:NewsFeedPage.php');
     } else {
         echo '<script type="text/javascript">alert("Your username and/or password is incorrect.");</script>';
         displayForm();

@@ -36,6 +36,68 @@ function getLocation() {
     }
 }
 
+function startTimer() {
+
+
+    document.getElementById("QuickstartBtn").disabled = true;
+    date.setHours(hours, minutes, seconds);
+    timerRefresh = setInterval(setStartTimer, 1000);
+    setInterval(distanceToHub, 1000);
+}
+
+function setStartTimer() {
+    var printSec, printMin, printHour;
+
+    if (seconds < 59) {
+        seconds += 1;
+
+    } else if (seconds === 59) {
+        minutes += 1;
+        seconds = 0;
+    }
+
+    if (minutes === 59) {
+        hours += 1;
+        minutes = 0;
+    }
+
+    if (hours > 23) {
+        hours = 0;
+    }
+
+    if (seconds < 10) {
+        printSec = secondsTemplate + seconds;
+    }
+    else {
+        printSec = seconds;
+    }
+
+    if (minutes < 10) {
+        printMin = minutesTemplate + minutes;
+    } else {
+        printMin = minutes;
+    }
+
+    if (hours < 10) {
+        printHour = hoursTemplate + hours;
+    } else {
+        printHour = hours;
+    }
+
+
+    document.getElementById("timer").innerHTML = printHour + ":" + printMin + ":" + printSec;
+    document.getElementById("lbltime").value = printHour + ":" + printMin + ":" + printSec;
+
+}
+
+
+function stopTimer() {
+    document.getElementById("QuickstartBtn").disabled = false;
+
+    window.clearInterval(timerRefresh);
+}
+
+
 var init = function () {
     if (navigator.geolocation) {
         getLocation();
@@ -94,24 +156,28 @@ function googleMap(long, lat) {
     marker3.setMap(map);
     marker4.setMap(map);
     marker5.setMap(map);
+
+
+    distanceToHub();
+
 };
 
 
-var distanceCal = function () {
-
+function distanceToHub() {
     var origin = new google.maps.LatLng(startLat, startLong);
 
-    var destination = new google.maps.LatLng(55.860729730774366, -4.243202901782979);
+    var destinationGeorgeSquareHub = new google.maps.LatLng(55.86152450673392, -4.249251283111562);
+   // var destinationGlasgowCollegeHub = new google.maps.LatLng(55.86296951227654, -4.2446405658149615);
+    //var destinationGlasgowGreenHub = new google.maps.LatLng(55.849678806528196, -4.233928578959649);
+    //var destinationLivyTowerHub = new google.maps.LatLng(55.860729730774366, -4.243202901782979);
 
     var service = new google.maps.DistanceMatrixService();
 
     service.getDistanceMatrix(
         {
             origins: [origin],
-            destinations: [destination],
+            destinations: [destinationGeorgeSquareHub],
             travelMode: 'BICYCLING',
-            avoidHighways: true,
-            avoidTolls: true
         },
         callback
     );
@@ -131,7 +197,7 @@ var distanceCal = function () {
                     var to = destinations[j];
                 }
             }
-            alert(distance+duration+from+to);
+            document.getElementById("distanceTest").innerHTML = distance;
         }
     }
 };

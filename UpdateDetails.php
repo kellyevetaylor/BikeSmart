@@ -1,5 +1,7 @@
 <?php
 session_start();
+$userID = $_SESSION["id"];
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +26,7 @@ session_start();
 
 <header>
     <h1 class="header">Update details
-        <button class="logoutButton" onclick="location.href='Logout.php';">Logout</button>
+        <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
     </h1>
 </header>
 
@@ -35,6 +37,8 @@ session_start();
     $password = "Haihoo3shiop";
     $database = "mad3_a";
     $conn = new mysqli($host, $user, $password, $database);
+
+    $action = isset($_POST["action"]);
 
 
 
@@ -47,7 +51,6 @@ session_start();
 
     function updateDetails($conn)
     {
-        $userID = $_SESSION["id"];
         $fname = isset($_POST["fname"]) ? $_POST["fname"] : "";
         $sname = isset($_POST["sname"]) ? $_POST["sname"] : "";
         $email = isset($_POST["email"]) ? $_POST["email"] : "";
@@ -82,6 +85,7 @@ session_start();
         if ($oldPassword == "" || $newPassword1 == "" || $newPassword2 == "") {
             echo '<script type="text/javascript">alert("All fields must be filled.");</script>';
         } else {
+            $userID = $_SESSION["id"];
 
             $sql = "SELECT `password` FROM `Accounts`";
             $result = $conn->query($sql);
@@ -91,7 +95,7 @@ session_start();
                 if ($row["password"] == $oldPassword /*&& $row[id] == session id*/) {
                     if ($newPassword1 == $newPassword2) {
                         //id will be changed when sessions are in place
-                        $sql = "UPDATE `Accounts` SET `password` = $newPassword1 WHERE `Accounts`.`id` = $userID";
+                        $sql = "UPDATE `Accounts` SET `password` = $newPassword1 WHERE `Accounts`.`id` = '$userID'";
                         $conn->query($sql);
                         echo '<script type="text/javascript">alert("Update successful.");</script>';
                     } else {

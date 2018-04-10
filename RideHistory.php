@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+$action = isset($_POST["action"]);
+
+
+if($action == "logout"){
+
+    session_destroy();
+
+    header("location:LoginPage.php");
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +37,7 @@
 
 <header>
     <h1 class="header">Ride History
-        <button class="logoutButton" onclick="location.href='Logout.php';">Logout</button>
+        <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
     </h1>
 </header>
 

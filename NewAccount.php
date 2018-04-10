@@ -1,3 +1,10 @@
+
+
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +28,7 @@ $database = "mad3_a";
 $conn = new mysqli($host, $user, $password, $database);
 
 $action = isset($_POST["action"]);
+
 
 if ($action == "doInsert") {
     insertDatabase($conn);
@@ -72,9 +80,19 @@ function insertDatabase($conn)
         }
         //need to check email doesn't already exist too
         $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `email`,`username`, `password`) VALUES (NULL, '$fname', '$sname', '$email', '$username', '$password1')";
+       $result= $conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+
+            $_SESSION["userId"]  = $row["id"];
+        }
+
+
+
+
+            $sql = "SELECT * FROM `Accounts` WHERE `username`= $username ";
         $conn->query($sql);
 
-        header('location:NewsFeedPage.html');
+        header('location:NewsFeedPage.php');
     }
 }
 

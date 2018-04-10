@@ -1,6 +1,24 @@
+
 <?php
+
 session_start();
-?><!DOCTYPE html>
+$userID = $_SESSION["id"];
+
+
+
+$host = "devweb2017.cis.strath.ac.uk";
+$user = "mad3_a";
+$password = "Haihoo3shiop";
+$database = "mad3_a";
+$conn = new mysqli($host, $user, $password, $database);
+
+
+
+
+?>
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,20 +46,12 @@ session_start();
     </h1>
 </header>
 <main>
-    <?php
-    $host = "devweb2017.cis.strath.ac.uk";
-    $user = "mad3_a";
-    $password = "Haihoo3shiop";
-    $database = "mad3_a";
-    $conn = new mysqli($host, $user, $password, $database);
 
-    ?>
 
     <p><img src="Images/ProfilePic.png" height="150" width="150"></p>
 
     <?php
 
-    $userID = $_SESSION["id"];
 
     $sql = "SELECT `first name`, `second name`, `email` , `username` FROM `Accounts` WHERE `id` = $userID";
     $result = $conn->query($sql);
@@ -81,10 +91,11 @@ session_start();
     </p>
 </main>
 <div class="tabs">
-    <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png" ></button>
-    <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png" ></button>
-    <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png" ></button>
-    <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png" ></button>
+    <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png"></button>
+    <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
+    </button>
+    <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
+    <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png"></button>
 </div>
 
 <script src="JavaScript/AccountPage.js"></script>

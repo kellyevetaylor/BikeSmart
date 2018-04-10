@@ -1,5 +1,12 @@
 <?php
 session_start();
+$userID = $_SESSION["id"];
+
+
+
+
+
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,12 +31,11 @@ session_start();
 <main>
     <header>
         <h1>Hire Bike
-            <button class="logoutButton" onclick="location.href='Logout.php';">Logout</button>
+            <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
         </h1>
     </header>
     <form method="post">
         <?php
-        $userID = $_SESSION["id"];
 
         $host = "devweb2017.cis.strath.ac.uk";
         $user = "mad3_a";
@@ -37,7 +43,7 @@ session_start();
         $database = "mad3_a";
         $conn = new mysqli($host, $user, $password, $database);
 
-        $sql = "SELECT * FROM `Accounts` WHERE `id` = $userID";
+        $sql = "SELECT * FROM `Accounts` WHERE `id` = '$userID'";
         $result = $conn->query($sql);
 
         if ($result)
@@ -131,6 +137,9 @@ session_start();
             }
             ?>
         </table>
+        <div id="distanceTest"></div>
+
+        </div>
     </form>
     <?php
     }
@@ -148,5 +157,7 @@ session_start();
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-ld-Jrm4iRR45vbE3NVNYSqZ1C8QbroM&callback=googleMap">
 </script>
+
+
 
 </html>

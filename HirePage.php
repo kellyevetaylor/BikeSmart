@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+
+<?php
+
+
+session_start();
+
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,6 +30,7 @@
 <header>
     <h1 class="header">Hire Bike
         <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+
     </h1>
 </header>
 
@@ -40,7 +48,7 @@
 </main>
 
 <div class="tabs">
-    <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png" ></button>
+    <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png"></button>
     <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
     </button>
     <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>

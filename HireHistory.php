@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+$userID = $_SESSION["id"];
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +31,7 @@
 <header>
     <h1 class="header">Hire History
         <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+
     </h1>
 </header>
 
@@ -34,17 +43,18 @@
     $database = "mad3_a";
     $conn = new mysqli($host, $user, $password, $database);
 
-    $sql = "SELECT * FROM `BikeHires` WHERE `user` = 1 ORDER BY `time` DESC";
+
+    $sql = "SELECT * FROM `BikeHires` WHERE `user` = '$userID' ORDER BY `time` DESC";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
         ?>
-        <table id ="history">
+        <table id="history">
             <tr>
-                <th id = "headings">
+                <th id="headings">
                     Date
                 </th>
-                <th id ="headings">
+                <th id="headings">
                     Hub
                 </th>
                 <th id="headings">
@@ -53,13 +63,13 @@
             </tr>
             <tr>
                 <td>
-                    <?php echo $row["time"];?>
+                    <?php echo $row["time"]; ?>
                 </td>
                 <td>
-                    <?php echo $row["hub"];?>
+                    <?php echo $row["hub"]; ?>
                 </td>
                 <td>
-                    <?php echo $row["bike"];?>
+                    <?php echo $row["bike"]; ?>
                 </td>
             </tr>
         </table>
