@@ -36,6 +36,19 @@ function getLocation() {
     }
 }
 
+function updateLocation() {
+    var myGPSElement = document.getElementById("gps");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            startLat = r4(position.coords.latitude);
+            startLong = r4(position.coords.longitude);
+        });
+    } else {
+        myGPSElement.innerHTML = "Geolocation is not supported.";
+    }
+}
+
 function startTimer() {
 
 
@@ -164,6 +177,8 @@ function googleMap(long, lat) {
 
 
 function distanceToHub() {
+
+    updateLocation();
 
     var origin = new google.maps.LatLng(startLat, startLong);
 
