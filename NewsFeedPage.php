@@ -40,6 +40,12 @@ $userID = $_SESSION["id"];
     die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
     }
 
+    $sql = "SELECT * FROM `Accounts` WHERE `id` = '$userID'";
+    $result = $conn->query($sql);
+    if ($result)
+    $row = $result->fetch_assoc();
+    $user = $row["username"];
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["messageText"])) {
     $message = $_POST["messageText"];
@@ -49,12 +55,6 @@ $userID = $_SESSION["id"];
     header('location:NewsFeedPage.php');
     }
     }
-
-    $sql = "SELECT * FROM `Accounts` WHERE `id` = '$userID'";
-    $result = $conn->query($sql);
-    if ($result)
-    $row = $result->fetch_assoc();
-    $user = $row["username"];
 
     ?>
 
@@ -84,7 +84,7 @@ $userID = $_SESSION["id"];
             ?>
         <div id = "chatFormDiv"><?php
         echo "<div id=username >";
-        echo $user;
+        echo $row["userID"];
         echo "<br>";
         echo "</div>";
         echo "<div id=time >";
