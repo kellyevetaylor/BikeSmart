@@ -77,7 +77,7 @@ function insertDatabase($conn)
             }
         }
         //need to check email doesn't already exist too
-        $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `email`,`username`, `password`, `pic`, `bikeHired`, `bikesHub`, `hiring`) VALUES (NULL, '$fname', '$sname', '$email', '$username', '$password1', 'https://devweb2017.cis.strath.ac.uk/.uk/~qwb15152/SmartCommute/Images/avatar.jpg' ,0, 0, 0)";
+        $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `email`,`username`, `password`, `pic`, `bikeHired`, `bikesHub`, `hiring`) VALUES (NULL, '$fname', '$sname', '$email', '$username', '$password1', 'Images/avatar.jpg' ,0, 0, 0)";
        $result= $conn->query($sql);
         if (!$result === TRUE) {
             die("Error on insert" . $conn->error);
