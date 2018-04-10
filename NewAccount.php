@@ -77,18 +77,15 @@ function insertDatabase($conn)
             }
         }
         //need to check email doesn't already exist too
-        $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `email`,`username`, `password`) VALUES (NULL, '$fname', '$sname', '$email', '$username', '$password1')";
-        $result = $conn->query($sql);
-        while ($row = $result->fetch_assoc()) {
+        $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `email`,`username`, `password`, `bikeHired`, `bikesHub`, `hiring`) VALUES (NULL, '$fname', '$sname', '$email', '$username', '$password1', 0, 0, 0)";
+       $result= $conn->query($sql);
+        if (!$result === TRUE) {
+            die("Error on insert" . $conn->error);
+        }else {
 
-            $_SESSION["userId"] = $row["id"];
+
+            header('location:LoginPage.php');
         }
-
-
-        $sql = "SELECT * FROM `Accounts` WHERE `username`= $username ";
-        $conn->query($sql);
-
-        header('location:NewsFeedPage.php');
     }
 }
 
