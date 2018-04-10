@@ -54,13 +54,14 @@ $userID = $_SESSION["id"];
 
 </head>
 <main>
-    <body>
+
 
     <header>
         <h1>News Feed
             <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
     </header>
     <br>
+    <body>
     <form id="chatForm" method="POST">
         <input type="text" name="messageText" id="messageText"/>
         <input class="postButton" type="submit" id="postButton" value="Post"/>
@@ -100,7 +101,7 @@ $userID = $_SESSION["id"];
         ?>
 
     </table>
-
+    </body>
 
     <script type="text/javascript">
         setInterval('window.location.reload()', 150000);
@@ -131,7 +132,7 @@ $userID = $_SESSION["id"];
         <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png">
         </button>
     </div>
-    </body>
+
 
 </main>
 </html>

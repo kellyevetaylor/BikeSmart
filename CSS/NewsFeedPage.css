@@ -1,6 +1,7 @@
 #username{
     font-weight: bold;
     font-size: 1.3rem;
+
 }
 
 #time{
@@ -45,4 +46,8 @@ input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+body{
+    overflow: scroll;
 }
