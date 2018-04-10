@@ -72,6 +72,7 @@ $action = isset($_POST["action"]);
     $hub = $row["bikesHub"];
 
     if (isset($_POST["stop"])) {
+
         $sql = "UPDATE `BikeHubs` SET `available` = `available`+1 WHERE `id` = '$hub'";
         $conn->multi_query($sql);
 

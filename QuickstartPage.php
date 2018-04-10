@@ -59,12 +59,28 @@ $endLocation = isset($_POST["endLocation"]) ? $_POST["endLocation"] : "";
 
 
 if ($action == "Finish") {
+
 $sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`,`date`,`month`) VALUES (Null, '0', '$time', '0', '0','$date','$month')";
+$conn->query($sql);
 
 $message = "Distance: " . $distance . " Time: " . $time;
 
+$sql = "SELECT * FROM `Accounts` WHERE `id` = '$userID'";
+$result=$conn->query($sql);
 
-$sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$userID', '$date2')";
+if ($result){
+    $row = $result->fetch_assoc();
+    $username = $row["username"];
+}
+
+
+
+
+
+
+
+
+$sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$username', '$date2')";
 $conn->query($sql);
 
 
