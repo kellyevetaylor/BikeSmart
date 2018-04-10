@@ -28,7 +28,7 @@ $userID = $_SESSION["id"];
 
     <?php
 
-    $date = date('Y-m-d H:i:s');
+    $date = date('d/m/Y H:i:s');
     $host = "devweb2017.cis.strath.ac.uk";
     $user = "mad3_a";
     $password = "Haihoo3shiop";
@@ -67,49 +67,70 @@ $userID = $_SESSION["id"];
         <br><br>
     </form>
     <div id="chatHistoryDiv"></div>
-    <div id="chatFormDiv">
-        <table>
-            <?php
-            $sql = "SELECT * FROM `Newsfeed`";
-            $result = mysqli_query($conn, $sql);
-            if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-            echo "<div id=username >";
-            echo $row["id"];
-            echo "<br>";
-            echo "</div>";
-            echo "<div id=message >";
-            echo $row["message"];
-            echo "<br>";
-            echo "</div>";
 
-            echo "<div id=time >";
-            echo $row["time"];
-            echo "<br>";
-            echo "</div>";
-            echo "<br>";
+    <table>
 
-            }
-            }
-            $conn->close();
+        <?php
+
+        $sql = "SELECT * FROM `Newsfeed`";
+        $result = mysqli_query($conn, $sql);
+        if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
             ?>
+        <div id = "chatFormDiv"><?php
+        echo "<div id=username >";
+        echo $row["id"];
+        echo "<br>";
+        echo "</div>";
+        echo "<div id=message >";
+        echo $row["message"];
+        echo "<br>";
+        echo "</div>";
 
-        </table>
+        echo "<div id=time >";
+        echo $row["time"];
+        echo "<br>";
+        echo "</div>";
+        echo "<br>";
+        ?>
+        </div><?php
+        }
+        }
+        $conn->close();
+        ?>
 
+    </table>
+
+
+    <script type="text/javascript">
+        setInterval('window.location.reload()', 150000);
+        document.getElementById("messageText").value = getSaved("messageText");
+
+        function saveText(e) {
+            var id = e.id;
+            var msg = e.value;
+
+            localStorage.setItem(id, msg);
+
+        }
+
+        function getSaved(v) {
+            if (localStorage.getItem(v) === null) {
+                return "";
+            }
+            return localStorage.getItem(v);
+
+        }
+
+    </script>
+    <div class="tabs">
+        <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png"></button>
+        <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
+        </button>
+        <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
+        <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png">
+        </button>
     </div>
-
-
-            <script type="text/javascript">
-                setInterval('window.location.reload()', 150000);
-            </script>
-            <div class="tabs">
-                <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png"></button>
-                <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
-                </button>
-                <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
-                <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png">
-                </button>
-            </div>
     </body>
 
 </main>

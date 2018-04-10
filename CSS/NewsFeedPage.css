@@ -4,7 +4,8 @@
 }
 
 #time{
-    color: darkgray;
+    color: grey;
+    font-size: 0.8rem;
 }
 
 .postButton {
@@ -16,6 +17,32 @@
     padding: 0.5rem;
     color: white;
     text-align: center;
+    height: 3rem;
+    cursor: pointer;
+
 }
 
+#chatFormDiv {
+    padding: 1rem;
+    border: 6px solid lightcyan;
+    border-radius: 5px;
+    background-color: lightskyblue;
+    margin:1rem;
+}
 
+#messageText {
+    width: 70%;
+    border-radius: 0.2rem;
+    display: inline-block;
+    text-decoration: none;
+    height: 2rem;
+    font-size: 1.4rem;
+    padding: 0.5rem;
+    margin: 20px;
+}
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
