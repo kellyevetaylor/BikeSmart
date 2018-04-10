@@ -192,7 +192,7 @@ function distanceToHub() {
             for (var i = 0; i < origins.length; i++) {
                 var results = response.rows[i].elements;
                 for (var j = 0; j < results.length; j++) {
-                    document.getElementById("distanceTest"+(j+1)).innerHTML ="";
+                    document.getElementById("distanceTest"+(j+1)).innerHTML =" ";
                     var element = results[j];
                     var distance = element.distance.text;
                     var duration = element.duration.text;

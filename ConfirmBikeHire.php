@@ -38,9 +38,9 @@ $action = isset($_POST["action"]);
     <link rel="stylesheet" type="text/css" href="CSS/ConfirmBikeHire.css">
 
 
-    <link rel="icon" sizes="192x192" href="Images/icon.png"/>
-    <link rel="apple-touch-icon" href="Images/icon.png"/>
-    <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"/>
+    <link rel="icon" sizes="192x192" href="Images/Logo.png"/>
+    <link rel="apple-touch-icon" href="Images/Logo.png"/>
+    <link rel="shortcut icon" href="Images/Logo.png" type="image/x-icon"/>
 
 </head>
 <main>
