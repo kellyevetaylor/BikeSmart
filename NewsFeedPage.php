@@ -115,6 +115,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div>
     <script type="text/javascript">
         setInterval('window.location.reload()', 150000);
+        document.getElementById("messageText").value = getSaved("messageText");
+
+        function saveText(e) {
+            var id = e.id;
+            var msg = e.value;
+
+            localStorage.setItem(id, msg);
+
+        }
+
+        function getSaved(v) {
+            if (localStorage.getItem(v) === null) {
+                return "";
+            }
+            return localStorage.getItem(v);
+
+        }
     </script>
 
     </body>
