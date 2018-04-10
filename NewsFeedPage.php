@@ -40,7 +40,6 @@ $userID = $_SESSION["id"];
     die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
     }
 
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["messageText"])) {
     $message = $_POST["messageText"];
@@ -50,6 +49,9 @@ $userID = $_SESSION["id"];
     header('location:NewsFeedPage.php');
     }
     }
+
+    $sql = "SELECT * FROM `Accounts` WHERE 'id' = '$userID'";
+
     ?>
 
 </head>
@@ -67,13 +69,11 @@ $userID = $_SESSION["id"];
         <input class="postButton" type="submit" id="postButton" value="Post"/>
         <br><br>
     </form>
-    <div id="chatHistoryDiv"></div>
-
     <table>
 
         <?php
 
-        $sql = "SELECT * FROM `Newsfeed`";
+        $sql = "SELECT * FROM `Newsfeed` ORDER BY time DESC";
         $result = mysqli_query($conn, $sql);
         if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
