@@ -1,16 +1,16 @@
 "use strict"
 
 
-
 var timerRefresh;
 var date = new Date();
 var hours = 0, minutes = 0, seconds = 0;
 var hoursTemplate = "0", minutesTemplate = "0", secondsTemplate = "0";
 var startLong, startLat;
+var clickStartLat, clickStartLong;
+var clickFinishLat, clickFinishLong;
 var soundStart = document.getElementById("audioStart");
 var soundPause = document.getElementById("audioPause");
 var soundFinish = document.getElementById("audioFinish");
-
 
 
 function r0(x) {
@@ -33,12 +33,13 @@ function getLocation() {
 
             startLat = r4(position.coords.latitude);
             startLong = r4(position.coords.longitude);
-            googleMap(startLat,startLong) ;
+            googleMap(startLat, startLong);
         });
     } else {
         myGPSElement.innerHTML = "Geolocation is not supported.";
     }
 }
+
 function finishQuickstart() {
     soundFinish.play();
     setTimeout(5000);
@@ -47,15 +48,40 @@ function finishQuickstart() {
 }
 
 
+function getStartLocation() {
+    var myGPSElement = document.getElementById("gps");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            clickStartLat = r4(position.coords.latitude);
+            clickStartLong = r4(position.coords.longitude);
+        });
+    } else {
+        myGPSElement.innerHTML = "Geolocation is not supported.";
+    }
+}
+
+function getFinishLocation() {
+    var myGPSElement = document.getElementById("gps");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            clickFinishLat = r4(position.coords.latitude);
+            clickFinishLong = r4(position.coords.longitude);
+            stopTimer();
+        });
+    } else {
+        myGPSElement.innerHTML = "Geolocation is not supported.";
+    }
+}
+
 
 function startTimer() {
 
+    alert(clickStartLat + " " + clickStartLong);
     soundStart.play();
     soundPause.pause();
     document.getElementById("QuickstartBtn").disabled = true;
     date.setHours(hours, minutes, seconds);
     timerRefresh = setInterval(setStartTimer, 1000);
-    //setInterval(distanceCal, 1000);
 }
 
 function setStartTimer() {
@@ -78,22 +104,22 @@ function setStartTimer() {
         hours = 0;
     }
 
-    if(seconds <10){
-        printSec= secondsTemplate + seconds;
+    if (seconds < 10) {
+        printSec = secondsTemplate + seconds;
     }
-    else{
+    else {
         printSec = seconds;
     }
 
-    if(minutes < 10){
+    if (minutes < 10) {
         printMin = minutesTemplate + minutes;
-    }else{
+    } else {
         printMin = minutes;
     }
 
-    if(hours < 10){
+    if (hours < 10) {
         printHour = hoursTemplate + hours;
-    }else{
+    } else {
         printHour = hours;
     }
 
@@ -104,12 +130,13 @@ function setStartTimer() {
 }
 
 
-
 function stopTimer() {
-
+    distanceToHub();
     document.getElementById("QuickstartBtn").disabled = false;
     soundPause.play();
     soundStart.pause();
+    alert(clickFinishLat + " " + clickFinishLong);
+
 
     window.clearInterval(timerRefresh);
 }
@@ -118,7 +145,9 @@ function stopTimer() {
 var init = function () {
     if (navigator.geolocation) {
         getLocation();
+        getStartLocation();
         window.setInterval(getLocation, 30 * 1000);//update the GPS every 30 seconds
+        window.setInterval(autoUpdateDistance, 30 * 1000);//update the GPS every 30 seconds
     }
 
     if ('ondeviceproximity' in window) {
@@ -131,24 +160,117 @@ var init = function () {
 };
 
 
-function googleMap(long,lat) {
+function googleMap(long, lat) {
 
 
     var mapProp = {
-        center:new google.maps.LatLng(long,lat),
+        center: new google.maps.LatLng(long, lat),
         zoom: 17,
     };
-    var centerLocation = new google.maps.LatLng(startLat,startLong);
+    var centerLocation = new google.maps.LatLng(startLat, startLong);
 
-    var marker = new google.maps.Marker({position:centerLocation,
-    icon: "Images/BikeMarker.png",
-    })
+    var marker = new google.maps.Marker({
+        position: centerLocation,
+        icon: "Images/BikeMarker.png",
+    });
 
 
-    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
     marker.setMap(map);
+
+
+};
+
+function autoUpdateDistance() {
+
+    var origin = new google.maps.LatLng(clickStartLat, clickStartLong);
+
+    var destination = new google.maps.LatLng(startLat, startLong);
+
+
+    var service = new google.maps.DistanceMatrixService();
+
+    service.getDistanceMatrix(
+        {
+            origins: [origin],
+            destinations: [destination],
+            travelMode: 'BICYCLING',
+        },
+        callback
+    );
+
+    function callback(response, status) {
+
+        if (status == 'OK') {
+            var origins = response.originAddresses;
+            var destinations = response.destinationAddresses;
+
+            for (var i = 0; i < origins.length; i++) {
+                var results = response.rows[i].elements;
+                for (var j = 0; j < results.length; j++) {
+                    var element = results[j];
+                    var distance = element.distance.text;
+                    var duration = element.duration.text;
+                    var from = origins[i];
+                    var to = destinations[j];
+
+
+                }
+
+            }
+        }
+        document.getElementById("distanceTraveled").innerHTML = distance + "</br>";
+        document.getElementById("lbldistance").value = distance;
+
+
+    }
+};
+
+function distanceToHub() {
+
+    var origin = new google.maps.LatLng(clickStartLat, clickStartLong);
+
+    var destination = new google.maps.LatLng(clickFinishLat, clickFinishLong);
+
+
+    var service = new google.maps.DistanceMatrixService();
+
+    service.getDistanceMatrix(
+        {
+            origins: [origin],
+            destinations: [destination],
+            travelMode: 'BICYCLING',
+        },
+        callback
+    );
+
+    function callback(response, status) {
+
+        if (status == 'OK') {
+            var origins = response.originAddresses;
+            var destinations = response.destinationAddresses;
+
+            for (var i = 0; i < origins.length; i++) {
+                var results = response.rows[i].elements;
+                for (var j = 0; j < results.length; j++) {
+                    var element = results[j];
+                    var distance = element.distance.text;
+                    var duration = element.duration.text;
+                    var from = origins[i];
+                    var to = destinations[j];
+
+
+                }
+
+            }
+        }
+        document.getElementById("distanceTraveled").innerHTML = distance + "</br>";
+        document.getElementById("lbldistance").value = distance;
+
+
+    }
 };
 
 window.addEventListener("load", init);
-window.addEventListener("submit",finishQuickstart);
+window.addEventListener("submit", finishQuickstart);

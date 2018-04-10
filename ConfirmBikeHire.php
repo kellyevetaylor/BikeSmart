@@ -21,8 +21,6 @@ $conn = new mysqli($host, $user, $password, $database);
 $action = isset($_POST["action"]);
 
 
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,6 +52,7 @@ $action = isset($_POST["action"]);
 
     <?php
 
+
     $sql = "SELECT * FROM `Accounts` WHERE `id` = '$userID'";
     $result = $conn->query($sql);
 
@@ -70,6 +69,7 @@ $action = isset($_POST["action"]);
         $row = $result->fetch_assoc();
     $bike = $row["bikeHired"];
     $hub = $row["bikesHub"];
+
 
     if (isset($_POST["stop"])) {
 
@@ -99,7 +99,6 @@ $action = isset($_POST["action"]);
             ?>
             <div id="googleMap"></div>
             <?php
-
 
             if (isset($_POST["confirm"])) {
                 displayBikeInfo($conn);
@@ -213,7 +212,7 @@ $action = isset($_POST["action"]);
             <table id="confirmationTable">
                 <tr>
                     <td>
-                        <div id="title">Hub</div><?php
+                        <div id="title">Hub:</div><?php
                         switch ($hubNumber) {
                             case 1:
                                 ?>
@@ -236,11 +235,11 @@ $action = isset($_POST["action"]);
                 </tr>
                 <tr>
                     <td>
-                        <?php echo "Bike #$bikeNumber"; ?>
+                        <?php echo "Bike: #$bikeNumber"; ?>
                     </td>
                 </tr>
                 <tr>
-                    <td> <?php echo "$address"; ?></td>
+                    <td> <?php echo "Location: $address"; ?></td>
                 </tr>
             </table>
         </div>

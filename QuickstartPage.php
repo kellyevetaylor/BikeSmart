@@ -57,8 +57,13 @@ $endLocation = isset($_POST["endLocation"]) ? $_POST["endLocation"] : "";
 
 if ($action == "Finish") {
 
-$sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`,`date`,`month`) VALUES (Null, '0', '$time', '0', '0','$date','$month')";
+$sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`,`date`,`month`) VALUES (Null, '$distance', '$time', '0', '0','$date','$month')";
 $conn->query($sql);
+
+if ($conn->connect_error) {
+die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
+}
+
 
 $message = "Distance: " . $distance . " Time: " . $time;
 
@@ -68,17 +73,14 @@ $result=$conn->query($sql);
 if ($result){
     $row = $result->fetch_assoc();
     $username = $row["username"];
-} 
-
-
-
-
-
-
-
+}
 
 $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$username', '$date2')";
 $conn->query($sql);
+
+
+
+//<input type="hidden" onload="getFinishLocation();">
 
 
 $action = "";
@@ -105,7 +107,9 @@ header('location:NewsFeedPage.php');
             <div id="googleMap">
             </div>
             <div class="column">
-                <h4 class="QuickstartLabel">Distance:</h4><label id="distanceTraveled">0 km</label>
+                <h4 class="QuickstartLabel">Distance:</h4>
+                <label id="distanceTraveled">0 km</label>
+
             </div>
             <div class="column">
                 <h4 class="QuickstartLabel">Time:</h4>
@@ -122,7 +126,7 @@ header('location:NewsFeedPage.php');
                 </audio>
             </div>
             <div class="column">
-                <button id="QuickstopBtn" onclick="stopTimer()">Pause</button>
+                <button id="QuickstopBtn" onclick="getFinishLocation()">Pause</button>
 
                 <audio id="audioPause">
                     <source src="Sounds/Pause.mp3" type="audio/mp3">
@@ -136,6 +140,8 @@ header('location:NewsFeedPage.php');
                     <source src="Sounds/Finish.mp3" type="audio/mp3">
                 </audio>
                 <input type="hidden" id="lbltime" name="time" value="00:00:00">
+                <input type="hidden" id="lbldistance" name="distance" value="0">
+
                 <input type="hidden" name="action" value="Finish"><br>
                 <input type="submit" id="button" class="submitButton" value="Finish" name="Finish">
             </div>
