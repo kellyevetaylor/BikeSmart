@@ -38,6 +38,7 @@ $userID = $_SESSION["id"];
 <?php
 $date = date('Y-m-d');
 $date2 = date('Y-m-d H:i:s');
+$month = date('m');
 
 $host = "devweb2017.cis.strath.ac.uk";
 $user = "mad3_a";
@@ -50,9 +51,6 @@ die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
 
 $action = isset($_POST["action"]);
 
-
-
-
 $id = isset($_POST["id"]) ? $_POST["id"] : "";
 $distance = isset($_POST["distance"]) ? $_POST["distance"] : "";
 $time = isset($_POST["time"]) ? $_POST["time"] : "";
@@ -61,7 +59,7 @@ $endLocation = isset($_POST["endLocation"]) ? $_POST["endLocation"] : "";
 
 
 if ($action == "Finish") {
-$sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`,`date`) VALUES (Null, '0', '$time', '0', '0','$date')";
+$sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`,`date`,`month`) VALUES (Null, '0', '$time', '0', '0','$date','$month')";
 
 $message = "Distance: " . $distance . " Time: " . $time;
 

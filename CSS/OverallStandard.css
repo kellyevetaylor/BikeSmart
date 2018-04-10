@@ -1,47 +1,3 @@
-* {
-    padding: 0;
-    margin: 0;
-    font-family: Arial;
-    overflow: hidden;
-}
-
-
-#googleMap{
-    width:100%;
-    height:15rem;
-}
-
-
-input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-button, .submitButton,.update .postButton{
-    background-color: cornflowerblue;
-    border-radius: 0.4rem;
-    display: inline-block;
-    text-decoration: none;
-    border: none;
-    font-size: 1rem;
-    padding: 1rem;
-    color: white; 
-    text-align: center;
-}
-
-.postButton {
-    background-color: cornflowerblue;
-    border-radius: 0.4rem;
-    display: inline-block;
-    text-decoration: none;
-    border: none;
-    font-size: 0.8rem;
-    padding: 0.5rem;
-    color: white;
-    text-align: center;
-}
-
 h1 {
     color: white;
     padding-bottom: 1rem;
@@ -80,27 +36,3 @@ p {
     padding-right: 1rem;
     text-align: center;
 }
-
-
-
-@media only screen and (max-height: 600px) {
-    button, .submitButton,.update .postButton{
-        background-color: cornflowerblue;
-        border-radius: 0.2rem;
-        display: inline-block;
-        text-decoration: none;
-        border: none;
-        font-size: 0.3rem;
-        padding: 0.5rem;
-        color: white;
-        text-align: center;
-    }
-
-    #googleMap{
-        width:100%;
-        height:7rem;
-    }
-}
-
-
-

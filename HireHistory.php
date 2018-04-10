@@ -45,7 +45,6 @@ $userID = $_SESSION["id"];
     $sql = "SELECT * FROM `BikeHires` WHERE `user` = '$userID' ORDER BY `month` DESC";
     $result = $conn->query($sql);
 
-
     while ($row = $result->fetch_assoc()) {
         switch($row["month"]) {
             case 01:

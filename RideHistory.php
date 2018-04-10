@@ -1,18 +1,10 @@
 <?php
 session_start();
 
-$action = isset($_POST["action"]);
+$userID = $_SESSION["id"];
 
 
-if($action == "logout"){
-
-    session_destroy();
-
-    header("location:LoginPage.php");
-
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +16,7 @@ if($action == "logout"){
 
     <link rel="stylesheet" type="text/css" href="CSS/OverallStandard.css">
     <link rel="stylesheet" type="text/css" href="CSS/Tabs.css">
-
-    <link rel="stylesheet" type="text/css" href="CSS/AccountPage.css">
+    <link rel="stylesheet" type="text/css" href="CSS/History.css">
 
 
     <link rel="icon" sizes="192x192" href="Images/icon.png"/>
@@ -36,8 +27,9 @@ if($action == "logout"){
 
 
 <header>
-    <h1 class="header">Ride History
+    <h1 class="header">Hire History
         <button class="logoutButton" onclick="location.href='LoginPage.php';">Logout</button>
+
     </h1>
 </header>
 
@@ -49,32 +41,140 @@ if($action == "logout"){
     $database = "mad3_a";
     $conn = new mysqli($host, $user, $password, $database);
 
+
     $sql = "SELECT * FROM `QuickstartTable` WHERE `id` = 1 ORDER BY `time` DESC";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
+        switch($row["month"]) {
+            case 01:
+                ?>
+                <div id="month">
+                    January 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+            case 02:
+                ?>
+                <div id="month">
+                    February 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+            case 03:
+                ?>
+                <div id="month">
+                    March 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+            case 04:
+                ?>
+                <div id="month">
+                    April 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+            case 05:
+                ?>
+                <div id="month">
+                    May 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+            case 06:
+                ?>
+                <div id="month">
+                    June 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+            case 07:
+                ?>
+                <div id="month">
+                    July 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+            case "08":
+                ?>
+                <div id="month">
+                    August 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+            case "09":
+                ?>
+                <div id="month">
+                    September 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+            case 10:
+                ?>
+                <div id="month">
+                    October 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+            case 11:
+                ?>
+                <div id="month">
+                    November 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+            case 12:
+                ?>
+                <div id="month">
+                    December 2018
+                </div>
+                <?php
+                displayInfo($row);
+                break;
+        }
+    }
+
+    function displayInfo($row){
+        switch ($row["hub"]) {
+            case 1:
+                $hub = "A";
+                $address = "George Square";
+                break;
+            case 2:
+                $hub = "B";
+                $address = "Livingstone Tower";
+                break;
+            case 3:
+                $hub = "C";
+                $address = "City of Glasgow College";
+                break;
+            case 4:
+                $hub = "D";
+                $address = "Glasgow Green";
+                break;
+        }
         ?>
-        <table id ="history">
+        <table id="history">
             <tr>
-                <th id = "headings">
-                    Date
-                </th>
-                <th id ="headings">
-                    Distance
-                </th>
                 <th id="headings">
-                    Time
+                    <?php echo $row["date"] ?>
                 </th>
             </tr>
             <tr>
                 <td>
-                    <?php echo $row["date"];?>
-                </td>
-                <td>
-                    <?php echo $row["distance"];?>
-                </td>
-                <td>
-                    <?php echo $row["time"];?>
+                    <?php echo "You hired bike #" . $row["bike"] . " from Hub " . $hub . " at " . $address; ?>
                 </td>
             </tr>
         </table>
