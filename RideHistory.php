@@ -42,12 +42,53 @@ if($action == "logout"){
 </header>
 
 <main>
+    <?php
+    $host = "devweb2017.cis.strath.ac.uk";
+    $user = "mad3_a";
+    $password = "Haihoo3shiop";
+    $database = "mad3_a";
+    $conn = new mysqli($host, $user, $password, $database);
 
+    $sql = "SELECT * FROM `QuickstartTable` WHERE `id` = 1 ORDER BY `time` DESC";
+    $result = $conn->query($sql);
+
+    while ($row = $result->fetch_assoc()) {
+        ?>
+        <table id ="history">
+            <tr>
+                <th id = "headings">
+                    Date
+                </th>
+                <th id ="headings">
+                    Distance
+                </th>
+                <th id="headings">
+                    Time
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $row["date"];?>
+                </td>
+                <td>
+                    <?php echo $row["distance"];?>
+                </td>
+                <td>
+                    <?php echo $row["time"];?>
+                </td>
+            </tr>
+        </table>
+        <?php
+    }
+
+    ?>
     <div class="tabs">
-        <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png" ></button>
-        <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png" ></button>
-        <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png" ></button>
-        <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png" ></button>
+        <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png"></button>
+        <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
+        </button>
+        <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
+        <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png">
+        </button>
     </div>
 
 </html>

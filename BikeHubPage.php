@@ -56,7 +56,6 @@ $userID = $_SESSION["id"];
 
         ?>
 
-
         <div id="googleMap">
 
         </div>
