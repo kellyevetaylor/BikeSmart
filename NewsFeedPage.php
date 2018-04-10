@@ -26,31 +26,31 @@ $userID = $_SESSION["id"];
     <link rel="apple-touch-icon" href="Images/icon.png"/>
     <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"/>
 
-<?php
+    <?php
 
-$date = date('Y-m-d H:i:s');
-$host = "devweb2017.cis.strath.ac.uk";
-$user = "mad3_a";
-$password = "Haihoo3shiop";
-$database = "mad3_a";
-$conn = new mysqli($host, $user, $password, $database);
+    $date = date('Y-m-d H:i:s');
+    $host = "devweb2017.cis.strath.ac.uk";
+    $user = "mad3_a";
+    $password = "Haihoo3shiop";
+    $database = "mad3_a";
+    $conn = new mysqli($host, $user, $password, $database);
 
 
-if ($conn->connect_error) {
+    if ($conn->connect_error) {
     die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
-}
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!empty($_POST["messageText"])) {
-        $message = $_POST["messageText"];
-        $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$userID', '$date')";
-        $conn->query($sql);
-
-        header('location:NewsFeedPage.php');
     }
-}
-?>
+
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!empty($_POST["messageText"])) {
+    $message = $_POST["messageText"];
+    $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$userID', '$date')";
+    $conn->query($sql);
+
+    header('location:NewsFeedPage.php');
+    }
+    }
+    ?>
 
 </head>
 <main>
@@ -73,35 +73,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "SELECT * FROM `Newsfeed`";
             $result = mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    //echo"<tr>";
-                        //echo"<td>";
-                    echo "<div id=username >";
-                         echo $row["id"];
-                           echo "<br>";
-                           echo "</div>";
-                            //echo"<td>";
-                        //echo"<td>";
-                    echo "<div id=message >";
-                    echo$row["message"];
-                             echo "<br>";
-                    echo "</div>";
-                    //echo"<br>";
-                        //echo"<td>";
-                        //echo"<td>";
-                    echo "<div id=time >";
-                    echo $row["time"];
-                    echo "<br>";
-                    echo "</div>";
-                    echo "<br>";
-                    //echo"<br>";
-                        //echo"<td>";
-                        //echo"<td>";
-                            // //Counter comments <button class="postButton" onclick="location.href='CommentPage.php';">Add Comment</button>
-                        //echo"<td>";
-                    //echo"<tr>";
-                }
+            while ($row = $result->fetch_assoc()) {
+            echo "<div id=username >";
+            echo $row["id"];
+            echo "<br>";
+            echo "</div>";
+            echo "<div id=message >";
+            echo $row["message"];
+            echo "<br>";
+            echo "</div>";
+
+            echo "<div id=time >";
+            echo $row["time"];
+            echo "<br>";
+            echo "</div>";
+            echo "<br>";
+
+            }
             }
             $conn->close();
             ?>
@@ -111,35 +99,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
 
-    <div class="tabs">
-    <div>
-    <script type="text/javascript">
-        setInterval('window.location.reload()', 150000);
-        document.getElementById("messageText").value = getSaved("messageText");
-
-        function saveText(e) {
-            var id = e.id;
-            var msg = e.value;
-
-            localStorage.setItem(id, msg);
-
-        }
-
-        function getSaved(v) {
-            if (localStorage.getItem(v) === null) {
-                return "";
-            }
-            return localStorage.getItem(v);
-
-        }
-    </script>
-
+            <script type="text/javascript">
+                setInterval('window.location.reload()', 150000);
+            </script>
+            <div class="tabs">
+                <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png"></button>
+                <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png">
+                </button>
+                <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
+                <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png">
+                </button>
+            </div>
     </body>
-<div class="tabs">
-    <button class="tabButton" onclick="location.href='NewsFeedPage.php';"><img src="Images/NewsFeed.png" ></button>
-    <button class="tabButton" onclick="location.href='QuickstartPage.php';"><img src="Images/QuickstartIcon2.png" ></button>
-    <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png" ></button>
-    <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png" ></button>
-</div>
+
 </main>
 </html>

@@ -137,7 +137,6 @@ $userID = $_SESSION["id"];
             ?>
         </table>
         <div id="distanceTest"></div>
-
         </div>
     </form>
     <?php

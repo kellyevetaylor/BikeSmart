@@ -164,7 +164,7 @@ function googleMap(long, lat) {
 
 
 function distanceToHub() {
-    var origin = new google.maps.LatLng(startLat, startLong);
+    var origin = new google.maps.LatLng(55.86296951227654, -4.2446405658149615);
 
     var destinationGeorgeSquareHub = new google.maps.LatLng(55.86152450673392, -4.249251283111562);
    // var destinationGlasgowCollegeHub = new google.maps.LatLng(55.86296951227654, -4.2446405658149615);
@@ -197,7 +197,7 @@ function distanceToHub() {
                     var to = destinations[j];
                 }
             }
-            document.getElementById("distanceTest").innerHTML = distance;
+            document.getElementById("distanceTest").innerHTML = "Here ".distance;
         }
     }
 };

@@ -48,16 +48,17 @@ $conn = new mysqli($host, $user, $password, $database);
 <main>
 
 
-    <p><img src="Images/ProfilePic.png" height="150" width="150"></p>
 
     <?php
 
 
-    $sql = "SELECT `first name`, `second name`, `email` , `username` FROM `Accounts` WHERE `id` = $userID";
+    $sql = "SELECT `first name`, `second name`, `email` , `username`, `pic` FROM `Accounts` WHERE `id` = $userID";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
+        $photo = $row['pic'];
         ?>
+        <p><img src = "<?php echo $photo?>" height="150" width="150"></p>
         <table style="width: 100%">
             <tr>
                 <?php
