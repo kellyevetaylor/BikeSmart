@@ -12,6 +12,8 @@ var soundStart = document.getElementById("audioStart");
 var soundPause = document.getElementById("audioPause");
 var soundFinish = document.getElementById("audioFinish");
 
+var interval;
+
 
 function r0(x) {
     return Math.round(x);
@@ -75,12 +77,11 @@ function getFinishLocation() {
 
 
 function startTimer() {
-
-    alert(clickStartLat + " " + clickStartLong);
     soundStart.play();
     soundPause.pause();
     document.getElementById("QuickstartBtn").disabled = true;
     date.setHours(hours, minutes, seconds);
+    interval= window.setInterval(autoUpdateDistance, 30 * 1000);//update the GPS every 30 seconds
     timerRefresh = setInterval(setStartTimer, 1000);
 }
 
@@ -135,9 +136,8 @@ function stopTimer() {
     document.getElementById("QuickstartBtn").disabled = false;
     soundPause.play();
     soundStart.pause();
-    alert(clickFinishLat + " " + clickFinishLong);
 
-
+    window.clearInterval(interval);
     window.clearInterval(timerRefresh);
 }
 
@@ -147,7 +147,7 @@ var init = function () {
         getLocation();
         getStartLocation();
         window.setInterval(getLocation, 30 * 1000);//update the GPS every 30 seconds
-        window.setInterval(autoUpdateDistance, 30 * 1000);//update the GPS every 30 seconds
+
     }
 
     if ('ondeviceproximity' in window) {
