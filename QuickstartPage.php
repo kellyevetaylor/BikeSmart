@@ -125,12 +125,13 @@ header('location:NewsFeedPage.php');
 <form id="submitForm" method="POST">
 
     <div id="logActivity">
-        <input type="hidden" id="lbltime" name="time" value="00:00:00">
-        <input type="hidden" name="action" value="Finish"><br>
-        <input type="submit" id="button" class="submitButton" value="Finish" name="Finish">
         <audio id="audioFinish">
             <source src="Sounds/Finish.mp3" type="audio/mp3">
         </audio>
+        <input type="hidden" id="lbltime" name="time" value="00:00:00">
+        <input type="hidden" name="action" value="Finish"><br>
+        <input type="submit" id="button" class="submitButton" value="Finish" name="Finish">
+    </div>
 
 </body>
 </form>

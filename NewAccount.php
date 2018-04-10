@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 
@@ -62,7 +60,7 @@ function insertDatabase($conn)
     $password2 = isset($_POST["password2"]) ? $_POST["password2"] : "";
 
     $sql = "SELECT `username` FROM `Accounts`";
-   $result= $conn->query($sql);
+    $result = $conn->query($sql);
 
     if ($fname == "" || $sname == "" || $email == "" || $username == "" || $password1 == "" || $password2 == "") {
         echo '<script type="text/javascript">alert("All fields must be filled.");</script>';
@@ -80,16 +78,14 @@ function insertDatabase($conn)
         }
         //need to check email doesn't already exist too
         $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `email`,`username`, `password`) VALUES (NULL, '$fname', '$sname', '$email', '$username', '$password1')";
-       $result= $conn->query($sql);
+        $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
 
-            $_SESSION["userId"]  = $row["id"];
+            $_SESSION["userId"] = $row["id"];
         }
 
 
-
-
-            $sql = "SELECT * FROM `Accounts` WHERE `username`= $username ";
+        $sql = "SELECT * FROM `Accounts` WHERE `username`= $username ";
         $conn->query($sql);
 
         header('location:NewsFeedPage.php');
