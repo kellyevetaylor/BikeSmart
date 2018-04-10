@@ -68,7 +68,7 @@ $result=$conn->query($sql);
 if ($result){
     $row = $result->fetch_assoc();
     $username = $row["username"];
-}
+} 
 
 
 
