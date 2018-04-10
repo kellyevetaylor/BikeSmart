@@ -127,8 +127,6 @@ $userID = $_SESSION["id"];
                         $conn->multi_query($sql);
 
 
-                        //bike number $j at hub $i
-
                         ?>
                         <input type="hidden" name="hireBike" value="hireBike"><br>
                         <?php

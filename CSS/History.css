@@ -1,0 +1,16 @@
+#history {
+    padding: 1rem;
+}
+
+#month {
+    text-align: left;
+    background-color: lightgrey;
+    margin-top: 1rem;
+    padding: 1rem;
+    font-family: Arial;
+    font-size: 1.2rem;
+}
+
+#headings {
+    text-align: left;
+}

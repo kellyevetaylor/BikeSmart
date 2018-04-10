@@ -10,7 +10,8 @@ $userID = $_SESSION["id"];
  * Time: 21:03
  */
 
-$date = date('Y-m-d H:i:s');
+$date = date('d-m-Y');
+$month = date('m');
 $host = "devweb2017.cis.strath.ac.uk";
 $user = "mad3_a";
 $password = "Haihoo3shiop";
@@ -71,7 +72,7 @@ $action = isset($_POST["action"]);
     $hub = $row["bikesHub"];
 
     if (isset($_POST["stop"])) {
-        $sql = "UPDATE `BikeHubs` SET `available` = `available`+1 WHERE `id` = '$userID'";
+        $sql = "UPDATE `BikeHubs` SET `available` = `available`+1 WHERE `id` = '$hub'";
         $conn->multi_query($sql);
 
         $sql = "UPDATE `Bikes` SET `user` = 0 WHERE `bike` = '$bike'";
@@ -99,13 +100,13 @@ $action = isset($_POST["action"]);
 
             if (isset($_POST["confirm"])) {
                 displayBikeInfo($conn);
-                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = '$userID'";
+                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = '$hub'";
                 $conn->multi_query($sql);
 
                 $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = '$userID'";
                 $conn->multi_query($sql);
 
-                $sql = "INSERT INTO `BikeHires` (`id`, `time`, `hub`, `bike`,`user`) VALUES (NULL, '$date', '$hub', '$bike', '$userID')";
+                $sql = "INSERT INTO `BikeHires` (`id`, `time`, `hub`, `bike`,`user`,`month`) VALUES (NULL, '$date', '$hub', '$bike', '$userID','$month')";
                 $conn->multi_query($sql);
 
                 $code1 = rand(10, 50);
@@ -128,7 +129,7 @@ $action = isset($_POST["action"]);
                 <?php
             } else if ($hiring == 1) {
                 displayBikeInfo($conn);
-                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = '$userID'";
+                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = '$hub'";
                 $conn->multi_query($sql);
 
                 $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = '$userID'";
