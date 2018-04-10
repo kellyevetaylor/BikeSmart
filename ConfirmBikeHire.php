@@ -93,6 +93,8 @@ $action = isset($_POST["action"]);
         if ($bikeHired == 0) {
             header('location:BikeHubPage.php');
         } else {
+            $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = '$hub'";
+            $conn->multi_query($sql);
             ?>
             <div id="googleMap"></div>
             <?php
@@ -100,8 +102,7 @@ $action = isset($_POST["action"]);
 
             if (isset($_POST["confirm"])) {
                 displayBikeInfo($conn);
-                $sql = "UPDATE `BikeHubs` SET `available` = `available`-1 WHERE `id` = '$hub'";
-                $conn->multi_query($sql);
+
 
                 $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = '$userID'";
                 $conn->multi_query($sql);

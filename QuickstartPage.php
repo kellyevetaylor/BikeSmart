@@ -45,9 +45,6 @@ $user = "mad3_a";
 $password = "Haihoo3shiop";
 $database = "mad3_a";
 $conn = new mysqli($host, $user, $password, $database);
-if ($conn->connect_error) {
-die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
-}
 
 $action = isset($_POST["action"]);
 
