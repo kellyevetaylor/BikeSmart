@@ -197,7 +197,7 @@ function distanceToHub() {
                     var to = destinations[j];
                 }
             }
-            document.getElementById("distanceTest").innerHTML = "Here ".distance;
+            document.getElementById("distanceTest").innerHTML = distance;
         }
     }
 };
