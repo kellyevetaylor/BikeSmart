@@ -12,7 +12,9 @@ session_start();
     <title>New Account</title>
     <link rel="stylesheet" type="text/css" href="CSS/OverallStandard.css"/>
     <link rel="stylesheet" type="text/css" href="CSS/NewAccount.css"/>
-
+    <link rel="icon" sizes="192x192" href="Images/icon.png"/>
+    <link rel="apple-touch-icon" href="Images/icon.png"/>
+    <link rel="shortcut icon" href="Images/icon.png" type="image/x-icon"/>
 </head>
 
 <body>
