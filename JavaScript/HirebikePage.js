@@ -5,7 +5,7 @@ var timerRefresh;
 var date = new Date();
 var hours = 0, minutes = 0, seconds = 0;
 var hoursTemplate = "0", minutesTemplate = "0", secondsTemplate = "0";
-var startLong, startLat;
+var startLong =0, startLat=0 ;
 var labels = 'ABCD';
 var labelIndex = 0;
 
@@ -157,32 +157,34 @@ function googleMap(long, lat) {
     marker4.setMap(map);
     marker5.setMap(map);
 
-
     distanceToHub();
+
 
 };
 
 
 function distanceToHub() {
-    var origin = new google.maps.LatLng(55.86296951227654, -4.2446405658149615);
+
+    var origin = new google.maps.LatLng(startLat, startLong);
 
     var destinationGeorgeSquareHub = new google.maps.LatLng(55.86152450673392, -4.249251283111562);
-   // var destinationGlasgowCollegeHub = new google.maps.LatLng(55.86296951227654, -4.2446405658149615);
-    //var destinationGlasgowGreenHub = new google.maps.LatLng(55.849678806528196, -4.233928578959649);
-    //var destinationLivyTowerHub = new google.maps.LatLng(55.860729730774366, -4.243202901782979);
+    var destinationGlasgowCollegeHub = new google.maps.LatLng(55.86296951227654, -4.2446405658149615);
+    var destinationGlasgowGreenHub = new google.maps.LatLng(55.849678806528196, -4.233928578959649);
+    var destinationLivyTowerHub = new google.maps.LatLng(55.860729730774366, -4.243202901782979);
 
     var service = new google.maps.DistanceMatrixService();
 
     service.getDistanceMatrix(
         {
             origins: [origin],
-            destinations: [destinationGeorgeSquareHub],
+            destinations: [destinationGeorgeSquareHub,destinationLivyTowerHub,destinationGlasgowCollegeHub,destinationGlasgowGreenHub],
             travelMode: 'BICYCLING',
         },
         callback
     );
 
     function callback(response, status) {
+
         if (status == 'OK') {
             var origins = response.originAddresses;
             var destinations = response.destinationAddresses;
@@ -190,14 +192,18 @@ function distanceToHub() {
             for (var i = 0; i < origins.length; i++) {
                 var results = response.rows[i].elements;
                 for (var j = 0; j < results.length; j++) {
+                    document.getElementById("distanceTest"+(j+1)).innerHTML ="";
                     var element = results[j];
                     var distance = element.distance.text;
                     var duration = element.duration.text;
                     var from = origins[i];
                     var to = destinations[j];
+
+                    document.getElementById("distanceTest"+(j+1)).innerHTML += distance + "</br>";
+
                 }
+
             }
-            document.getElementById("distanceTest").innerHTML = distance;
         }
     }
 };

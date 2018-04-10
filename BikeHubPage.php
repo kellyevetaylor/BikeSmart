@@ -59,7 +59,7 @@ $userID = $_SESSION["id"];
         <div id="googleMap">
 
         </div>
-
+        </div>
         <table>
             <tr>
                 <th>Bike Hub</th>
@@ -96,8 +96,12 @@ $userID = $_SESSION["id"];
                     echo "</td>";
                     echo "<td>";
                     echo $row["available"];
-                    echo "<td>";
-                    echo $row["distance"];
+                    echo "<td >";
+                    //   echo $row["distance"];
+                    echo "<div id=\"distanceTest" . $row["id"] . "\">";
+
+                    echo "</div>";
+
                     echo "</td>";
                     echo "<td>";
                     ?>
@@ -136,8 +140,7 @@ $userID = $_SESSION["id"];
             }
             ?>
         </table>
-        <div id="distanceTest"></div>
-        </div>
+
     </form>
     <?php
     }
@@ -155,7 +158,6 @@ $userID = $_SESSION["id"];
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-ld-Jrm4iRR45vbE3NVNYSqZ1C8QbroM&callback=googleMap">
 </script>
-
 
 
 </html>
