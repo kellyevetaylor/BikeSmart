@@ -138,7 +138,6 @@ $userID = $_SESSION["id"];
             }
             ?>
         </table>
-
     </form>
     <?php
     }

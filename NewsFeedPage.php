@@ -43,14 +43,18 @@ $userID = $_SESSION["id"];
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["messageText"])) {
     $message = $_POST["messageText"];
-    $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$userID', '$date')";
+    $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$user', '$date')";
     $conn->query($sql);
 
     header('location:NewsFeedPage.php');
     }
     }
 
-    $sql = "SELECT * FROM `Accounts` WHERE 'id' = '$userID'";
+    $sql = "SELECT * FROM `Accounts` WHERE `id` = '$userID'";
+    $result = $conn->query($sql);
+    if ($result)
+    $row = $result->fetch_assoc();
+    $user = $row["username"];
 
     ?>
 
@@ -80,16 +84,15 @@ $userID = $_SESSION["id"];
             ?>
         <div id = "chatFormDiv"><?php
         echo "<div id=username >";
-        echo $row["id"];
+        echo $user;
+        echo "<br>";
+        echo "</div>";
+        echo "<div id=time >";
+        echo $row["time"];
         echo "<br>";
         echo "</div>";
         echo "<div id=message >";
         echo $row["message"];
-        echo "<br>";
-        echo "</div>";
-
-        echo "<div id=time >";
-        echo $row["time"];
         echo "<br>";
         echo "</div>";
         echo "<br>";
