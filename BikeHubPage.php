@@ -1,12 +1,12 @@
 <?php
 session_start();
-if (empty($_SESSION['userId'])) {
+if (empty($_SESSION['id'])) {
     session_destroy();
-    header("Location: LoginPage.php"); /* Redirect browser */
+    header("Location: LoginPage.php");
     exit();
 }
 $userID = $_SESSION["id"];
-        
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +52,12 @@ $userID = $_SESSION["id"];
         if ($hiring == 1){
             header('location:ConfirmBikeHire.php');
         }else{
+
+        $sql = "UPDATE `Accounts` SET `bikeHired` = 0 WHERE `id` = '$userID'";
+        $conn->multi_query($sql);
+
+        $sql = "UPDATE `Accounts` SET `bikesHub` = 0 WHERE `id` = '$userID'";
+        $conn->multi_query($sql);
 
         ?>
 

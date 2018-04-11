@@ -3,12 +3,11 @@
 
 
 session_start();
-if (empty($_SESSION['userId'])) {
+/*if (empty($_SESSION['userId'])) {
     session_destroy();
-    header("Location: LoginPage.php"); /* Redirect browser */
+    header("Location: LoginPage.php"); /* Redirect browser
     exit();
-}
-
+}*/
 
 ?><!DOCTYPE html>
 <html lang="en">

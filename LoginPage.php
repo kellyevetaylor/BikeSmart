@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!empty($_SESSION['userId'])) {
+if (!empty($_SESSION['id'])) {
     session_destroy();
     header("Location: LoginPage.php"); /* Redirect browser */
     exit();
