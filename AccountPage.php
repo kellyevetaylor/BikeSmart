@@ -2,6 +2,11 @@
 <?php
 
 session_start();
+if (empty($_SESSION['userId'])) {
+    session_destroy();
+    header("Location: LoginPage.php"); /* Redirect browser */
+    exit();
+}
 $userID = $_SESSION["id"];
 
 
