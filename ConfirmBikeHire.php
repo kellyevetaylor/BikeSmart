@@ -176,6 +176,10 @@ $action = isset($_POST["action"]);
                         <input type="submit" value="Confirm Payment (PayPal?)" name="confirm" class="submitButton">
                     </form>
                 </div>
+
+                <div id="backButton">
+                    <button onclick="location.href='BikeHubPage.php'">Back</button>
+                </div>
                 <?php
             }
         }

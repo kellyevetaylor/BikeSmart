@@ -47,9 +47,9 @@ $userID = $_SESSION["id"];
 
         if ($result)
             $row = $result->fetch_assoc();
-        $bikeHired = $row["bikeHired"];
+        $hiring = $row["hiring"];
 
-        if ($bikeHired != 0){
+        if ($hiring == 1){
             header('location:ConfirmBikeHire.php');
         }else{
 
