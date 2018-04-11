@@ -64,7 +64,7 @@ die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
 }
 
 
-$message = "Distance: " . $distance . " Time: " . $time;
+$message = "Cycled " . $distance . " in " . $time;
 
 $sql = "SELECT * FROM `Accounts` WHERE `id` = '$userID'";
 $result=$conn->query($sql);

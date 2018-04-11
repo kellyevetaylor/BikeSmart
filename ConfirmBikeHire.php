@@ -3,13 +3,6 @@
 session_start();
 $userID = $_SESSION["id"];
 
-/**
- * Created by IntelliJ IDEA.
- * User: Ryan
- * Date: 07/04/2018
- * Time: 21:03
- */
-
 $date = date('d-m-Y');
 $month = date('m');
 $host = "devweb2017.cis.strath.ac.uk";

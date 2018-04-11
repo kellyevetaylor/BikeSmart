@@ -116,7 +116,7 @@ $userID = $_SESSION["id"];
                     if (isset($_POST["Hire$i"])) {
 
                         if ($j <= 0) {
-                            echo '<script type="text/javascript">alert("This hub currently has no bikes available. Please choose another hub or wait for bikes to become available.");</script>';
+                            echo '<script type="text/javascript">alert("This hub currently has no bikes available.");</script>';
                         } else {
                             $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` = '$j'";
                             $conn->multi_query($sql);

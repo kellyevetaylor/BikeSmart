@@ -1,13 +1,18 @@
 #username{
     font-weight: bold;
     font-size: 1.3rem;
-
 }
-
+#message{
+    padding-top:0.5rem;
+    font-size: 1.2rem;
+}
 #time{
     color: grey;
     font-size: 0.8rem;
+    padding-top:0.2rem;
+
 }
+
 
 .postButton {
     background-color: cornflowerblue;
@@ -19,27 +24,27 @@
     color: white;
     text-align: center;
     height: 3rem;
-    cursor: pointer;
-
 }
 
 #chatFormDiv {
-    padding: 1rem;
-    border: 6px solid lightcyan;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     border-radius: 5px;
-    background-color: lightskyblue;
+    background-color: lightblue;
     margin:1rem;
 }
 
 #messageText {
-    width: 70%;
+    width: 60%;
     border-radius: 0.2rem;
     display: inline-block;
     text-decoration: none;
     height: 2rem;
     font-size: 1.4rem;
     padding: 0.5rem;
-    margin: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 input {
@@ -51,3 +56,18 @@ input {
 body{
     overflow: scroll;
 }
+
+.postButton {
+    background-color: cornflowerblue;
+    border-radius: 0.4rem;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    font-size: 1rem;
+    padding: 0.8rem;
+    color: white;
+    text-align: center;
+    width:4rem;
+}
+
+

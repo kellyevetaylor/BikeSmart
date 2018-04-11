@@ -77,24 +77,42 @@ $userID = $_SESSION["id"];
 
         $sql = "SELECT * FROM `Newsfeed` ORDER BY time DESC";
         $result = mysqli_query($conn, $sql);
+
+
         if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            ?>
-        <div id = "chatFormDiv"><?php
-        echo "<div id=username >";
-        echo $row["userID"];
-        echo "<br>";
-        echo "</div>";
-        echo "<div id=time >";
-        echo $row["time"];
-        echo "<br>";
-        echo "</div>";
-        echo "<div id=message >";
-        echo $row["message"];
-        echo "<br>";
-        echo "</div>";
-        echo "<br>";
+
+        $username = $row["userID"];
+        $sql2 = "SELECT * FROM `Accounts` WHERE `username` = '$username'";
+        $result2 = $conn->query($sql2);
+
+        $row2 = $result2->fetch_assoc();
+        $pic = $row2["pic"];
+
         ?>
+        <div id="chatFormDiv">
+
+            <div id="pic">
+                <p><img src="<?php echo $pic ?>" height="80" width="80"></p></div>
+            <?php
+
+            echo "<div id=username >";
+            echo $row["userID"];
+            echo "<br>";
+            echo "</div>";
+            ?>
+
+            <div id="time"><?php
+                echo $row["time"];
+                echo "<br>";
+                ?></div>
+
+            <div id="message"><?php
+                echo $row["message"];
+                echo "<br>";
+                ?></div><?php
+            echo "<br>";
+            ?>
         </div><?php
         }
         }
