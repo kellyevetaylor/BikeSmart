@@ -49,6 +49,10 @@ function displayForm()
         <p id="submit"><input type="submit" id="b1" value="Create account"></p>
         <input type="hidden" name="action" value="doInsert"><br>
     </form>
+
+    <div id="backButton">
+        <button onclick="location.href='LoginPage.php'">Back</button>
+    </div>
     <?php
 }
 
@@ -80,19 +84,13 @@ function insertDatabase($conn)
         }
         //need to check email doesn't already exist too
         $sql = "INSERT INTO `Accounts` (`id`, `first name`, `second name`, `email`,`username`, `password`, `pic`, `bikeHired`, `bikesHub`, `hiring`) VALUES (NULL, '$fname', '$sname', '$email', '$username', '$password1', 'Images/avatar.jpg' ,0, 0, 0)";
-       $result= $conn->query($sql);
-        if (!$result === TRUE) {
-            die("Error on insert" . $conn->error);
-        }else {
+        $conn->query($sql);
 
+        header('location:LoginPage.php');
 
-            header('location:LoginPage.php');
-        }
     }
 }
-
 ?>
-
 </body>
 <script src="JavaScript/LoginPage.js"></script>
 </html>

@@ -2,23 +2,24 @@ body{
     text-align: center;
     padding-top: 0.5%;
     font-family: Arial;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     overflow: hidden;
     border-radius: 0.4rem;
 }
 
 p{
-    padding-top: 5vh;
+    padding-top: 5%;
 }
 
 #b1, #b2{
-    font-size : 1.5rem;
+    font-size : 1.2rem;
     border-radius: 0.4rem;
     display: inline-block;
     text-decoration: none;
     border: none;
     background-color: cornflowerblue;
     padding: 0.8rem;
+    color: white;
 }
 
 input {
