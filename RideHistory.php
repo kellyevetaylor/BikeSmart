@@ -40,131 +40,162 @@ $userID = $_SESSION["id"];
     $password = "Haihoo3shiop";
     $database = "mad3_a";
     $conn = new mysqli($host, $user, $password, $database);
+    $janSet = 0;
+    $febSet = 0;
+    $marSet = 0;
+    $aprSet = 0;
+    $maySet = 0;
+    $juneSet = 0;
+    $julySet = 0;
+    $augSet = 0;
+    $sepSet = 0;
+    $octSet = 0;
+    $novSet = 0;
+    $decSet = 0;
 
-
-    $sql = "SELECT * FROM `QuickstartTable` WHERE `id` = 1 ORDER BY `time` DESC";
+    $sql = "SELECT * FROM `QuickstartTable` WHERE `user` = '$userID' ORDER BY `month` DESC";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
-        switch($row["month"]) {
+        switch ($row["month"]) {
             case 01:
-                ?>
-                <div id="month">
-                    January 2018
-                </div>
-                <?php
+                if ($janSet == 0) {
+                    ?>
+                    <div id="month">
+                        January 2018
+                    </div>
+                    <?php
+                    $janSet = 1;
+                }
                 displayInfo($row);
                 break;
             case 02:
-                ?>
-                <div id="month">
-                    February 2018
-                </div>
-                <?php
+                if ($febSet == 0) {
+                    ?>
+                    <div id="month">
+                        February 2018
+                    </div>
+                    <?php
+                    $febSet = 1;
+                }
                 displayInfo($row);
                 break;
             case 03:
-                ?>
-                <div id="month">
-                    March 2018
-                </div>
-                <?php
+                if ($marSet == 0) {
+                    ?>
+                    <div id="month">
+                        March 2018
+                    </div>
+                    <?php
+                    $marSet = 1;
+                }
                 displayInfo($row);
                 break;
             case 04:
-                ?>
-                <div id="month">
-                    April 2018
-                </div>
-                <?php
+                if ($aprSet == 0) {
+                    ?>
+                    <div id="month">
+                        April 2018
+                    </div>
+                    <?php
+                    $aprSet = 1;
+                }
                 displayInfo($row);
                 break;
             case 05:
-                ?>
-                <div id="month">
-                    May 2018
-                </div>
-                <?php
+                if ($maySet == 0) {
+                    ?>
+                    <div id="month">
+                        May 2018
+                    </div>
+                    <?php
+                    $maySet = 1;
+                }
                 displayInfo($row);
                 break;
             case 06:
-                ?>
-                <div id="month">
-                    June 2018
-                </div>
-                <?php
+                if ($juneSet == 0) {
+                    ?>
+                    <div id="month">
+                        June 2018
+                    </div>
+                    <?php
+                    $juneSet = 1;
+                }
                 displayInfo($row);
                 break;
             case 07:
-                ?>
-                <div id="month">
-                    July 2018
-                </div>
-                <?php
+                if ($julySet == 0) {
+                    ?>
+                    <div id="month">
+                        July 2018
+                    </div>
+                    <?php
+                    $julySet = 1;
+                }
                 displayInfo($row);
                 break;
             case "08":
-                ?>
-                <div id="month">
-                    August 2018
-                </div>
-                <?php
+                if ($augSet == 0) {
+                    ?>
+                    <div id="month">
+                        August 2018
+                    </div>
+                    <?php
+                    $augSet = 1;
+                }
                 displayInfo($row);
                 break;
             case "09":
-                ?>
-                <div id="month">
-                    September 2018
-                </div>
-                <?php
+                if ($sepSet == 0) {
+                    ?>
+                    <div id="month">
+                        September 2018
+                    </div>
+                    <?php
+                    $sepSet = 1;
+                }
                 displayInfo($row);
                 break;
             case 10:
-                ?>
-                <div id="month">
-                    October 2018
-                </div>
-                <?php
+                if ($octSet == 0) {
+                    ?>
+                    <div id="month">
+                        October 2018
+                    </div>
+                    <?php
+                    $octSet = 1;
+                }
                 displayInfo($row);
                 break;
             case 11:
-                ?>
-                <div id="month">
-                    November 2018
-                </div>
-                <?php
+                if ($novSet == 0) {
+                    ?>
+                    <div id="month">
+                        November 2018
+                    </div>
+                    <?php
+                    $novSet = 1;
+                }
                 displayInfo($row);
                 break;
             case 12:
-                ?>
-                <div id="month">
-                    December 2018
-                </div>
-                <?php
+                if ($decSet == 0) {
+                    ?>
+                    <div id="month">
+                        December 2018
+                    </div>
+                    <?php
+                    $decSet = 1;
+                }
                 displayInfo($row);
                 break;
         }
     }
 
-    function displayInfo($row){
-        switch ($row["hub"]) {
-            case 1:
-                $hub = "A";
-                $address = "George Square";
-                break;
-            case 2:
-                $hub = "B";
-                $address = "Livingstone Tower";
-                break;
-            case 3:
-                $hub = "C";
-                $address = "City of Glasgow College";
-                break;
-            case 4:
-                $hub = "D";
-                $address = "Glasgow Green";
-                break;
-        }
+    function displayInfo($row)
+    {
+
         ?>
         <table id="history">
             <tr>
@@ -174,7 +205,7 @@ $userID = $_SESSION["id"];
             </tr>
             <tr>
                 <td>
-                    <?php echo "You hired bike #" . $row["bike"] . " from Hub " . $hub . " at " . $address; ?>
+                    <?php echo "You cycled " . $row["distance"] . " in " . $row["time"]; ?>
                 </td>
             </tr>
         </table>

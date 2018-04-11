@@ -35,8 +35,8 @@ $userID = $_SESSION["id"];
 
 
 <?php
-$date = date('Y-m-d');
-$date2 = date('Y-m-d H:i:s');
+$date = date('d-m-Y');
+$date2 = date('d/m/Y H:i:s');
 $month = date('m');
 
 $host = "devweb2017.cis.strath.ac.uk";
@@ -56,7 +56,7 @@ $endLocation = isset($_POST["endLocation"]) ? $_POST["endLocation"] : "";
 
 if ($action == "Finish") {
 
-$sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`,`date`,`month`) VALUES (Null, '$distance', '$time', '0', '0','$date','$month')";
+$sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`,`date`,`month`,`user`) VALUES (Null, '$distance', '$time', '0', '0','$date','$month','$userID')";
 $conn->query($sql);
 
 if ($conn->connect_error) {

@@ -91,9 +91,8 @@ $userID = $_SESSION["id"];
 
             while ($row = $result->fetch_assoc()) {
                 //checking that password exists within the database
-                if ($row["password"] == $oldPassword /*&& $row[id] == session id*/) {
+                if ($row["password"] == $oldPassword) {
                     if ($newPassword1 == $newPassword2) {
-                        //id will be changed when sessions are in place
                         $sql = "UPDATE `Accounts` SET `password` = $newPassword1 WHERE `Accounts`.`id` = '$userID'";
                         $conn->query($sql);
                         echo '<script type="text/javascript">alert("Update successful.");</script>';

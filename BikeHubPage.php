@@ -96,7 +96,6 @@ $userID = $_SESSION["id"];
                     echo "<td>";
                     echo $row["available"];
                     echo "<td >";
-                    //   echo $row["distance"];
                     echo "<div id=\"distanceTest" . $row["id"] . "\">";
 
                     echo "</div>";
@@ -116,21 +115,26 @@ $userID = $_SESSION["id"];
 
                     if (isset($_POST["Hire$i"])) {
 
-                        $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` = '$j'";
-                        $conn->multi_query($sql);
+                        if ($j <= 0) {
+                            echo '<script type="text/javascript">alert("This hub currently has no bikes available. Please choose another hub or wait for bikes to become available.");</script>';
+                        } else {
+                            $sql = "UPDATE `Bikes` SET `user` = 1 WHERE `hub` = '$i' AND `user` = 0 AND `bike` = '$j'";
+                            $conn->multi_query($sql);
 
-                        $sql = "UPDATE `Accounts` SET `bikeHired` = '$j' WHERE `Accounts`.`id` = $userID;";
-                        $conn->multi_query($sql);
+                            $sql = "UPDATE `Accounts` SET `bikeHired` = '$j' WHERE `Accounts`.`id` = $userID;";
+                            $conn->multi_query($sql);
 
-                        $sql = "UPDATE `Accounts` SET `bikesHub` = '$i' WHERE `Accounts`.`id` = $userID;";
-                        $conn->multi_query($sql);
+                            $sql = "UPDATE `Accounts` SET `bikesHub` = '$i' WHERE `Accounts`.`id` = $userID;";
+                            $conn->multi_query($sql);
 
 
-                        ?>
-                        <input type="hidden" name="hireBike" value="hireBike"><br>
-                        <?php
-                        unset($_POST["Hire$i"]);
-                        header('location:ConfirmBikeHire.php');
+                            ?>
+                            <input type="hidden" name="hireBike" value="hireBike"><br>
+                            <?php
+                            unset($_POST["Hire$i"]);
+                            header('location:ConfirmBikeHire.php');
+
+                        }
                     }
 
                 }
