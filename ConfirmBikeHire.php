@@ -129,9 +129,6 @@ $action = isset($_POST["action"]);
             } else if ($hiring == 1) {
                 displayBikeInfo($conn);
 
-                $sql = "UPDATE `Accounts` SET `hiring` = 1 WHERE `id` = '$userID'";
-                $conn->multi_query($sql);
-
                 $code1 = rand(10, 50);
                 $code2 = rand(10, 50);
                 $code3 = rand(10, 50);
