@@ -63,7 +63,7 @@ $conn = new mysqli($host, $user, $password, $database);
     while ($row = $result->fetch_assoc()) {
         $photo = $row['pic'];
         ?>
-        <p><img src = "<?php echo $photo?>" height="150" width="150"></p>
+        <p><img src = "<?php echo $photo?>" height="175" width="150"></p>
         <table style="width: 100%">
             <tr>
                 <?php

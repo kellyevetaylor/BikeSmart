@@ -62,8 +62,12 @@ option{
     padding-right: 42.5%;
 }
 
-#stopButton,#backButton{
+#stopButton{
     padding:4%;
     text-align: center;
 }
 
+#backButton{
+    padding:2%;
+    text-align: center;
+}

@@ -64,10 +64,6 @@ if ($action == "Finish") {
 $sql = "INSERT INTO `QuickstartTable` (`id`, `distance`, `time`, `startLocation`,`endLocation`,`date`,`month`,`user`) VALUES (Null, '$distance', '$time', '0', '0','$date','$month','$userID')";
 $conn->query($sql);
 
-if ($conn->connect_error) {
-die("Connection Failed :" . $conn->connect_error); //FIXME remove once working.
-}
-
 
 $message = "Cycled " . $distance . " in " . $time;
 

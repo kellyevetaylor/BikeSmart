@@ -49,7 +49,7 @@ $action = isset($_POST["action"]);
     <body>
 
     <?php
-
+    $date2 = date('d/m/Y H:i:s');
 
     $sql = "SELECT * FROM `Accounts` WHERE `id` = '$userID'";
     $result = $conn->query($sql);
@@ -108,6 +108,19 @@ $action = isset($_POST["action"]);
                 $sql = "INSERT INTO `BikeHires` (`id`, `time`, `hub`, `bike`,`user`,`month`) VALUES (NULL, '$date', '$hub', '$bike', '$userID','$month')";
                 $conn->multi_query($sql);
 
+                $message = "Just hired bike #" . $bike . " from Hub " . $hub;
+
+                $sql = "SELECT * FROM `Accounts` WHERE `id` = '$userID'";
+                $result = $conn->query($sql);
+
+
+                $row = $result->fetch_assoc();
+                $username = $row["username"];
+
+
+                $sql = "INSERT INTO `Newsfeed` (`message`, `userID`, `time`) VALUES ('$message', '$username', '$date2')";
+                $conn->query($sql);
+
                 $code1 = rand(10, 50);
                 $code2 = rand(10, 50);
                 $code3 = rand(10, 50);
@@ -154,7 +167,7 @@ $action = isset($_POST["action"]);
                 <div class="selectOptions">
 
                     <select id="confirmationTime" onchange="getTotal()">
-                        <option value="30" selected >30 Minutes</option>
+                        <option value="30" selected>30 Minutes</option>
                         <option value="2">2 Hours</option>
                         <option value="4">4 Hours</option>
                         <option value="24">24 Hours</option>
@@ -167,7 +180,8 @@ $action = isset($_POST["action"]);
 
                 <div id="confirmPayment">
                     <form method="POST" action="ConfirmBikeHire.php">
-                        <input id="confirm" name="confirm" display="none" type="submit"  value="Display Unlock Code" class="submitButton">
+                        <input id="confirm" name="confirm" display="none" type="submit" value="Display Unlock Code"
+                               class="submitButton">
 
                         <div id="paypal-button"></div>
                     </form>
@@ -265,16 +279,16 @@ $action = isset($_POST["action"]);
         env: 'sandbox',
 
         client: {
-            sandbox:    'AW3O_rJ39E_qL3iOvDr_s9uEw4iHII-G1pQblZ0t0X6rMkKinnN0gBcmo4tKG8uEUhIgFX0bWrIrkz23'
+            sandbox: 'AW3O_rJ39E_qL3iOvDr_s9uEw4iHII-G1pQblZ0t0X6rMkKinnN0gBcmo4tKG8uEUhIgFX0bWrIrkz23'
         },
 
         commit: true, // Show a 'Pay Now' button
 
-        payment: function(data, actions) {
+        payment: function (data, actions) {
             var timeSelected = document.getElementById("confirmationTime");
             var timeValue = timeSelected.options[timeSelected.selectedIndex].value;
             var amount = 0;
-            switch(timeValue){
+            switch (timeValue) {
                 case "30":
                     amount = '1.00';
                     break;
@@ -292,22 +306,24 @@ $action = isset($_POST["action"]);
                 payment: {
                     transactions: [
                         {
-                            amount: { total: amount, currency: 'GBP' }
+                            amount: {total: amount, currency: 'GBP'}
                         }
                     ]
                 }
             });
         },
 
-        onAuthorize: function(data, actions) {
-            return actions.payment.execute().then(function(payment) {
+        onAuthorize: function (data, actions) {
+            return actions.payment.execute().then(function (payment) {
 
                 alert("Payment was successful");
                 //need to redirect User to HireStatus
                 var paypalBtn = document.getElementById("paypal-button");
                 var timeSelected = document.getElementById("confirmationTime");
                 var backButton = document.getElementById("backButton");
+                var total = document.getElementById("total");
                 backButton.style.display = 'none';
+                total.style.display = 'none';
                 timeSelected.style.display = 'none';
                 paypalBtn.style.display = 'none';
                 confirmBtn.style.display = 'inline';
