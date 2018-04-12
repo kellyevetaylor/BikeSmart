@@ -63,12 +63,13 @@ function getStartLocation() {
 }
 
 function getFinishLocation() {
+    stopTimer();
     var myGPSElement = document.getElementById("gps");
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             clickFinishLat = r4(position.coords.latitude);
             clickFinishLong = r4(position.coords.longitude);
-            stopTimer();
+
         });
     } else {
         myGPSElement.innerHTML = "Geolocation is not supported.";
