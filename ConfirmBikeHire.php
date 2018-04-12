@@ -74,7 +74,7 @@ $action = isset($_POST["action"]);
         $sql = "UPDATE `BikeHubs` SET `available` = `available`+1 WHERE `id` = '$hub'";
         $conn->multi_query($sql);
 
-        $sql = "UPDATE `Bikes` SET `user` = 0 WHERE `bike` = '$bike'";
+        $sql = "UPDATE `Bikes` SET `user` = 0 WHERE `bike` = '$bike' AND `hub` = '$hub'";
         $conn->multi_query($sql);
 
         $sql = "UPDATE `Accounts` SET `hiring` = 0 WHERE `id` = '$userID'";
@@ -299,6 +299,7 @@ $action = isset($_POST["action"]);
                         }
                     ]
                 }
+            });
             });
         },
 
