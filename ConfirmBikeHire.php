@@ -157,8 +157,7 @@ $action = isset($_POST["action"]);
                 <div class="selectOptions">
 
                     <select id="confirmationTime" onchange="getTotal()">
-                        <option>Time</option>
-                        <option value="30">30 Minutes</option>
+                        <option value="30" selected >30 Minutes</option>
                         <option value="2">2 Hours</option>
                         <option value="4">4 Hours</option>
                         <option value="24">24 Hours</option>
@@ -166,12 +165,14 @@ $action = isset($_POST["action"]);
                 </div>
 
                 <div id="total">
-                    Total -
+                    Total £1
                 </div>
 
                 <div id="confirmPayment">
                     <form method="POST" action="ConfirmBikeHire.php">
-                        <input type="submit" value="Confirm Payment (PayPal?)" name="confirm" class="submitButton">
+                        <input id="confirm" name="confirm" display="none" type="submit"  value="Display Unlock Code" class="submitButton">
+
+                        <div id="paypal-button"></div>
                     </form>
                 </div>
 
@@ -256,6 +257,68 @@ $action = isset($_POST["action"]);
     <button class="tabButton" onclick="location.href='BikeHubPage.php';"><img src="Images/HireBike.png"></button>
     <button class="tabButton" onclick="location.href='AccountPage.php';"><img src="Images/AccountIcon2.png"></button>
 </div>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+<script>
+    var confirmBtn = document.getElementById("confirm");
+    confirmBtn.style.display = 'none';
+
+
+    paypal.Button.render({
+        env: 'sandbox',
+
+        client: {
+            sandbox:    'AW3O_rJ39E_qL3iOvDr_s9uEw4iHII-G1pQblZ0t0X6rMkKinnN0gBcmo4tKG8uEUhIgFX0bWrIrkz23'
+        },
+
+        commit: true, // Show a 'Pay Now' button
+
+        payment: function(data, actions) {
+            var timeSelected = document.getElementById("confirmationTime");
+            var timeValue = timeSelected.options[timeSelected.selectedIndex].value;
+            var amount = 0;
+            switch(timeValue){
+                case "30":
+                    amount = '1.00';
+                    break;
+                case "2":
+                    amount = '4.00';
+                    break;
+                case "4":
+                    amount = '8.00';
+                    break;
+                case "24":
+                    amount = '10.00';
+                    break;
+            }
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: amount, currency: 'GBP' }
+                        }
+                    ]
+                }
+            });
+        },
+
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function(payment) {
+
+                alert("Payment was successful");
+                //need to redirect User to HireStatus
+                var paypalBtn = document.getElementById("paypal-button");
+                var timeSelected = document.getElementById("confirmationTime");
+                var backButton = document.getElementById("backButton");
+                backButton.style.display = 'none';
+                timeSelected.style.display = 'none';
+                paypalBtn.style.display = 'none';
+                confirmBtn.style.display = 'inline';
+            });
+        }
+
+    }, '#paypal-button');
+</script>
 <script src="JavaScript/ConfirmBikeHire.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-ld-Jrm4iRR45vbE3NVNYSqZ1C8QbroM&callback=googleMap">
 </script>
